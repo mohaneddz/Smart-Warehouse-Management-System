@@ -52,7 +52,6 @@ warehouse/
 ├── public/               # Static public files
 ├── tauri.conf.json       # Tauri configuration file
 ├── package.json          # Node.js dependencies
-├── tailwind.config.js    # Tailwind CSS configuration
 ├── tsconfig.json         # TypeScript configuration
 ├── .env                  # Environment variables
 ├── README.md             # Project documentation (this file!)

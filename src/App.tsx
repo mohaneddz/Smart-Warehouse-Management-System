@@ -1,13 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Logs from './pages/AddEnv';
+import Titlebar from './components/Titlebar';
 
 const App = () => {
   return (
     <Router>
-      <Routes>
+      <Titlebar/>
+        <Routes>
         <Route path="/" element={<Logs />} />
-      </Routes>
-    </Router>
+    </Routes>
+    </Router >
   );
 };
 

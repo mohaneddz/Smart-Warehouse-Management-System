@@ -2,8 +2,9 @@
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
+
 body {
-  background-color: #05060f;
+  background-color: #05060fec;
   font-family: 'Arsenal SC';
 }
 
@@ -121,4 +122,32 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.titlebar {
+  height: 30px;
+  /* background: #314057; */
+  user-select: none;
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.titlebar-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  -webkit-filter: invert(100%); /* Safari/Chrome */
+  filter: invert(50%);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.titlebar-button:hover {
+  background: #5a77a2;
 }

@@ -1,17 +1,9 @@
 'use client';
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Button } from '@/components/ui/button';
-import { Edit, Trash2 } from 'lucide-react';
 import { useState } from 'react';
+import { Edit, Trash2 } from 'lucide-react';
+import { Button } from './ui/button';
 
 const invoices = [
   {
@@ -56,50 +48,147 @@ const invoices = [
     totalAmount: '$300.00',
     paymentMethod: 'Credit Card',
   },
+  {
+    invoice: 'INV008',
+    paymentStatus: 'Paid',
+    totalAmount: '$650.00',
+    paymentMethod: 'Credit Card',
+  },
+  {
+    invoice: 'INV009',
+    paymentStatus: 'Pending',
+    totalAmount: '$750.00',
+    paymentMethod: 'PayPal',
+  },
+  {
+    invoice: 'INV010',
+    paymentStatus: 'Unpaid',
+    totalAmount: '$850.00',
+    paymentMethod: 'Bank Transfer',
+  },
 ];
 
-function TableDemo() {
+export function Table2() {
   const [selectedInvoices, setSelectedInvoices] = useState<string[]>([]);
 
-  const toggleInvoice = (invoice: string) => {
+  const toggleInvoice = (invoice: string, checked: boolean) => {
     setSelectedInvoices((prev) =>
-      prev.includes(invoice)
-        ? prev.filter((i) => i !== invoice)
-        : [...prev, invoice],
+      checked ? [...prev, invoice] : prev.filter((i) => i !== invoice),
     );
   };
 
   return (
-    <div className="relative border font-[Arsenal] rounded-md dark overflow-y-scroll [&::-webkit-scrollbar]:w-2 dark:[&::-webkit-scrollbar-track]:bg-[#10121E] dark:[&::-webkit-scrollbar-thumb]:bg-[#303137]">
-      <Table className="bg-[#10111D] dark  text-[#BFBFBF]  font-bold overflow-y-scroll">
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[50px]"></TableHead>
-            <TableHead className="w-[100px]">Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
+    <div className="rounded-md bg-[#10111D] text-[#BFBFBF] font-bold p-1">
+      <div className="w-full">
+        <div className="grid grid-cols-[0.5fr_1fr_1fr_1fr_1fr_1fr] h-[50px] border-b border-gray-700">
+          <div className="flex items-center justify-center"></div>
+          <div className="flex items-center font-medium">
+            <button
+              type="button"
+              // a function to display the menue to filter
+              className="text-gray-400 hover:text-gray-200 flex items-center gap-2"
+            >
+              <svg
+                width="16"
+                height="8"
+                viewBox="0 0 16 8"
+                fill="white"
+                xmlns="http://www.w3.org/2000/svg"
+                transform="rotate(180)"
+              >
+                <path d="M8 0L15.7942 8H0.205771L8 0Z" fill="#8B939B" />
+              </svg>
+              <span>Invoice</span>
+            </button>
+          </div>
+          <div className="flex items-center font-medium">
+            <button
+              type="button"
+              // a function to display the menue to filter
+              className="text-gray-400 hover:text-gray-200 flex items-center gap-2"
+            >
+              <svg
+                width="16"
+                height="8"
+                viewBox="0 0 16 8"
+                fill="white"
+                xmlns="http://www.w3.org/2000/svg"
+                transform="rotate(180)"
+              >
+                <path d="M8 0L15.7942 8H0.205771L8 0Z" fill="#8B939B" />
+              </svg>
+              <span>Status</span>
+            </button>
+          </div>
+
+          <div className="flex items-center font-medium">
+            <button
+              type="button"
+              // a function to display the menue to filter
+              className="text-gray-400 hover:text-gray-200 flex items-center gap-2"
+            >
+              <svg
+                width="16"
+                height="8"
+                viewBox="0 0 16 8"
+                fill="white"
+                xmlns="http://www.w3.org/2000/svg"
+                transform="rotate(180)"
+              >
+                <path d="M8 0L15.7942 8H0.205771L8 0Z" fill="#8B939B" />
+              </svg>
+              <span>Method</span>
+            </button>
+          </div>
+          <div className="flex items-center justify-center font-medium ">
+            <button
+              type="button"
+              // a function to display the menue to filter
+              className="text-gray-400 hover:text-gray-200 flex items-center gap-2"
+            >
+              <svg
+                width="16"
+                height="8"
+                viewBox="0 0 16 8"
+                fill="white"
+                xmlns="http://www.w3.org/2000/svg"
+                transform="rotate(180)"
+              >
+                <path d="M8 0L15.7942 8H0.205771L8 0Z" fill="#8B939B" />
+              </svg>
+              <span>Amount</span>
+            </button>
+          </div>
+
+          <div className="flex items-center justify-center font-medium  -translate-x-3">
+            Quantity
+          </div>
+        </div>
+
+        {/* Table Content */}
+        <div className="overflow-y-auto h-[390px] [&::-webkit-scrollbar]:w-2 dark:[&::-webkit-scrollbar-track]:bg-[#10121E] dark:[&::-webkit-scrollbar-thumb]:bg-[#303137] overflow-x-hidden">
           {invoices.map((invoice) => (
-            <TableRow key={invoice.invoice}>
-              <TableCell>
+            <div
+              key={invoice.invoice}
+              className="grid grid-cols-[0.5fr_1fr_1fr_1fr_1fr_1fr] h-[50px] border-b border-gray-800 "
+            >
+              <div className="flex items-center justify-center">
                 <Checkbox
                   checked={selectedInvoices.includes(invoice.invoice)}
-                  onCheckedChange={() => toggleInvoice(invoice.invoice)}
+                  // handle check behavipur
                 />
-              </TableCell>
-              <TableCell className="font-medium">{invoice.invoice}</TableCell>
-              <TableCell>{invoice.paymentStatus}</TableCell>
-              <TableCell>{invoice.paymentMethod}</TableCell>
-              <TableCell className="text-right">
+              </div>
+              <div className="flex items-center">{invoice.invoice}</div>
+              <div className="flex items-center">{invoice.paymentStatus}</div>
+              <div className="flex items-center">{invoice.paymentMethod}</div>
+              <div className="flex items-center justify-center w-30 m-4">
                 {invoice.totalAmount}
-              </TableCell>
-              <TableCell className="text-right">
-                <div className="flex justify-end space-x-2">
+              </div>
+              <div className="flex items-center justify-center p-4 ">
+                <div className="flex space-x-2">
                   <Button variant="ghost" size="icon">
                     <Edit className="h-4 w-4" />
+
                     <span className="sr-only">Edit</span>
                   </Button>
                   <Button variant="ghost" size="icon">
@@ -107,12 +196,13 @@ function TableDemo() {
                     <span className="sr-only">Delete</span>
                   </Button>
                 </div>
-              </TableCell>
-            </TableRow>
+              </div>
+            </div>
           ))}
-        </TableBody>
-      </Table>
+        </div>
+      </div>
     </div>
   );
 }
-export default TableDemo;
+
+export default Table2;

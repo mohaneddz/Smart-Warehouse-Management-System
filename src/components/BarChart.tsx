@@ -22,7 +22,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function Component() {
+export function BarChartRessources() {
   return (
     <Card className="bg-[#10121E] dark">
       <CardHeader>

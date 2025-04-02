@@ -34,9 +34,9 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function Component() {
+export function PieChartTime() {
   return (
-    <Card className="flex flex-col h-[190px] w-[310px]">
+    <Card className="flex flex-col h-full w-full dark bg-[#10121E]">
       <CardHeader className="items-center py-1">
         <CardTitle className="text-sm p-0 m-0">
           Pie Chart - Donut Active

@@ -1,11 +1,9 @@
 'use client';
 
 import { Checkbox } from '@/components/ui/checkbox';
-import { Button } from '@/components/ui/button';
 
 import { useState } from 'react';
 
-// Let's add more rows to demonstrate scrolling
 const invoices = [
   {
     invoice: 'INV001',
@@ -75,19 +73,14 @@ export function TableDemo() {
     Object.fromEntries(invoices.map((inv) => [inv.invoice, 0])),
   );
 
-  const toggleInvoice = (invoice: string) => {
+  const toggleInvoice = (invoice: string, checked: boolean) => {
     setSelectedInvoices((prev) =>
-      prev.includes(invoice)
-        ? prev.filter((i) => i !== invoice)
-        : [...prev, invoice],
+      checked ? [...prev, invoice] : prev.filter((i) => i !== invoice),
     );
   };
 
   const incrementQuantity = (invoice: string) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [invoice]: prev[invoice] + 1,
-    }));
+    setQuantities((prev) => ({ ...prev, [invoice]: prev[invoice] + 1 }));
   };
 
   const decrementQuantity = (invoice: string) => {
@@ -98,78 +91,155 @@ export function TableDemo() {
   };
 
   return (
-    <div className="border rounded-md bg-[#10111D] dark  text-[#BFBFBF]  font-bold">
+    <div className="rounded-md bg-[#10111D] text-[#BFBFBF] font-bold p-1">
       <div className="w-full">
-        {/* Table Header */}
-        <div className="grid grid-cols-6 border-b h-[65px]">
-          <div className="flex items-center justify-center p-4"></div>
-          <div className="flex items-center font-medium p-4">Invoice</div>
-          <div className="flex items-center font-medium p-4">Status</div>
-          <div className="flex items-center font-medium p-4">Method</div>
-          <div className="flex items-center justify-end font-medium p-4">
-            Amount
+        <div className="grid grid-cols-[0.5fr_1fr_1fr_1fr_1fr_1fr] h-[50px] border-b border-gray-700">
+          <div className="flex items-center justify-center"></div>
+          <div className="flex items-center font-medium">
+            <button
+              type="button"
+              // a function to display the menue to filter
+              className="text-gray-400 hover:text-gray-200 flex items-center gap-2"
+            >
+              <svg
+                width="16"
+                height="8"
+                viewBox="0 0 16 8"
+                fill="white"
+                xmlns="http://www.w3.org/2000/svg"
+                transform="rotate(180)"
+              >
+                <path d="M8 0L15.7942 8H0.205771L8 0Z" fill="#8B939B" />
+              </svg>
+              <span>Invoice</span>
+            </button>
           </div>
-          <div className="flex items-center justify-center font-medium p-4">
+          <div className="flex items-center font-medium">
+            <button
+              type="button"
+              // a function to display the menue to filter
+              className="text-gray-400 hover:text-gray-200 flex items-center gap-2"
+            >
+              <svg
+                width="16"
+                height="8"
+                viewBox="0 0 16 8"
+                fill="white"
+                xmlns="http://www.w3.org/2000/svg"
+                transform="rotate(180)"
+              >
+                <path d="M8 0L15.7942 8H0.205771L8 0Z" fill="#8B939B" />
+              </svg>
+              <span>Status</span>
+            </button>
+          </div>
+
+          <div className="flex items-center font-medium">
+            <button
+              type="button"
+              // a function to display the menue to filter
+              className="text-gray-400 hover:text-gray-200 flex items-center gap-2"
+            >
+              <svg
+                width="16"
+                height="8"
+                viewBox="0 0 16 8"
+                fill="white"
+                xmlns="http://www.w3.org/2000/svg"
+                transform="rotate(180)"
+              >
+                <path d="M8 0L15.7942 8H0.205771L8 0Z" fill="#8B939B" />
+              </svg>
+              <span>Method</span>
+            </button>
+          </div>
+          <div className="flex items-center justify-center font-medium ">
+            <button
+              type="button"
+              // a function to display the menue to filter
+              className="text-gray-400 hover:text-gray-200 flex items-center gap-2"
+            >
+              <svg
+                width="16"
+                height="8"
+                viewBox="0 0 16 8"
+                fill="white"
+                xmlns="http://www.w3.org/2000/svg"
+                transform="rotate(180)"
+              >
+                <path d="M8 0L15.7942 8H0.205771L8 0Z" fill="#8B939B" />
+              </svg>
+              <span>Amount</span>
+            </button>
+          </div>
+
+          <div className="flex items-center justify-center font-medium  -translate-x-3">
             Quantity
           </div>
         </div>
 
-        {/* Table Body - Scrollable */}
-        <div className="overflow-y-auto h-[390px]">
-          {' '}
-          {/* 6 rows * 65px = 390px */}
+        {/* Table Content */}
+        <div className="overflow-y-auto h-[390px] [&::-webkit-scrollbar]:w-2 dark:[&::-webkit-scrollbar-track]:bg-[#10121E] dark:[&::-webkit-scrollbar-thumb]:bg-[#303137] overflow-x-hidden">
           {invoices.map((invoice) => (
             <div
               key={invoice.invoice}
-              className="grid grid-cols-6 border-b h-[65px]"
+              className="grid grid-cols-[0.5fr_1fr_1fr_1fr_1fr_1fr] h-[50px] border-b border-gray-800"
             >
-              <div className="flex items-center justify-center p-4">
+              <div className="flex items-center justify-center">
                 <Checkbox
                   checked={selectedInvoices.includes(invoice.invoice)}
-                  onCheckedChange={() => toggleInvoice(invoice.invoice)}
+                  // handle check behavipur
                 />
               </div>
-              <div className="flex items-center font-medium p-4">
-                {invoice.invoice}
-              </div>
-              <div className="flex items-center p-4">
-                {invoice.paymentStatus}
-              </div>
-              <div className="flex items-center p-4">
-                {invoice.paymentMethod}
-              </div>
-              <div className="flex items-center justify-end p-4">
+              <div className="flex items-center">{invoice.invoice}</div>
+              <div className="flex items-center">{invoice.paymentStatus}</div>
+              <div className="flex items-center">{invoice.paymentMethod}</div>
+              <div className="flex items-center justify-center">
                 {invoice.totalAmount}
               </div>
-              <div className="flex items-center justify-center p-4">
-                <div className="flex flex-col items-center">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-6 w-6"
-                    onClick={() => incrementQuantity(invoice.invoice)}
-                  ></Button>
-                  <div className="flex items-center justify-center w-16 h-8 border rounded-md shadow-sm bg-background">
-                    <input
-                      type="number"
-                      value={quantities[invoice.invoice]}
-                      onChange={(e) => {
-                        const value = Number.parseInt(e.target.value) || 0;
-                        setQuantities((prev) => ({
-                          ...prev,
-                          [invoice.invoice]: Math.max(0, value),
-                        }));
-                      }}
-                      className="w-10 text-center bg-transparent border-none focus:outline-none focus:ring-0"
-                      min="0"
-                    />
+
+              <div className="m-4 flex items-center -translate-x-3 justify-between h-8 w-30 rounded-[10px] border border-gray-700 bg-gradient-to-r from-[#10121E] via-[#7F8387]/50 to-[#10121E] ">
+                <div className="flex items-center justify-between bg-[#10121E] opacity-80 rounded-xl w-full h-full ">
+                  <input
+                    value={quantities[invoice.invoice]}
+                    className="w-full bg-transparent text-center text-gray-400 focus:outline-none "
+                    min="0"
+                  />
+                  <div className="grid grid-rows-2 gap-1 ">
+                    <button
+                      type="button"
+                      onClick={() => decrementQuantity(invoice.invoice)}
+                      className="text-gray-400 hover:text-gray-200"
+                    >
+                      <svg
+                        width="16"
+                        height="8"
+                        viewBox="0 0 16 8"
+                        fill="white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        transform="rotate(180)"
+                      >
+                        <path d="M8 8L0.205771 0H15.7942L8 8Z" fill="#8B939B" />
+                      </svg>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => incrementQuantity(invoice.invoice)}
+                      className="text-gray-400 hover:text-gray-200"
+                    >
+                      <svg
+                        width="16"
+                        height="8"
+                        viewBox="0 0 16 8"
+                        fill="white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        transform="rotate(180)"
+                      >
+                        <path d="M8 0L15.7942 8H0.205771L8 0Z" fill="#8B939B" />
+                      </svg>
+                    </button>
                   </div>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-6 w-6"
-                    onClick={() => decrementQuantity(invoice.invoice)}
-                  ></Button>
                 </div>
               </div>
             </div>
@@ -179,4 +249,5 @@ export function TableDemo() {
     </div>
   );
 }
+
 export default TableDemo;

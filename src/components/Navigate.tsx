@@ -2,17 +2,30 @@
 
 import { Card } from '@/components/ui/card';
 import { useState } from 'react';
+type CarouselSpacingProps = {
+  onCardClick: (add: boolean, remove: boolean, manage: boolean) => void;
+};
 
-function CarouselSpacing() {
-  // Initialise les cartes avec trois éléments
+function CarouselSpacing({ onCardClick }: CarouselSpacingProps) {
   const [cards, setCards] = useState([
     'Take from Inventory',
     'Add to Inventory',
     'Manage Inventory',
   ]);
 
-  // Fonction pour échanger une carte latérale avec la carte du centre
   const handleCardClick = (index: number) => {
+    let Add = false;
+    let Remove = false;
+    let Manage = false;
+
+    if (cards[index] === 'Add to Inventory') {
+      Add = true;
+    } else if (cards[index] === 'Take from Inventory') {
+      Remove = true;
+    } else {
+      Manage = true;
+    }
+    onCardClick(Add, Remove, Manage);
     if (index !== 1) {
       const newCards = [...cards];
       [newCards[1], newCards[index]] = [newCards[index], newCards[1]];

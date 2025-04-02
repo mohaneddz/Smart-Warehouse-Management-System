@@ -10,45 +10,49 @@ import {
 } from '@/components/ui/carousel';
 import { Button } from '@/components/ui/button';
 
-export function CarouselDemo() {
-  const [api, setApi] = React.useState<CarouselApi>();
+interface CarouselDemoProps {
+  setSelectedImage: (image: string) => void;
+}
+
+export function CarouselDemo({ setSelectedImage }: CarouselDemoProps) {
+  const [api, setApi] = React.useState<CarouselApi | null>(null);
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
 
+  const images = [
+    '/assets/picture/axe.png',
+    '/assets/picture/box.png',
+    '/assets/picture/cable.png',
+    '/assets/picture/shirt.png',
+  ];
+
   React.useEffect(() => {
-    if (!api) {
-      return;
-    }
+    if (!api) return;
 
     setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
+    setCurrent(api.selectedScrollSnap());
+    setSelectedImage(images[api.selectedScrollSnap()]);
 
     api.on('select', () => {
-      setCurrent(api.selectedScrollSnap() + 1);
+      const index = api.selectedScrollSnap();
+      setCurrent(index);
+      setSelectedImage(images[index]);
     });
-  }, [api]);
-
-  const scrollPrev = React.useCallback(() => {
-    api?.scrollPrev();
-  }, [api]);
-
-  const scrollNext = React.useCallback(() => {
-    api?.scrollNext();
-  }, [api]);
+  }, [api, setSelectedImage]);
 
   return (
     <div className="relative">
-      <Carousel setApi={setApi} className="w-[55%] max-w-xs ">
+      <Carousel setApi={setApi} className="w-[55%] max-w-xs">
         <CarouselContent>
-          {Array.from({ length: 5 }).map((_, index) => (
+          {images.map((imgSrc, index) => (
             <CarouselItem key={index}>
               <div className="p-1">
-                <Card className="rounded-full bg-[#10121E] border-[#30383E] aspect-square">
+                <Card className="rounded-full bg-[#10121E] border-[#30383E] aspect-square overflow-hidden flex items-center justify-center">
                   <CardContent className="flex items-center justify-center p-6">
                     <img
-                      src={`https://example.com/image-${index + 1}.jpg`} // Replace with your image URL
+                      src={imgSrc}
                       alt={`Image ${index + 1}`}
-                      className="w-full h-auto rounded-lg cursor-pointer"
+                      className="w-full h-full object-cover rounded-full cursor-pointer"
                     />
                   </CardContent>
                 </Card>
@@ -56,13 +60,13 @@ export function CarouselDemo() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <div className="absolute left-[-40px] top-1/2 -translate-y-1/2 z-10 ">
+        <div className="absolute left-[-40px] top-1/2 -translate-y-1/2 z-10">
           <Button
             variant="outline"
             size="icon"
-            onClick={scrollPrev}
+            onClick={() => api?.scrollPrev()}
             className="h-8 w-8 rounded-full bg-transparent border-none"
-            disabled={current === 1}
+            disabled={!api?.canScrollPrev()}
           >
             <svg
               width="16"
@@ -73,16 +77,16 @@ export function CarouselDemo() {
               transform="rotate(-90)"
             >
               <path d="M8 0L15.7942 8H0.205771L8 0Z" fill="#8B939B" />
-            </svg>{' '}
+            </svg>
           </Button>
         </div>
         <div className="absolute right-[-40px] top-1/2 -translate-y-1/2 z-10">
           <Button
             variant="outline"
             size="icon"
-            onClick={scrollNext}
-            className="h-8 w-8 rounded-full  bg-transparent border-none"
-            disabled={current === count}
+            onClick={() => api?.scrollNext()}
+            className="h-8 w-8 rounded-full bg-transparent border-none"
+            disabled={!api?.canScrollNext()}
           >
             <svg
               width="16"

@@ -39,10 +39,10 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function Component() {
+function Component() {
   return (
-    <div className="dark">
-      <Card className="bg-[#10121E] text-foreground">
+    <div className="dark w-full h-full">
+      <Card className="bg-[#10121E] text-foreground ">
         <CardHeader>
           <CardTitle className="place-items-center">
             Warehouse Performance
@@ -118,3 +118,4 @@ export function Component() {
     </div>
   );
 }
+export default Component;

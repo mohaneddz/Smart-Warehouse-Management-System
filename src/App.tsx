@@ -1,16 +1,24 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Logs from './pages/AddEnv';
-import Titlebar from './components/Titlebar';
+import Home from './pages/Home';
+import StockManager from './pages/StockManager';
+import Logs from './pages/Logs';
+import Settings from './pages/Settings';
+// import WarehouseLayout from './pages/WarehouseLayout';
+import Navbar from './components/Navbar';
 
-const App = () => {
+function App() {
   return (
     <Router>
-      <Titlebar/>
-        <Routes>
-        <Route path="/" element={<Logs />} />
-    </Routes>
-    </Router >
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* <Route path="/warehouse-layout" element={<WarehouseLayout />} /> */}
+        <Route path="/stock-manager" element={<StockManager />} />
+        <Route path="/logs" element={<Logs />} />
+        <Route path="/settings" element={<Settings />} />
+      </Routes>
+    </Router>
   );
-};
+}
 
 export default App;

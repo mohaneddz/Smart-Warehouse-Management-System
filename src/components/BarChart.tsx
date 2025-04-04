@@ -18,7 +18,7 @@ const chartData = [
 const chartConfig = {
   workers: {
     label: 'Workers',
-    color: 'hsl(var(--chart-1))',
+    color: 'var(--color-greenish)',
   },
 } satisfies ChartConfig;
 

@@ -33,7 +33,7 @@ function Settings() {
     label: string;
     name: keyof typeof formData;
   }) => (
-    <div className="relative h-12 w-26 rounded-[8px] border border-gray-700">
+    <div className="relative h-12 w-[50%] rounded-[8px] border border-gray-700">
       <div className="flex items-center justify-between bg-[#10121E] opacity-80 rounded-xl w-full h-full px-2">
         <input
           id={name}
@@ -41,10 +41,10 @@ function Settings() {
           value={formData[name]}
           onChange={handleChange}
           min="1"
-          className="w-full bg-transparent font-bold text-2xl text-center text-gray-400 focus:outline-none px-5 py-3"
+          className="w-full bg-transparent font-bold text-2xl  text-center text-gray-400 focus:outline-none px-5 py-3"
           placeholder={label}
         />
-        <div className="grid grid-rows-2 gap-1 ">
+        <div className="absolute grid grid-rows-2 gap-1 translate-x-[250%]">
           <button
             type="button"
             onClick={() => updateValue(name, 1)}
@@ -85,23 +85,23 @@ function Settings() {
   );
 
   return (
-    <div className="flex justify-center ">
+    <div className="flex justify-center text-xl sm:text-xs md:text-xs lg:text-xl ">
       <div className="bg-[#10121EE5] w-[50%] border-t mt-40 rounded-[8px]">
         <div className="grid grid-rows-2 gap-3">
           <div className="grid grid-rows-4 gap-5">
-            <h1 className="font-bold text-3xl text-[#8B939B] flex justify-center items-center">
+            <h1 className="font-bold text-3xl  sm:text-2xl md:text-2xl lg:text-3xl text-[#8B939B] flex justify-center items-center">
               Warehouse Properties
             </h1>
 
-            <div className="grid grid-cols-2 justify-items-start place-items-center mr-50 ml-50">
+            <div className="grid grid-cols-2 justify-items-start place-items-center mr-[20%] ml-[20%]">
               <span className="font-bold text-white">Maximum Load</span>
               <NumberInput label="Workers" name="workers" />
             </div>
-            <div className="grid grid-cols-2 justify-items-start place-items-center mr-50 ml-50">
+            <div className="grid grid-cols-2 justify-items-start place-items-center mr-[20%] ml-[20%]">
               <span className="font-bold text-white">Initial Budget</span>
               <NumberInput label="Load" name="load" />
             </div>
-            <div className="grid grid-cols-2 justify-items-start place-items-center mr-50 ml-50">
+            <div className="grid grid-cols-2 justify-items-start place-items-center mr-[20%] ml-[20%]">
               <span className="font-bold text-white">Number of Workers</span>
               <NumberInput label="Budget" name="budget" />
             </div>
@@ -111,11 +111,11 @@ function Settings() {
             <h1 className="font-bold text-3xl text-[#8B939B] flex justify-center items-center">
               Warehouse Settings
             </h1>
-            <div className="grid grid-cols-2 justify-items-start place-items-center mr-50 ml-50">
+            <div className="grid grid-cols-2 justify-items-start place-items-center mr-[20%] ml-[20%]">
               <span className="font-bold text-white">Ray Tracing</span>
               <NumberInput label="Log" name="log" />
             </div>
-            <div className="grid grid-cols-2 justify-items-start place-items-center mr-50 ml-50">
+            <div className="grid grid-cols-2 justify-items-start place-items-center mr-[20%] ml-[20%]">
               <span className="font-bold text-white">Maximum Log Days</span>
               <NumberInput label="" name="quantity" />
             </div>

@@ -41,7 +41,7 @@ const Form = () => {
     label: string;
     name: keyof typeof formData;
   }) => (
-    <div className="relative h-12 w-72 rounded-xl border border-gray-700 bg-gradient-to-r from-[#10121E] via-[#7F8387]/50 to-[#10121E]">
+    <div className="relative h-12  w-[50%] sm:w-[80%] rounded-xl border border-gray-700 bg-gradient-to-r from-[#10121E] via-[#7F8387]/50 to-[#10121E]">
       <div className="flex items-center justify-between bg-[#10121E] opacity-80 rounded-xl w-full h-full px-2">
         <input
           id={name}
@@ -93,37 +93,44 @@ const Form = () => {
   );
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 p-4">
+    <form
+      onSubmit={handleSubmit}
+      className="grid grid-rows-4 justify-items-center place-items-center gap-0"
+    >
       <div className="flex justify-center items-center translate-x-18 font-[Arsenal]">
         <Carousel setSelectedImage={setSelectedImage} />
         <input type="hidden" name="selectedImage" value={selectedImage} />
       </div>
 
-      <div className="grid grid-rows-2 justify-items-center gap-0 place-items-center">
-        <div className="relative rounded-xl h-12 w-72 border border-gray-700 bg-gradient-to-r from-[#10121E] via-[#7F8387]/50 to-[#10121E]">
-          <div className="flex items-center h-full justify-between bg-[#10121E] opacity-80 rounded-xl w-full">
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full bg-transparent text-center text-gray-400 focus:outline-none px-5 py-3"
-              placeholder="Name"
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-2 justify-items-center place-items-center">
-          <NumberInput label="Weight" name="weight" />
-          <NumberInput label="Height" name="height" />
-          <NumberInput label="Width" name="width" />
-          <NumberInput label="Expiry" name="expiry" />
-          <NumberInput label="Fragility" name="fragility" />
+      <div
+        className="relative rounded-xl h-12 w-[50%]  sm:w-[70%] border border-gray-700
+         bg-gradient-to-r from-[#10121E] via-[#7F8387]/50 to-[#10121E]"
+      >
+        <div className="flex items-center justify-center h-full bg-[#10121E] opacity-80 rounded-xl w-full">
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full bg-transparent text-center text-gray-400 focus:outline-none px-5 py-3"
+            placeholder="Name"
+          />
         </div>
       </div>
 
-      <div className="flex justify-center mt-4">
+      <div
+        className="grid grid-cols-2 gap-2 justify-items-center place-items-center
+         sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2"
+      >
+        <NumberInput label="Weight" name="weight" />
+        <NumberInput label="Height" name="height" />
+        <NumberInput label="Width" name="width" />
+        <NumberInput label="Expiry" name="expiry" />
+        <NumberInput label="Fragility" name="fragility" />
+      </div>
+
+      <div className="flex justify-center ">
         <button
           type="submit"
           className="transition-all duration-300 ease-in-out cursor-pointer w-50 h-10 bg-[#2C2F3C] rounded-xl hover:scale-110 hover:shadow-lg hover:bg-[#13101E] 

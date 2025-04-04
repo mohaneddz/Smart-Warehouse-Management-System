@@ -67,7 +67,7 @@ const invoices = [
   },
 ];
 
-export function TableDemo() {
+export function RmEdTable() {
   const [selectedInvoices, setSelectedInvoices] = useState<string[]>([]);
   const [quantities, setQuantities] = useState<Record<string, number>>(
     Object.fromEntries(invoices.map((inv) => [inv.invoice, 0])),
@@ -93,7 +93,7 @@ export function TableDemo() {
   return (
     <div className="rounded-md bg-[#10111D] text-[#BFBFBF] font-bold p-1">
       <div className="w-full">
-        <div className="grid grid-cols-[0.5fr_1fr_1fr_1fr_1fr_1fr] h-[50px] border-b border-gray-700">
+        <div className="grid grid-cols-[0.5fr_1fr_1fr_1fr_1fr_1fr] h-[50px] ">
           <div className="flex items-center justify-center"></div>
           <div className="flex items-center font-medium">
             <button
@@ -179,11 +179,16 @@ export function TableDemo() {
         </div>
 
         {/* Table Content */}
+        <img
+          src="/assets/svgs/Seperator.svg"
+          alt="Chart"
+          className="w-[100%] h-10"
+        />
         <div className="overflow-y-auto h-[390px] [&::-webkit-scrollbar]:w-2 dark:[&::-webkit-scrollbar-track]:bg-[#10121E] dark:[&::-webkit-scrollbar-thumb]:bg-[#303137] overflow-x-hidden">
           {invoices.map((invoice) => (
             <div
               key={invoice.invoice}
-              className="grid grid-cols-[0.5fr_1fr_1fr_1fr_1fr_1fr] h-[50px] border-b border-gray-800"
+              className="grid grid-cols-[0.5fr_1fr_1fr_1fr_1fr_1fr] h-[65px] border-b border-gray-800"
             >
               <div className="flex items-center justify-center">
                 <Checkbox
@@ -198,7 +203,7 @@ export function TableDemo() {
                 {invoice.totalAmount}
               </div>
 
-              <div className="m-4 flex items-center -translate-x-3 justify-between h-8 w-30 rounded-[10px] border border-gray-700 bg-gradient-to-r from-[#10121E] via-[#7F8387]/50 to-[#10121E] ">
+              <div className="m-4 flex items-center -translate-x-3 justify-between h-8 w-[75%] rounded-[10px] border border-gray-700 bg-gradient-to-r from-[#10121E] via-[#7F8387]/50 to-[#10121E] ">
                 <div className="flex items-center justify-between bg-[#10121E] opacity-80 rounded-xl w-full h-full ">
                   <input
                     value={quantities[invoice.invoice]}
@@ -250,4 +255,4 @@ export function TableDemo() {
   );
 }
 
-export default TableDemo;
+export default RmEdTable;

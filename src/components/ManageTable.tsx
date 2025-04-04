@@ -68,7 +68,7 @@ const invoices = [
   },
 ];
 
-export function Table2() {
+export function ManageTable() {
   const [selectedInvoices, setSelectedInvoices] = useState<string[]>([]);
 
   const toggleInvoice = (invoice: string, checked: boolean) => {
@@ -80,7 +80,7 @@ export function Table2() {
   return (
     <div className="rounded-md bg-[#10111D] text-[#BFBFBF] font-bold p-1">
       <div className="w-full">
-        <div className="grid grid-cols-[0.5fr_1fr_1fr_1fr_1fr_1fr] h-[50px] border-b border-gray-700">
+        <div className="grid grid-cols-[0.5fr_1fr_1fr_1fr_1fr_1fr] h-[50px] ">
           <div className="flex items-center justify-center"></div>
           <div className="flex items-center font-medium">
             <button
@@ -166,11 +166,16 @@ export function Table2() {
         </div>
 
         {/* Table Content */}
+        <img
+          src="/assets/svgs/Seperator.svg"
+          alt="Chart"
+          className="w-[100%] h-10"
+        />
         <div className="overflow-y-auto h-[390px] [&::-webkit-scrollbar]:w-2 dark:[&::-webkit-scrollbar-track]:bg-[#10121E] dark:[&::-webkit-scrollbar-thumb]:bg-[#303137] overflow-x-hidden">
           {invoices.map((invoice) => (
             <div
               key={invoice.invoice}
-              className="grid grid-cols-[0.5fr_1fr_1fr_1fr_1fr_1fr] h-[50px] border-b border-gray-800 "
+              className="grid grid-cols-[0.5fr_1fr_1fr_1fr_1fr_1fr] h-[65px] border-b border-gray-800 "
             >
               <div className="flex items-center justify-center">
                 <Checkbox
@@ -205,4 +210,4 @@ export function Table2() {
   );
 }
 
-export default Table2;
+export default ManageTable;

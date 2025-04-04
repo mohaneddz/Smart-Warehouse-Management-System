@@ -1,4 +1,4 @@
-import TableDemo from '../components/Table1.tsx';
+import LogsTable from '../components/Logs.tsx';
 import SearchBar from '../components/SearchBar.tsx';
 
 function Logs() {
@@ -9,7 +9,7 @@ function Logs() {
           <SearchBar />
         </div>
 
-        <TableDemo />
+        <LogsTable />
       </div>
     </div>
   );

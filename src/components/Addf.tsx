@@ -94,7 +94,7 @@ const Form = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 p-4">
-      <div className="flex justify-center items-center translate-x-18">
+      <div className="flex justify-center items-center translate-x-18 font-[Arsenal]">
         <Carousel setSelectedImage={setSelectedImage} />
         <input type="hidden" name="selectedImage" value={selectedImage} />
       </div>
@@ -115,7 +115,6 @@ const Form = () => {
         </div>
 
         <div className="grid grid-cols-2 gap-2 justify-items-center place-items-center">
-          <NumberInput label="Quantity" name="quantity" />
           <NumberInput label="Weight" name="weight" />
           <NumberInput label="Height" name="height" />
           <NumberInput label="Width" name="width" />

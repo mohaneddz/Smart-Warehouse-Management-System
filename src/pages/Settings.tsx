@@ -85,7 +85,7 @@ function Settings() {
   );
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center ">
       <div className="bg-[#10121EE5] w-[50%] border-t mt-40 rounded-[8px]">
         <div className="grid grid-rows-2 gap-3">
           <div className="grid grid-rows-4 gap-5">

@@ -44,7 +44,7 @@ function Settings() {
           className="w-full bg-transparent font-bold text-2xl  text-center text-gray-400 focus:outline-none px-5 py-3"
           placeholder={label}
         />
-        <div className="absolute grid grid-rows-2 gap-1 translate-x-[250%]">
+        <div className="absolute grid grid-rows-2 gap-1 translate-x-[10%]">
           <button
             type="button"
             onClick={() => updateValue(name, 1)}

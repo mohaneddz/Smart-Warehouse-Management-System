@@ -11,9 +11,9 @@ import {
   ChartTooltipContent,
 } from '@/components/ui/chart';
 const chartData = [
-  { browser: 'chrome', visitors: 275, fill: 'var(--color-chrome)' },
-  { browser: 'safari', visitors: 200, fill: 'var(--color-safari)' },
-  { browser: 'firefox', visitors: 187, fill: 'var(--color-firefox)' },
+  { browser: 'Process', visitors: 275, fill: 'var(--color-blueish)' },
+  { browser: 'Wasted', visitors: 200, fill: 'var(--color-purplish)' },
+  { browser: 'Setup', visitors: 187, fill: 'var(--color-greenish)' },
 ];
 
 const chartConfig = {
@@ -38,8 +38,8 @@ export function PieChartTime() {
   return (
     <Card className="flex flex-col h-full w-full dark bg-[#10121E]">
       <CardHeader className="items-center py-1">
-        <CardTitle className="text-sm p-0 m-0">
-          Pie Chart - Donut Active
+        <CardTitle className="text-xl p-0 m-0 text-center font-semibold text-zinc-400"  >
+          Time Distribution
         </CardTitle>
       </CardHeader>
       <CardContent className="flex-1 m-0  flex items-center justify-center">

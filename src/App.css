@@ -118,6 +118,18 @@ body {
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@theme{
+  --color-purplish: #35385e;
+  --color-blueish: #283c4a;
+  --color-greenish: #3f604d;
+  --color-redish: #B47576;
+
+  --color-good: #569992;
+  --color-bad: #995657;
+
+  --color-border: oklch(1 0 0 / 10%);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -153,4 +165,10 @@ body {
 
 .titlebar-button:hover {
   background: #5a77a2;
+}
+
+@font-face {
+  font-family: 'Arsenal SC';
+  src: url('/assets/fonts/ArsenalSC.ttf') format('truetype');
+  font-weight: normal;
 }

@@ -27,40 +27,37 @@ const chartData = [
 const chartConfig = {
   Storage: {
     label: 'Storage',
-    color: 'hsl(var(--chart-1))',
+    color: 'var(--color-purplish)',
   },
   Efficiency: {
     label: 'Efficiency',
-    color: 'hsl(var(--chart-2))',
+    color: 'var(--color-blueish)',
   },
   Revenue: {
     label: 'Revenue',
-    color: 'hsl(var(--chart-3))',
+    color: 'var(--color-greenish)',
   },
 } satisfies ChartConfig;
 
-function Component() {
+function Chart() {
   return (
     <div className="dark w-full h-full">
       <Card className="bg-[#10121E] text-foreground ">
         <CardHeader>
-          <CardTitle className="place-items-center">
+          <CardTitle className="place-items-center text-2xl">
             Warehouse Performance
           </CardTitle>
-          <CardDescription className="text-muted-foreground">
-            Description
-          </CardDescription>
-        </CardHeader>
+        </CardHeader >
         <CardContent>
-          <ChartContainer config={chartConfig}>
+          <ChartContainer config={chartConfig} className="h-70 -ml-4 mr-4">
             <AreaChart
               accessibilityLayer
               data={chartData}
               margin={{
-                left: 20,
-                right: 20,
-                top: 20,
-                bottom: 20,
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0,
               }}
             >
               <CartesianGrid vertical={false} />
@@ -104,13 +101,18 @@ function Component() {
           </ChartContainer>
         </CardContent>
         <CardFooter>
-          <div className="flex w-full items-start gap-2 text-sm">
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2 font-medium leading-none">
-                {' '}
-                <TrendingUp className="h-4 w-4" />
-              </div>
-              <div className="flex items-center gap-2 leading-none text-muted-foreground"></div>
+          <div className="flex w-full justify-around">
+            <div className="flex items-center gap-2">
+              <img src="/assets/svgs/BlueIndex.svg" alt="Chart" className="w-10 h-10" />
+              <p className='text-zinc-400 text-sm'>Storage</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <img src="/assets/svgs/PurpleIndex.svg" alt="Chart" className="w-10 h-10" />
+              <p className='text-zinc-400 text-sm'>Efficiency</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <img src="/assets/svgs/GreenIndex.svg" alt="Chart" className="w-10 h-10" />
+              <p className='text-zinc-400 text-sm'>Revenue</p>
             </div>
           </div>
         </CardFooter>
@@ -118,4 +120,4 @@ function Component() {
     </div>
   );
 }
-export default Component;
+export default Chart;

@@ -1,0 +1,67 @@
+{
+  "nodes": {
+    "A1": {
+      "x": 0,
+      "y": 0,
+      "neighbours": { "A2": 1.0, "B1": 1.4 },
+      "value": 0,
+      "parent": null,
+      "heuristic": 0,
+      "type": "normal"
+    },
+    "A2": {
+      "x": 1,
+      "y": 0,
+      "neighbours": { "A1": 1.0, "B2": 1.4 },
+      "value": 0,
+      "parent": null,
+      "heuristic": 0,
+      "type": "center"
+    },
+    "B1": {
+      "x": 0,
+      "y": 1,
+      "neighbours": { "A1": 1.4, "B2": 1.0 },
+      "value": 0,
+      "parent": null,
+      "heuristic": 0,
+      "type": "normal"
+    },
+    "B2": {
+      "x": 1,
+      "y": 1,
+      "neighbours": { "A2": 1.4, "B1": 1.0 },
+      "value": 0,
+      "parent": null,
+      "heuristic": 0,
+      "type": "center"
+    }
+  },
+  "edges": [
+    { "from": "A1", "to": "A2", "cost": 1.0 },
+    { "from": "A1", "to": "B1", "cost": 1.2 },
+    { "from": "A2", "to": "B2", "cost": 1.5 }
+  ],
+  "agents": {
+    "agent1": {
+      "start": "A1",
+      "goal": "B1",
+      "weight": 10,
+      "state": "idle"
+    }
+  },
+  "tasks": [
+    {
+      "initial_state": "A1",
+      "goal_state": "B1",
+      "job": "deliver_package",
+      "priority": 1
+    }
+  ],
+  "rules": {
+    "charging_node_bonus": -1.0,
+    "obstacle_penalty": 999,
+    "movement_cost_multiplier": 1.0,
+    "blocked_state_timeout": 5
+  }
+}

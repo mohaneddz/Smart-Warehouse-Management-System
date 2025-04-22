@@ -153,9 +153,9 @@ export function LogsTable() {
 
         {/* Table Content */}
         <img
-          src="/assets/svgs/Seperator.svg"
+          src="/assets/svgs/SeparatorTable.svg"
           alt="Chart"
-          className="w-[100%] h-10"
+          className="w-full h-10"
         />
         <div className="overflow-y-auto h-[390px] [&::-webkit-scrollbar]:w-2 dark:[&::-webkit-scrollbar-track]:bg-[#10121E] dark:[&::-webkit-scrollbar-thumb]:bg-[#303137] overflow-x-hidden">
           {invoices.map((invoice) => (

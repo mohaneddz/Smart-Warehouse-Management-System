@@ -117,7 +117,6 @@ export function RmEdTable() {
           <div className="flex items-center font-medium">
             <button
               type="button"
-              // a function to display the menue to filter
               className="text-gray-400 hover:text-gray-200 flex items-center gap-2"
             >
               <svg
@@ -180,9 +179,9 @@ export function RmEdTable() {
 
         {/* Table Content */}
         <img
-          src="/assets/svgs/Seperator.svg"
+          src="/assets/svgs/SeparatorTable.svg"
           alt="Chart"
-          className="w-[100%] h-10"
+          className="w-full h-10"
         />
         <div className="overflow-y-auto h-[390px] [&::-webkit-scrollbar]:w-2 dark:[&::-webkit-scrollbar-track]:bg-[#10121E] dark:[&::-webkit-scrollbar-thumb]:bg-[#303137] overflow-x-hidden">
           {invoices.map((invoice) => (

@@ -118,11 +118,11 @@ body {
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-@theme{
+@theme {
   --color-purplish: #35385e;
   --color-blueish: #283c4a;
   --color-greenish: #3f604d;
-  --color-redish: #B47576;
+  --color-redish: #b47576;
 
   --color-good: #569992;
   --color-bad: #995657;

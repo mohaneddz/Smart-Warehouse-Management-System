@@ -1,9 +1,5 @@
 @import 'tailwindcss';
-@import 'tw-animate-css';
-
-@custom-variant dark (&:is(.dark *));
-
-@import url('https://fonts.googleapis.com/css2?family=Arsenal+SC:wght@400;700&display=swap');
+@import 'tw-animate-css'; 
 
 body {
   background-color: #05060f;

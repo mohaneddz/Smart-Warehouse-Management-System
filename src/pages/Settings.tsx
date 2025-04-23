@@ -86,7 +86,7 @@ function Settings() {
 
   return (
     <div className="flex justify-center text-xl sm:text-xs md:text-xs lg:text-xl ">
-      <div className="bg-[#10121EE5] w-[50%] border-t mt-40 rounded-[8px]">
+      <div className="bg-[#10121EE5] w-[50%] border-t mt-5 rounded-[8px]">
         <div className="grid grid-rows-2 gap-3">
           <div className="grid grid-rows-4 gap-5">
             <h1 className="font-bold text-3xl  sm:text-2xl md:text-2xl lg:text-3xl text-[#8B939B] flex justify-center items-center">

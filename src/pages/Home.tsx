@@ -24,8 +24,7 @@ const Home = () => {
 
   return (
     <div>
-      <main className="pt-40 flex flex-col items-center gap-4 w-full">
-
+      <main className="pt-10 flex flex-col items-center gap-4 w-full">
         {/* Top Cards Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-[90%] sm:w-[80%] md:w-[70%] justify-items-center">
           <Card
@@ -35,7 +34,7 @@ const Home = () => {
             title="Storage"
             src="/assets/icon/Storage.png"
             up_down_pic="/assets/icon/Good.png"
-            className='justify-self-start'
+            className="justify-self-start"
             up={true}
           />
           <Card
@@ -45,7 +44,7 @@ const Home = () => {
             title="Efficiency"
             src="/assets/icon/Storage.png"
             up_down_pic="/assets/icon/Good.png"
-            className='justify-self-center'
+            className="justify-self-center"
             up={false}
           />
           <Card
@@ -55,17 +54,19 @@ const Home = () => {
             title="Revenue"
             src="/assets/icon/Storage.png"
             up_down_pic="/assets/icon/Good.png"
-            className='justify-self-end'
+            className="justify-self-end"
             up={true}
           />
         </div>
 
-        <img src="/assets/svgs/Seperator.svg" alt="Chart" className="w-full h-10" />
+        <img
+          src="/assets/svgs/Seperator.svg"
+          alt="Chart"
+          className="w-full h-10"
+        />
 
         <div className="grid grid-cols-[2fr_1fr] gap-4 w-[90%] sm:w-[80%] md:w-[70%]">
-
           <div className="rounded-2xl flex flex-row gap-4 w-full">
-
             {/* Left Section */}
             <div className="w-1/3 bg-[#10121E] rounded-2xl h-full overflow-hidden relative p-4">
               <div className="border-1 border-border rounded-2xl p-2 h-full">

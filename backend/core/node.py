@@ -2,7 +2,7 @@ from typing import Dict, Optional
 
 class Node:
     """Represents a location in the warehouse layout with coordinates, neighbors, and value."""
-    def __init__(self, x: float, y: float, neighbours: Dict['Node', float], value: float = 0.0):
+    def __init__(self, x: float, y: float, hash: str, neighbours: Dict['Node', float], value: float = 0.0):
         """Initializes a Node with coordinates, neighbors, and an optional value.
 
         Args:
@@ -14,9 +14,8 @@ class Node:
         self.x = x
         self.y = y
         self.neighbours = neighbours
-        self.value = value
+        self.hash = hash
         self.heuristic = 0.0
-        self.parent = None
         self.type = "normal"
 
     def set_heuristic(self, h: float):

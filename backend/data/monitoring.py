@@ -1,7 +1,7 @@
 import time
 from typing import List
-from backend.data.task import Task
-from backend.data.agent import Agent
+from backend.core.task import Task
+from backend.core.agent_system import Agent
 
 class Monitor:
     def __init__(self):

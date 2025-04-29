@@ -1,5 +1,12 @@
 from flask import Flask, jsonify, request
 from routes.optimize import optimize_route
+from core.agent_system import Mixer
+from core.warehouse import Warehouse
+
+warehouse = Warehouse()
+mixer = Mixer(warehouse, [])
+
+
 
 app = Flask(__name__)
 

@@ -34,7 +34,7 @@ class Task:
         agent.set_goal(self.goal_state)
 
 
-class WarehouseMap:
+class Warehouse:
     """Manages the warehouse layout, tasks, and agents."""
     def __init__(self, nodes: Optional[Dict[str, Node]] = None):
         """Initializes the warehouse map with nodes, agents, and tasks.
@@ -104,4 +104,4 @@ class WarehouseMap:
 
     def __repr__(self):
         """String representation of the Warehouse map."""
-        return f"WarehouseMap(Agents: {len(self.agents)}, Tasks: {len(self.tasks)})"
+        return f"Warehouse(Agents: {len(self.agents)}, Tasks: {len(self.tasks)})"

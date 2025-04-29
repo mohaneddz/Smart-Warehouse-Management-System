@@ -1,0 +1,70 @@
+{
+    "deadlock_scenarios": {
+        "agent_blocked": {
+            "description": "Single agent is blocked and cannot move forward",
+            "resolution": "Backtrack along the agent's path history",
+            "action": "move_agent_back",
+            "parameters": {
+                "steps": 1,
+                "max_attempts": 3
+            }
+        },
+        "agents_blocked": {
+            "description": "Multiple agents are blocking each other's paths",
+            "resolution": "Switch positions between the blocking agents",
+            "action": "switch_agent_positions",
+            "parameters": {
+                "max_agents": 2,
+                "preserve_path_history": true
+            }
+        },
+        "path_blocked": {
+            "description": "Path is blocked by obstacles or other agents",
+            "resolution": "Recalculate path and clear old path history",
+            "action": "recalculate_path",
+            "parameters": {
+                "algorithm": "A*",
+                "max_attempts": 3,
+                "clear_history": true
+            }
+        },
+        "circular_wait": {
+            "description": "Agents are waiting for each other in a circular pattern",
+            "resolution": "Break the circular wait by moving the lowest weight agent back",
+            "action": "break_circular_wait",
+            "parameters": {
+                "priority": "lowest_weight",
+                "backtrack_steps": 2
+            }
+        },
+        "resource_deadlock": {
+            "description": "Agents are waiting for resources held by each other",
+            "resolution": "Release resources and backtrack to last free position",
+            "action": "release_resources",
+            "parameters": {
+                "timeout": 5,
+                "retry_interval": 1,
+                "backtrack_on_timeout": true
+            }
+        }
+    },
+    "resolution_priorities": [
+        "agent_blocked",
+        "agents_blocked",
+        "path_blocked",
+        "circular_wait",
+        "resource_deadlock"
+    ],
+    "default_resolution": {
+        "action": "move_agent_back",
+        "parameters": {
+            "steps": 1,
+            "max_attempts": 3
+        }
+    },
+    "path_management": {
+        "max_history_length": 100,
+        "clear_on_task_completion": true,
+        "clear_on_goal_change": true
+    }
+} 

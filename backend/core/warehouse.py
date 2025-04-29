@@ -1,6 +1,7 @@
 from typing import Dict, Optional, List, TYPE_CHECKING
 from math import sqrt
 from core.node import Node
+from data.monitoring import Monitor
 
 if TYPE_CHECKING:
     from core.agent_system import Agent
@@ -8,6 +9,7 @@ if TYPE_CHECKING:
 
 class Task:
     """Represents a task with an initial state, goal state, job type, and priority."""
+    
     def __init__(self, initial_state: str, goal_state: str, job: str, priority: int = 0):
         """Initializes a Task with states, job, and priority.
 
@@ -15,32 +17,31 @@ class Task:
             initial_state (str): The starting state for the task.
             goal_state (str): The goal state for the task.
             job (str): The type of job/task.
-            priority (int, optional): Task priority (lower is higher priority). Defaults to 0.
+            priority (int, optional): Task priority (lower value means higher priority). Defaults to 0.
         """
         self.initial_state = initial_state
         self.goal_state = goal_state
         self.job = job
         self.priority = priority
+        self.monitor = Monitor.get_instance()
 
-    def assign_task(self, agent: 'Agent', monitor: 'Monitor'):
-        """Assign the task to an agent and log the event.
+    def assign_task(self, agent: 'Agent'):
+        """Assigns the task to an agent and logs the event.
 
         Args:
             agent (Agent): The agent to assign the task to.
-            monitor (Monitor): The monitor to log the assignment.
         """
-        if monitor:
-            monitor.log_task(self, "assigned to agent")
+        self.monitor.log_task(self, "assigned to agent")
         agent.set_goal(self.goal_state)
-
 
 class WarehouseMap:
     """Manages the warehouse layout, tasks, and agents."""
+    
     def __init__(self, nodes: Optional[Dict[str, Node]] = None):
         """Initializes the warehouse map with nodes, agents, and tasks.
 
         Args:
-            nodes (Optional[Dict[str, Node]], optional): Dictionary of nodes. Defaults to None.
+            nodes (Optional[Dict[str, Node]], optional): Dictionary of nodes in the warehouse. Defaults to None.
         """
         if nodes is None:
             from utils.helpers import load_nodes_from_json
@@ -49,7 +50,7 @@ class WarehouseMap:
         self.map = nodes or {}  # Dictionary of nodes in the warehouse
         self.goal: Optional[Node] = None  # Goal node for pathfinding algorithms
         self.agents: Dict[str, 'Agent'] = {}  # Dictionary of agents in the warehouse
-        self.tasks: List[Task] = []  
+        self.tasks: List[Task] = []  # List of tasks in the warehouse
 
     def get_distance(self, n1: Node, n2: Node) -> float:
         """Calculates Euclidean distance between two nodes.
@@ -57,8 +58,9 @@ class WarehouseMap:
         Args:
             n1 (Node): First node.
             n2 (Node): Second node.
+
         Returns:
-            float: Euclidean distance.
+            float: Euclidean distance between n1 and n2.
         """
         return sqrt((n1.x - n2.x) ** 2 + (n1.y - n2.y) ** 2)
 
@@ -67,8 +69,9 @@ class WarehouseMap:
 
         Args:
             node (Node): The node to get actions from.
+
         Returns:
-            Dict[str, float]: Neighboring nodes and their distances.
+            Dict[str, float]: Dictionary of neighboring nodes and their distances.
         """
         return {k: v for k, v in node.neighbours.items() if k != node.parent}
 
@@ -103,5 +106,9 @@ class WarehouseMap:
             print(f"No tasks available for Agent {agent}.")
 
     def __repr__(self):
-        """String representation of the Warehouse map."""
+        """String representation of the Warehouse map.
+
+        Returns:
+            str: A string representation of the WarehouseMap.
+        """
         return f"WarehouseMap(Agents: {len(self.agents)}, Tasks: {len(self.tasks)})"

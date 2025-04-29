@@ -1,9 +1,16 @@
 from flask import Flask, jsonify, request
+from flask_sqlalchemy import SQLAlchemy
 from routes.optimize import optimize_route
+from utils.config import DevelopmentConfig
 
+# Initialize the Flask app
 app = Flask(__name__)
+app.config.from_object(DevelopmentConfig)
 
-# Root route (just a basic health check)
+# Initialize the SQLAlchemy database connection
+db = SQLAlchemy(app)
+
+# Root route (basic health check)
 @app.route('/')
 def home():
     return jsonify({"message": "Warehouse Optimization API is running!"})
@@ -17,7 +24,7 @@ def optimize():
     if not data:
         return jsonify({"error": "No data provided!"}), 400
     
-    # Call optimize function (to be implemented in optimize.py)
+    # Call the optimization function (you can modify this to interact with the DB if needed)
     result = optimize_route(data)
     
     return jsonify(result)

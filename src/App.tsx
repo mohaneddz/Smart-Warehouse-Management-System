@@ -5,12 +5,12 @@ import Logs from './pages/Logs';
 import Settings from './pages/Settings';
 // import WarehouseLayout from './pages/WarehouseLayout';
 import Navbar from './components/Navbar';
-import Titlebar from './components/Titlebar';
+// import Titlebar from './components/Titlebar';
 
 function App() {
   return (
     <Router>
-      <Titlebar />
+      {/* <Titlebar /> */}
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

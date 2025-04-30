@@ -1,7 +1,13 @@
 import time
+<<<<<<< HEAD
 from typing import List, Dict, Optional
 from backend.data.task import Task
 from backend.data.agent import Agent
+=======
+from typing import List
+from backend.core.task import Task
+from backend.core.agent_system import Agent
+>>>>>>> 44f3fed3189b8acefe8f743d628efdc4045e9242
 
 class Monitor:
     """Singleton class responsible for logging all events, tasks, metrics, and stats."""

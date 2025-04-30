@@ -1,10 +1,16 @@
 from typing import Dict, Optional
 
 class Node:
+<<<<<<< HEAD
     """Represents a location in the warehouse layout with coordinates, neighbors, and associated value."""
     
     def __init__(self, x: float, y: float, neighbours: Dict['Node', float], value: float = 0.0):
         """Initializes a Node with coordinates, neighboring nodes, and an optional associated value.
+=======
+    """Represents a location in the warehouse layout with coordinates, neighbors, and value."""
+    def __init__(self, x: float, y: float, hash: str, neighbours: Dict['Node', float], value: float = 0.0):
+        """Initializes a Node with coordinates, neighbors, and an optional value.
+>>>>>>> 44f3fed3189b8acefe8f743d628efdc4045e9242
 
         Args:
             x (float): X-coordinate of the node.
@@ -15,9 +21,8 @@ class Node:
         self.x = x
         self.y = y
         self.neighbours = neighbours
-        self.value = value
+        self.hash = hash
         self.heuristic = 0.0
-        self.parent = None
         self.type = "normal"
         self.locked = False
         self.locked_by = None  # Reference to the agent that locked this node

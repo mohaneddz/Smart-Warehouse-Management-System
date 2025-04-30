@@ -1,11 +1,18 @@
 'use client';
 
 import { Checkbox } from '@/components/ui/checkbox';
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Edit, Trash2 } from 'lucide-react';
 import { Button } from './ui/button';
 
-const invoices = [
+interface Invoice {
+  invoice: string;
+  paymentStatus: string;
+  totalAmount: string;
+  paymentMethod: string;
+}
+
+const invoicesData: Invoice[] = [
   {
     invoice: 'INV001',
     paymentStatus: 'Paid',
@@ -70,6 +77,51 @@ const invoices = [
 
 export function ManageTable() {
   const [selectedInvoices, setSelectedInvoices] = useState<string[]>([]);
+  const [sortConfig, setSortConfig] = useState<{
+    key: keyof Invoice | null;
+    direction: 'ascending' | 'descending' | null;
+  }>({ key: null, direction: null });
+  const [amountFilter, setAmountFilter] = useState<string>('all');
+  const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [methodFilter, setMethodFilter] = useState<string>('all');
+  const [filteredInvoices, setFilteredInvoices] =
+    useState<Invoice[]>(invoicesData);
+
+  useEffect(() => {
+    let newFilteredInvoices = invoicesData;
+
+    // Amount Filter
+    if (amountFilter === 'under200') {
+      newFilteredInvoices = newFilteredInvoices.filter(
+        (invoice) => parseFloat(invoice.totalAmount.replace('$', '')) < 200,
+      );
+    } else if (amountFilter === '200to500') {
+      newFilteredInvoices = newFilteredInvoices.filter((invoice) => {
+        const amount = parseFloat(invoice.totalAmount.replace('$', ''));
+        return amount >= 200 && amount <= 500;
+      });
+    } else if (amountFilter === 'over500') {
+      newFilteredInvoices = newFilteredInvoices.filter(
+        (invoice) => parseFloat(invoice.totalAmount.replace('$', '')) > 500,
+      );
+    }
+
+    // Status Filter
+    if (statusFilter !== 'all') {
+      newFilteredInvoices = newFilteredInvoices.filter(
+        (invoice) => invoice.paymentStatus === statusFilter,
+      );
+    }
+
+    // Method Filter
+    if (methodFilter !== 'all') {
+      newFilteredInvoices = newFilteredInvoices.filter(
+        (invoice) => invoice.paymentMethod === methodFilter,
+      );
+    }
+
+    setFilteredInvoices(newFilteredInvoices);
+  }, [amountFilter, statusFilter, methodFilter]);
 
   const toggleInvoice = (invoice: string, checked: boolean) => {
     setSelectedInvoices((prev) =>
@@ -77,110 +129,163 @@ export function ManageTable() {
     );
   };
 
+  const handleCheckboxChange = (
+    invoice: string,
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    toggleInvoice(invoice, event.target.checked);
+  };
+
+  const requestSort = (key: keyof Invoice) => {
+    let direction: 'ascending' | 'descending' = 'ascending';
+    if (sortConfig.key === key && sortConfig.direction === 'ascending') {
+      direction = 'descending';
+    }
+    setSortConfig({ key, direction });
+  };
+
+  const sortedInvoices = useMemo(() => {
+    if (!sortConfig.key) {
+      return filteredInvoices;
+    }
+
+    return [...filteredInvoices].sort((a, b) => {
+      const key = sortConfig.key;
+      if (key) {
+        if (key === 'totalAmount') {
+          const amountA = parseFloat(a[key].replace('$', ''));
+          const amountB = parseFloat(b[key].replace('$', ''));
+          if (amountA < amountB)
+            return sortConfig.direction === 'ascending' ? -1 : 1;
+          if (amountA > amountB)
+            return sortConfig.direction === 'ascending' ? 1 : -1;
+          return 0;
+        } else {
+          if (a[key] < b[key])
+            return sortConfig.direction === 'ascending' ? -1 : 1;
+          if (a[key] > b[key])
+            return sortConfig.direction === 'ascending' ? 1 : -1;
+          return 0;
+        }
+      }
+      return 0;
+    });
+  }, [filteredInvoices, sortConfig]);
+
+  const handleAmountFilterChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    setAmountFilter(event.target.value);
+  };
+
+  const handleStatusFilterChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    setStatusFilter(event.target.value);
+  };
+
+  const handleMethodFilterChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    setMethodFilter(event.target.value);
+  };
+
+  const uniqueStatuses = [
+    'all',
+    ...Array.from(new Set(invoicesData.map((inv) => inv.paymentStatus))),
+  ];
+  const uniqueMethods = [
+    'all',
+    ...Array.from(new Set(invoicesData.map((inv) => inv.paymentMethod))),
+  ];
+
   return (
     <div className="rounded-md bg-[#10111D] text-[#BFBFBF] font-bold p-1">
       <div className="w-full">
-        <div className="grid grid-cols-[0.5fr_1fr_1fr_1fr_1fr_1fr] h-[50px] ">
+        <div className="grid grid-cols-[0.5fr_1.5fr_1.5fr_1.5fr_1fr_1fr] h-[50px] ">
           <div className="flex items-center justify-center"></div>
-          <div className="flex items-center font-medium">
+          <div className="flex items-center font-medium justify-start">
             <button
               type="button"
-              // a function to display the menue to filter
-              className="text-gray-400 hover:text-gray-200 flex items-center gap-2"
+              onClick={() => requestSort('invoice')}
+              className="text-gray-400 hover:text-gray-200 flex items-center"
             >
-              <svg
-                width="16"
-                height="8"
-                viewBox="0 0 16 8"
-                fill="white"
-                xmlns="http://www.w3.org/2000/svg"
-                transform="rotate(180)"
-              >
-                <path d="M8 0L15.7942 8H0.205771L8 0Z" fill="#8B939B" />
-              </svg>
               <span>Invoice</span>
             </button>
           </div>
-          <div className="flex items-center font-medium">
-            <button
-              type="button"
-              // a function to display the menue to filter
-              className="text-gray-400 hover:text-gray-200 flex items-center gap-2"
-            >
-              <svg
-                width="16"
-                height="8"
-                viewBox="0 0 16 8"
-                fill="white"
-                xmlns="http://www.w3.org/2000/svg"
-                transform="rotate(180)"
-              >
-                <path d="M8 0L15.7942 8H0.205771L8 0Z" fill="#8B939B" />
-              </svg>
+          <div className="flex items-center font-medium justify-start">
+            <div className="flex items-center gap-2">
               <span>Status</span>
-            </button>
+              <select
+                value={statusFilter}
+                onChange={handleStatusFilterChange}
+                className="bg-[#10111D] text-gray-400 border border-gray-700 rounded-md text-sm focus:outline-none"
+              >
+                {uniqueStatuses.map((status) => (
+                  <option key={status} value={status}>
+                    {status.charAt(0).toUpperCase() + status.slice(1)}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
-          <div className="flex items-center font-medium">
-            <button
-              type="button"
-              // a function to display the menue to filter
-              className="text-gray-400 hover:text-gray-200 flex items-center gap-2"
-            >
-              <svg
-                width="16"
-                height="8"
-                viewBox="0 0 16 8"
-                fill="white"
-                xmlns="http://www.w3.org/2000/svg"
-                transform="rotate(180)"
-              >
-                <path d="M8 0L15.7942 8H0.205771L8 0Z" fill="#8B939B" />
-              </svg>
+          <div className="flex items-center font-medium justify-start">
+            <div className="flex items-center gap-2">
               <span>Method</span>
-            </button>
-          </div>
-          <div className="flex items-center justify-center font-medium ">
-            <button
-              type="button"
-              // a function to display the menue to filter
-              className="text-gray-400 hover:text-gray-200 flex items-center gap-2"
-            >
-              <svg
-                width="16"
-                height="8"
-                viewBox="0 0 16 8"
-                fill="white"
-                xmlns="http://www.w3.org/2000/svg"
-                transform="rotate(180)"
+              <select
+                value={methodFilter}
+                onChange={handleMethodFilterChange}
+                className="bg-[#10111D] text-gray-400 border w-[55%] border-gray-700 rounded-md text-sm focus:outline-none"
               >
-                <path d="M8 0L15.7942 8H0.205771L8 0Z" fill="#8B939B" />
-              </svg>
+                {uniqueMethods.map((method) => (
+                  <option key={method} value={method}>
+                    {method}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="flex items-center justify-center font-medium">
+            <div className="flex items-center gap-2">
               <span>Amount</span>
-            </button>
+              <select
+                value={amountFilter}
+                onChange={handleAmountFilterChange}
+                className="bg-[#10111D] text-gray-400 border border-gray-700 rounded-md text-sm focus:outline-none"
+              >
+                <option value="all">All</option>
+                <option value="under200">Under $200</option>
+                <option value="200to500">$200 - $500</option>
+                <option value="over500">Over $500</option>
+              </select>
+            </div>
           </div>
 
-          <div className="flex items-center justify-center font-medium  -translate-x-3">
-            Quantity
+          <div className="flex items-center justify-center font-medium">
+            Actions
           </div>
         </div>
 
         {/* Table Content */}
         <img
-          src="/assets/svgs/Seperator.svg"
+          src="/assets/svgs/SeparatorTable.svg"
           alt="Chart"
-          className="w-[100%] h-10"
+          className="w-full h-10"
         />
         <div className="overflow-y-auto h-[390px] [&::-webkit-scrollbar]:w-2 dark:[&::-webkit-scrollbar-track]:bg-[#10121E] dark:[&::-webkit-scrollbar-thumb]:bg-[#303137] overflow-x-hidden">
-          {invoices.map((invoice) => (
+          {sortedInvoices.map((invoice) => (
             <div
               key={invoice.invoice}
-              className="grid grid-cols-[0.5fr_1fr_1fr_1fr_1fr_1fr] h-[65px] border-b border-gray-800 "
+              className="grid grid-cols-[0.5fr_1.5fr_1.5fr_1.5fr_1fr_1fr] h-[65px] border-b border-gray-800 "
             >
               <div className="flex items-center justify-center">
                 <Checkbox
                   checked={selectedInvoices.includes(invoice.invoice)}
-                  // handle check behavipur
+                  onCheckedChange={(checked) =>
+                    toggleInvoice(invoice.invoice, checked)
+                  }
+                  id={`invoice-${invoice.invoice}`}
                 />
               </div>
               <div className="flex items-center">{invoice.invoice}</div>
@@ -193,7 +298,6 @@ export function ManageTable() {
                 <div className="flex space-x-2">
                   <Button variant="ghost" size="icon">
                     <Edit className="h-4 w-4" />
-
                     <span className="sr-only">Edit</span>
                   </Button>
                   <Button variant="ghost" size="icon">

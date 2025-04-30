@@ -1,6 +1,3 @@
-/*in this page we navigate between three subpages:
- Add to enventory ,Manage enventory, take from enventory*/
-
 import Form from '../components/Addf.tsx';
 import InventoryManager from '../components/Navigate.tsx';
 import { useState } from 'react';
@@ -20,14 +17,20 @@ function StockManager() {
     setCardAction({ Add, Remove, Manage });
   };
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <div className="w-[50%] flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-start min-h-screen pt-20">
+      {' '}
+      {/* Changed justify-center to justify-start and added pt-20 */}
+      <div className="w-[90%] md:w-[70%] lg:w-[50%] flex flex-col items-center justify-start">
+        {' '}
+        {/* Adjusted width and justify-start */}
         <div
-          className={`w-full mt-20 ${cardAction.Add ? 'mt-43' : ''} mb-10 flex justify-center`}
+          className={`w-full mt-0 ${cardAction.Add ? 'mt-0' : ''} mb-5 flex justify-center`}
         >
           <InventoryManager onCardClick={handleCardAction} />
         </div>
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-start w-full">
+          {' '}
+          {/* Changed items-center to items-start and added w-full */}
           <motion.div
             key={
               cardAction.Add ? 'add' : cardAction.Remove ? 'remove' : 'default'
@@ -36,6 +39,7 @@ function StockManager() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.05 }}
             transition={{ duration: 0.4 }}
+            className="w-full" // Ensure the content takes full width of its container
           >
             {cardAction.Add ? (
               <Form />

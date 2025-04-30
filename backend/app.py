@@ -1,7 +1,13 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from routes.optimize import optimize_route
-from utils.config import DevelopmentConfig
+from core.agent_system import Mixer
+from core.warehouse import Warehouse
+
+warehouse = Warehouse()
+mixer = Mixer(warehouse, [])
+
+
 
 # Initialize the Flask app
 app = Flask(__name__)

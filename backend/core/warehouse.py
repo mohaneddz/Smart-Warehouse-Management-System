@@ -34,7 +34,12 @@ class Task:
         self.monitor.log_task(self, "assigned to agent")
         agent.set_goal(self.goal_state)
 
+<<<<<<< HEAD
 class WarehouseMap:
+=======
+
+class Warehouse:
+>>>>>>> 44f3fed3189b8acefe8f743d628efdc4045e9242
     """Manages the warehouse layout, tasks, and agents."""
     
     def __init__(self, nodes: Optional[Dict[str, Node]] = None):
@@ -106,9 +111,14 @@ class WarehouseMap:
             print(f"No tasks available for Agent {agent}.")
 
     def __repr__(self):
+<<<<<<< HEAD
         """String representation of the Warehouse map.
 
         Returns:
             str: A string representation of the WarehouseMap.
         """
         return f"WarehouseMap(Agents: {len(self.agents)}, Tasks: {len(self.tasks)})"
+=======
+        """String representation of the Warehouse map."""
+        return f"Warehouse(Agents: {len(self.agents)}, Tasks: {len(self.tasks)})"
+>>>>>>> 44f3fed3189b8acefe8f743d628efdc4045e9242

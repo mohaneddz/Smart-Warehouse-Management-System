@@ -2,6 +2,9 @@ from enum import Enum, auto
 from typing import Protocol, List, Optional, Dict, Tuple, Any
 from datetime import datetime
 from dataclasses import dataclass
+from backend.core import Node
+from backend.core import Task
+from backend.core import Warehouse
 
 # Enums
 class AgentStatus(Enum):

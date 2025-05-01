@@ -1,124 +1,107 @@
-from typing import Dict, Optional
+from typing import Dict, Optional, List
+from enum import Enum, auto
+from core.types import NodeType, INode, IAgent
+from dataclasses import dataclass, field
 
+class NodeType(Enum):
+    """Enumeration of possible node types."""
+    NORMAL = auto()
+    CENTER = auto()
+
+@dataclass
 class Node:
-<<<<<<< HEAD
-    """Represents a location in the warehouse layout with coordinates, neighbors, and associated value."""
+    """Represents a node in the warehouse grid.
     
-    def __init__(self, x: float, y: float, neighbours: Dict['Node', float], value: float = 0.0):
-        """Initializes a Node with coordinates, neighboring nodes, and an optional associated value.
-=======
-    """Represents a location in the warehouse layout with coordinates, neighbors, and value."""
-    def __init__(self, x: float, y: float, hash: str, neighbours: Dict['Node', float], value: float = 0.0):
-        """Initializes a Node with coordinates, neighbors, and an optional value.
->>>>>>> 44f3fed3189b8acefe8f743d628efdc4045e9242
+    Attributes:
+        x (int): X coordinate
+        y (int): Y coordinate
+        node_type (NodeType): Type of the node
+        name (str): Name of the node (e.g., "A1", "B2")
+        neighbours (Dict[Node, float]): Dictionary of neighboring nodes and their distances
+        locked_by (Optional[str]): ID of the agent that has locked this node
+    """
+    x: int
+    y: int
+    node_type: NodeType
+    name: str
+    neighbours: Dict['Node', float] = field(default_factory=dict)
+    locked_by: Optional[str] = None
+    locked: bool = False
+    is_goal: bool = False
 
+    def add_neighbor(self, node: 'Node', distance: float = 1.0) -> None:
+        """Adds a neighboring node with the given distance."""
+        self.neighbours[node] = distance
+        node.neighbours[self] = distance
+
+    def is_locked(self) -> bool:
+        """Returns whether the node is currently locked by an agent."""
+        return self.locked
+
+    def lock(self, agent_id: str) -> bool:
+        """Attempts to lock the node for an agent.
+        
         Args:
-            x (float): X-coordinate of the node.
-            y (float): Y-coordinate of the node.
-            neighbours (Dict[Node, float]): Neighboring nodes and their distances.
-            value (float, optional): Value associated with the node, defaults to 0.0.
-        """
-        self.x = x
-        self.y = y
-        self.neighbours = neighbours
-        self.hash = hash
-        self.heuristic = 0.0
-        self.type = "normal"
-        self.locked = False
-        self.locked_by = None  # Reference to the agent that locked this node
-
-    def lock(self, agent: 'Agent') -> bool:
-        """Locks the node for a specific agent.
-
-        Args:
-            agent (Agent): The agent attempting to lock the node.
-
+            agent_id (str): ID of the agent attempting to lock the node
+            
         Returns:
-            bool: True if the node was successfully locked, False if it was already locked.
+            bool: True if the node was successfully locked, False otherwise
         """
-        if not self.locked:
+        if not self.is_locked():
             self.locked = True
-            self.locked_by = agent
+            self.locked_by = agent_id
             return True
         return False
 
-    def unlock(self, agent: 'Agent') -> bool:
-        """Unlocks the node if it was locked by the specified agent.
-
+    def unlock(self, agent_id: str) -> bool:
+        """Attempts to unlock the node for an agent.
+        
         Args:
-            agent (Agent): The agent attempting to unlock the node.
-
+            agent_id (str): ID of the agent attempting to unlock the node
+            
         Returns:
-            bool: True if the node was successfully unlocked, False if it was locked by a different agent.
+            bool: True if the node was successfully unlocked, False otherwise
         """
-        if self.locked and self.locked_by == agent:
+        if self.locked and self.locked_by == agent_id:
             self.locked = False
             self.locked_by = None
             return True
         return False
 
-    def is_locked(self) -> bool:
-        """Checks if the node is currently locked.
-
-        Returns:
-            bool: True if the node is locked, False otherwise.
-        """
-        return self.locked
-
-    def get_locking_agent(self) -> Optional['Agent']:
-        """Gets the agent that currently has the node locked.
-
-        Returns:
-            Optional[Agent]: The agent that locked the node, or None if the node is not locked.
-        """
-        return self.locked_by
-
-    def set_heuristic(self, h: float):
-        """Sets the heuristic value for this node.
-
-        Args:
-            h (float): The heuristic value to set.
-        """
-        self.heuristic = h
+    def __hash__(self) -> int:
+        """Returns a hash value for the node."""
+        return hash((self.x, self.y))
 
     def __eq__(self, other: object) -> bool:
-        """Checks if two nodes are equal based on their coordinates.
-
-        Args:
-            other (object): The object to compare with.
-
-        Returns:
-            bool: True if the nodes are equal based on their coordinates, False otherwise.
-        """
+        """Checks if two nodes are equal."""
         if not isinstance(other, Node):
             return False
         return self.x == other.x and self.y == other.y
 
-    def __gt__(self, other: object) -> bool:
-        """Compares nodes based on their value for priority queues.
+    def __str__(self) -> str:
+        """Returns a string representation of the node."""
+        return f"{self.name} ({self.x}, {self.y})"
+
+    def get_locking_agent(self) -> Optional[str]:
+        """Gets the agent that currently has the node locked.
+
+        Returns:
+            Optional[str]: The agent that locked the node, or None if the node is not locked
+        """
+        return self.locked_by
+
+    def set_type(self, node_type: NodeType) -> None:
+        """Sets the type of the node.
 
         Args:
-            other (object): The object to compare with.
-
-        Returns:
-            bool: True if the current node's value is greater than the other node's value.
+            node_type (NodeType): The new type for the node
         """
-        if not isinstance(other, Node):
-            return NotImplemented
-        return self.value > other.value
+        self.node_type = node_type
 
-    def __str__(self) -> str:
-        """Returns a string representation of the node.
+    def set_goal(self, is_goal: bool = True) -> None:
+        """Sets whether this node is a goal node.
 
-        Returns:
-            str: A string representation of the node in the format "Node(x, y)".
+        Args:
+            is_goal (bool, optional): Whether this is a goal node. Defaults to True.
         """
-        return f"Node({self.x}, {self.y})"
-
-    def __hash__(self) -> int:
-        """Returns a hash based on the node's coordinates.
-
-        Returns:
-            int: A hash value computed from the node's coordinates.
-        """
-        return hash((self.x, self.y))
+        self.is_goal = is_goal

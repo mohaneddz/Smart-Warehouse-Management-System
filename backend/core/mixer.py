@@ -1,109 +1,124 @@
-from typing import List
+from typing import List, Dict, Optional, Any
 from queue import Queue
-from core.warehouse import Node
-from schemas.task import Task
-from data.monitoring import Monitor
-from dataclasses import dataclass, field
+from core.task import Task
 import json
 import os
+from datetime import datetime
+import uuid
+from core.agent import Agent
+from core.types import IMixer, IAgent, ITask
 
-@dataclass
-class Agent:
-    """Represents an agent in the warehouse system, capable of moving, setting goals, and completing tasks."""
-    node: Node
-    weight: float
-    state: str
-    goal: str
-    path_history: List[Node] = field(default_factory=list)
+class Mixer(IMixer):
+    """Handles task assignment, prioritization, and monitoring for agents in the warehouse system.
+    Also plays the role of Monitor.
     
-    def __post_init__(self):
-        """Initializes an Agent with its node, weight, state, goal."""
-        self.monitor = Monitor.get_instance()
-        # Add initial node to path history and lock it
-        self.path_history.append(self.node)
-        self.node.lock(self)
-
-    def move(self, new_node: 'Node') -> bool:
-        """Moves the agent to a new node and logs the action.
-        
-        Args:
-            new_node (Node): The node to move to.
-            
-        Returns:
-            bool: True if the move was successful, False if the target node was locked.
-        """
-        # Try to lock the new node
-        if not new_node.lock(self):
-            return False
-            
-        # Unlock the current node
-        self.node.unlock(self)
-        
-        # Update node and path history
-        self.node = new_node
-        self.path_history.append(new_node)
-        self.monitor.log_agent(self, f"moved to {new_node}")
-        return True
-
-    def backtrack(self, steps: int = 1) -> bool:
-        """Moves the agent back along its path history.
-        
-        Args:
-            steps (int): Number of steps to backtrack. Defaults to 1.
-            
-        Returns:
-            bool: True if backtracking was successful, False if not enough history or target node is locked.
-        """
-        if len(self.path_history) <= steps:
-            return False
-            
-        # Get the target node to backtrack to
-        target_node = self.path_history[-steps-1]
-        
-        # Try to lock the target node
-        if not target_node.lock(self):
-            return False
-            
-        # Unlock the current node
-        self.node.unlock(self)
-        
-        # Update node and path history
-        self.node = target_node
-        self.path_history = self.path_history[:-steps]
-        self.monitor.log_agent(self, f"backtracked to {target_node}")
-        return True
-
-    def set_goal(self, goal: str):
-        """Sets a new goal for the agent and logs the action."""
-        self.goal = goal
-        self.monitor.log_agent(self, f"goal set to {goal}")
+    Attributes:
+        warehouse (Dict[str, Any]): Reference to the warehouse configuration
+        tasks (Queue): Regular tasks queue
+        priority_tasks (Queue): High-priority tasks queue
+        agents (List[Agent]): List of agents in the system
+    """
     
-    def complete_task(self, task: 'Task'):
-        """Completes the given task and logs the completion."""
-        self.monitor.log_task(task, "completed")
-        self.monitor.log_agent(self, f"completed task: {task.job} to goal {task.goal_state}")
-
-    def get_last_node(self) -> Node:
-        """Returns the last node in the path history."""
-        return self.path_history[-1] if self.path_history else None
-
-    def clear_path_history(self):
-        """Clears the path history, keeping only the current node."""
-        if self.path_history:
-            current_node = self.path_history[-1]
-            self.path_history = [current_node]
-
-
-class Mixer:
-    """Handles task assignment, prioritization, and deadlock resolution for agents in the warehouse system."""
+    _instance = None
+    LOG_BATCH_SIZE = 100  # Number of logs to accumulate before saving
     
-    def __init__(self, warehouse, agents: List[Agent]):
-        """Initializes the Mixer with a warehouse and a set of agents."""
-        self.warehouse = warehouse
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super(Mixer, cls).__new__(cls)
+            cls._instance._initialized = False
+        return cls._instance
+    
+    def __init__(self, warehouse: Any = None, agents: List[IAgent] = None):
+        if self._initialized:
+            return
+            
+        self.warehouse = warehouse  # FK
         self.tasks = Queue()  # Regular tasks queue
         self.priority_tasks = Queue()  # High-priority tasks queue
-        self.agents = agents
-        self.deadlock_table = self._load_deadlock_table()
+        self.agents = agents or []  # FK
+        self.logs = []  # List to store all system logs
+        self._log_file_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'logs')
+        self._ensure_log_directory()
+        self._initialized = True
+
+    def _ensure_log_directory(self) -> None:
+        """Ensures the log directory exists."""
+        os.makedirs(self._log_file_path, exist_ok=True)
+
+    def _get_log_file_path(self) -> str:
+        """Returns the path to the current log file."""
+        timestamp = datetime.now().strftime("%Y%m%d")
+        return os.path.join(self._log_file_path, f"warehouse_logs_{timestamp}.json")
+
+    def _save_logs(self) -> None:
+        """Saves the current logs to a file."""
+        if not self.logs:
+            return
+
+        log_file = self._get_log_file_path()
+        try:
+            # Read existing logs if file exists
+            existing_logs = []
+            if os.path.exists(log_file):
+                with open(log_file, 'r') as f:
+                    existing_logs = json.load(f)
+
+            # Append new logs
+            existing_logs.extend(self.logs)
+            
+            # Save all logs
+            with open(log_file, 'w') as f:
+                json.dump(existing_logs, f, indent=2)
+            
+            # Clear the in-memory logs
+            self.logs = []
+            
+        except Exception as e:
+            print(f"Error saving logs: {e}")
+
+    def log_event(self, event_type: str, message: str, agent: Optional[IAgent] = None, task: Optional[ITask] = None) -> None:
+        """Logs an event in the system and saves logs if batch size is reached.
+        
+        Args:
+            event_type (str): Type of event (e.g., 'movement', 'task', 'deadlock')
+            message (str): Description of the event
+            agent (Agent, optional): Agent involved in the event
+            task (Task, optional): Task involved in the event
+        """
+        log_entry = {
+            'id': str(uuid.uuid4()),
+            'timestamp': datetime.now().isoformat(),
+            'type': event_type,
+            'message': message,
+            'agent_id': agent.hash_id if agent else None,
+            'task_id': task.hash_id if task else None
+        }
+        self.logs.append(log_entry)
+        print(f"[{log_entry['timestamp']}] {event_type}: {message}")
+
+        # Save logs if batch size is reached
+        if len(self.logs) >= self.LOG_BATCH_SIZE:
+            self._save_logs()
+
+    def get_logs(self, event_type: Optional[str] = None, agent_id: Optional[str] = None, task_id: Optional[str] = None) -> List[Dict]:
+        """Retrieves logs based on filters.
+        
+        Args:
+            event_type (str, optional): Filter by event type
+            agent_id (str, optional): Filter by agent ID
+            task_id (str, optional): Filter by task ID
+            
+        Returns:
+            List[dict]: Filtered log entries
+        """
+        filtered_logs = self.logs
+        if event_type:
+            filtered_logs = [log for log in filtered_logs if log['type'] == event_type]
+        if agent_id:
+            filtered_logs = [log for log in filtered_logs if log['agent_id'] == agent_id]
+        if task_id:
+            filtered_logs = [log for log in filtered_logs if log['task_id'] == task_id]
+        return filtered_logs
 
     def _load_deadlock_table(self) -> dict:
         """Loads the deadlock table from the JSON file."""
@@ -139,7 +154,7 @@ class Mixer:
         """Orders a task for an agent by enqueuing it into the appropriate queue."""
         self._enqueue(agent, task)
 
-    def assign_task(self, agent: Agent):
+    def assign_task(self, agent: IAgent) -> None:
         """Assigns tasks from the priority queue first, then from the regular queue."""
         task_assigned = False
 

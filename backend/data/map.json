@@ -1,0 +1,48 @@
+{
+    "nodes": {
+        "A1": {"x": 0, "y": 0, "type": "ENTRY"},
+        "A2": {"x": 1, "y": 0, "type": "NORMAL"},
+        "A3": {"x": 2, "y": 0, "type": "NORMAL"},
+        "A4": {"x": 3, "y": 0, "type": "NORMAL"},
+        "A5": {"x": 4, "y": 0, "type": "EXIT"},
+        "B1": {"x": 0, "y": 1, "type": "NORMAL"},
+        "B2": {"x": 1, "y": 1, "type": "CENTER"},
+        "B3": {"x": 2, "y": 1, "type": "NORMAL"},
+        "B4": {"x": 3, "y": 1, "type": "CENTER"},
+        "B5": {"x": 4, "y": 1, "type": "NORMAL"},
+        "C1": {"x": 0, "y": 2, "type": "NORMAL"},
+        "C2": {"x": 1, "y": 2, "type": "NORMAL"},
+        "C3": {"x": 2, "y": 2, "type": "CENTER"},
+        "C4": {"x": 3, "y": 2, "type": "NORMAL"},
+        "C5": {"x": 4, "y": 2, "type": "NORMAL"},
+        "D1": {"x": 0, "y": 3, "type": "NORMAL"},
+        "D2": {"x": 1, "y": 3, "type": "CENTER"},
+        "D3": {"x": 2, "y": 3, "type": "NORMAL"},
+        "D4": {"x": 3, "y": 3, "type": "CENTER"},
+        "D5": {"x": 4, "y": 3, "type": "NORMAL"},
+        "E1": {"x": 0, "y": 4, "type": "ENTRY"},
+        "E2": {"x": 1, "y": 4, "type": "NORMAL"},
+        "E3": {"x": 2, "y": 4, "type": "NORMAL"},
+        "E4": {"x": 3, "y": 4, "type": "NORMAL"},
+        "E5": {"x": 4, "y": 4, "type": "EXIT"}
+    },
+    "connections": [
+        ["A1", "A2"], ["A2", "A3"], ["A3", "A4"], ["A4", "A5"],
+        ["B1", "B2"], ["B2", "B3"], ["B3", "B4"], ["B4", "B5"],
+        ["C1", "C2"], ["C2", "C3"], ["C3", "C4"], ["C4", "C5"],
+        ["D1", "D2"], ["D2", "D3"], ["D3", "D4"], ["D4", "D5"],
+        ["E1", "E2"], ["E2", "E3"], ["E3", "E4"], ["E4", "E5"],
+        ["A1", "B1"], ["B1", "C1"], ["C1", "D1"], ["D1", "E1"],
+        ["A2", "B2"], ["B2", "C2"], ["C2", "D2"], ["D2", "E2"],
+        ["A3", "B3"], ["B3", "C3"], ["C3", "D3"], ["D3", "E3"],
+        ["A4", "B4"], ["B4", "C4"], ["C4", "D4"], ["D4", "E4"],
+        ["A5", "B5"], ["B5", "C5"], ["C5", "D5"], ["D5", "E5"]
+    ],
+    "racks": {
+        "R1": {"center": "B2", "shelves": ["S1", "S2", "S3"]},
+        "R2": {"center": "B4", "shelves": ["S4", "S5", "S6"]},
+        "R3": {"center": "C3", "shelves": ["S7", "S8", "S9"]},
+        "R4": {"center": "D2", "shelves": ["S10", "S11", "S12"]},
+        "R5": {"center": "D4", "shelves": ["S13", "S14", "S15"]}
+    }
+} 

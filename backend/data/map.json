@@ -1281,12 +1281,12 @@
     },
     "N3-1": {
       "x": 416,
-      "y": "226",
+      "y": 226,
       "neighbours": ["N2-1", "N2-2", "N3-2", "N4-1", "N4-2"]
     },
     "N3-2": {
       "x": 432,
-      "y": "226",
+      "y": 226,
       "neighbours": [
         "N2-1",
         "N2-2",
@@ -1300,17 +1300,17 @@
     },
     "N3-3": {
       "x": 448,
-      "y": "226",
+      "y": 226,
       "neighbours": ["N2-2", "N2-3", "N3-2", "N4-2", "N4-3"]
     },
     "N3-4": {
       "x": 488,
-      "y": "226",
+      "y": 226,
       "neighbours": ["N2-5", "N2-6", "N3-5", "N4-3", "N4-4", "N4-5"]
     },
     "N3-5": {
       "x": 504,
-      "y": "226",
+      "y": 226,
       "neighbours": [
         "N2-7",
         "N2-5",
@@ -1324,17 +1324,17 @@
     },
     "N3-6": {
       "x": 520,
-      "y": "226",
+      "y": 226,
       "neighbours": ["N2-6", "N2-7", "N4-7", "N4-6", "N3-5"]
     },
     "N3-7": {
       "x": 560,
-      "y": "226",
+      "y": 226,
       "neighbours": ["N2-6", "N2-7", "N2-8", "N3-6", "N4-6", "N4-7", "N4-8"]
     },
     "N3-8": {
       "x": 576,
-      "y": "226",
+      "y": 226,
       "neighbours": [
         "N2-9",
         "N2-10",
@@ -1348,17 +1348,17 @@
     },
     "N3-9": {
       "x": 592,
-      "y": "226",
+      "y": 226,
       "neighbours": ["N2-11", "N2-10", "N3-8", "N4-8", "N4-9"]
     },
     "N3-10": {
       "x": 632,
-      "y": "226",
+      "y": 226,
       "neighbours": ["N2-13", "N2-14", "N3-11", "N4-10", "N4-11"]
     },
     "N3-11": {
       "x": 648,
-      "y": "226",
+      "y": 226,
       "neighbours": [
         "N2-13",
         "N2-14",
@@ -1372,17 +1372,17 @@
     },
     "N3-12": {
       "x": 664,
-      "y": "226",
+      "y": 226,
       "neighbours": ["N2-14", "N2-15", "N3-13", "N4-12", "N4-11"]
     },
     "N3-13": {
       "x": 706,
-      "y": "226",
+      "y": 226,
       "neighbours": ["N2-17", "N2-18", "N3-14", "N4-13", "N4-14"]
     },
     "N3-14": {
       "x": 722,
-      "y": "226",
+      "y": 226,
       "neighbours": [
         "N2-17",
         "N2-18",
@@ -1396,17 +1396,17 @@
     },
     "N3-15": {
       "x": 738,
-      "y": "226",
+      "y": 226,
       "neighbours": ["N2-18", "N2-19", "N3-14", "N4-14", "N4-15"]
     },
     "N3-16": {
       "x": 781,
-      "y": "226",
+      "y": 226,
       "neighbours": ["N2-21", "N2-22", "N3-17", "N4-16", "N4-17"]
     },
     "N3-17": {
       "x": 797,
-      "y": "226",
+      "y": 226,
       "neighbours": [
         "N2-21",
         "N2-22",
@@ -1420,17 +1420,17 @@
     },
     "N3-18": {
       "x": 813,
-      "y": "226",
+      "y": 226,
       "neighbours": ["N2-22", "N2-23", "N3-17", "N4-17", "N4-18"]
     },
     "N3-19": {
       "x": 851,
-      "y": "226",
+      "y": 226,
       "neighbours": ["N2-25", "N2-26", "N3-20", "N4-19", "N4-20"]
     },
     "N3-20": {
       "x": 867,
-      "y": "226",
+      "y": 226,
       "neighbours": [
         "N2-25",
         "N2-26",
@@ -1444,17 +1444,17 @@
     },
     "N3-21": {
       "x": 883,
-      "y": "226",
+      "y": 226,
       "neighbours": ["N2-27", "N2-26", "N3-20", "N4-20", "N4-21"]
     },
     "N3-22": {
       "x": 912,
-      "y": "226",
+      "y": 226,
       "neighbours": ["N2-29", "N2-30", "N3-23", "N4-22", "N4-23"]
     },
     "N3-23": {
       "x": 928,
-      "y": "226",
+      "y": 226,
       "neighbours": [
         "N2-29",
         "N2-30",
@@ -1468,17 +1468,17 @@
     },
     "N3-24": {
       "x": 945,
-      "y": "226",
+      "y": 226,
       "neighbours": ["N2-30", "N2-31", "N3-23", "N4-24", "N4-23"]
     },
     "N4-1": {
       "x": 416,
-      "y": "246",
+      "y": 246,
       "neighbours": ["N3-1", "N3-2", "N4-2", "N5-1", "N5-2"]
     },
     "N4-2": {
       "x": 432,
-      "y": "246",
+      "y": 246,
       "neighbours": [
         "N3-1",
         "N3-2",
@@ -1492,17 +1492,17 @@
     },
     "N4-3": {
       "x": 448,
-      "y": "246",
+      "y": 246,
       "neighbours": ["N3-2", "N3-3", "N4-2", "N5-2", "N5-3"]
     },
     "N4-4": {
       "x": 488,
-      "y": "246",
+      "y": 246,
       "neighbours": ["N3-4", "N3-5", "N4-5", "N5-4", "N5-5"]
     },
     "N4-5": {
       "x": 504,
-      "y": "246",
+      "y": 246,
       "neighbours": [
         "N3-4",
         "N3-5",
@@ -1516,17 +1516,17 @@
     },
     "N4-6": {
       "x": 520,
-      "y": "246",
+      "y": 246,
       "neighbours": ["N3-5", "N3-6", "N4-5", "N5-5", "N5-6"]
     },
     "N4-7": {
       "x": 560,
-      "y": "246",
+      "y": 246,
       "neighbours": ["N3-7", "N3-8", "N4-8", "N5-7", "N5-8"]
     },
     "N4-8": {
       "x": 576,
-      "y": "246",
+      "y": 246,
       "neighbours": [
         "N3-7",
         "N3-8",
@@ -1540,17 +1540,17 @@
     },
     "N4-9": {
       "x": 592,
-      "y": "246",
+      "y": 246,
       "neighbours": ["N3-8", "N3-9", "N4-8", "N5-8", "N5-9"]
     },
     "N4-10": {
       "x": 632,
-      "y": "246",
+      "y": 246,
       "neighbours": ["N3-10", "N3-11", "N4-11", "N5-10", "N5-11"]
     },
     "N4-11": {
       "x": 648,
-      "y": "246",
+      "y": 246,
       "neighbours": [
         "N3-10",
         "N3-11",
@@ -1574,7 +1574,7 @@
     },
     "N4-14": {
       "x": 722,
-      "y": "246",
+      "y": 246,
       "neighbours": [
         "N3-13",
         "N3-14",
@@ -1588,17 +1588,17 @@
     },
     "N4-15": {
       "x": 738,
-      "y": "246",
+      "y": 246,
       "neighbours": ["N3-14", "N3-15", "N4-14", "N5-14", "N5-15"]
     },
     "N4-16": {
       "x": 781,
-      "y": "246",
+      "y": 246,
       "neighbours": ["N3-16", "N3-17", "N4-17", "N5-16", "N5-17"]
     },
     "N4-17": {
       "x": 797,
-      "y": "246",
+      "y": 246,
       "neighbours": [
         "N3-16",
         "N3-17",
@@ -1612,17 +1612,17 @@
     },
     "N4-18": {
       "x": 813,
-      "y": "246",
+      "y": 246,
       "neighbours": ["N3-17", "N3-18", "N4-17", "N5-17", "N5-18"]
     },
     "N4-19": {
       "x": 851,
-      "y": "246",
+      "y": 246,
       "neighbours": ["N3-19", "N3-20", "N4-20", "N5-19", "N5-20"]
     },
     "N4-20": {
       "x": 867,
-      "y": "246",
+      "y": 246,
       "neighbours": [
         "N3-19",
         "N3-20",
@@ -1636,17 +1636,17 @@
     },
     "N4-21": {
       "x": 883,
-      "y": "246",
+      "y": 246,
       "neighbours": ["N3-20", "N3-21", "N4-20", "N5-20", "N5-21"]
     },
     "N4-22": {
       "x": 912,
-      "y": "246",
+      "y": 246,
       "neighbours": ["N3-22", "N3-23", "N4-23", "N5-22", "N5-23"]
     },
     "N4-23": {
       "x": 928,
-      "y": "246",
+      "y": 246,
       "neighbours": [
         "N3-22",
         "N3-23",
@@ -1660,17 +1660,17 @@
     },
     "N4-24": {
       "x": 945,
-      "y": "246",
+      "y": 246,
       "neighbours": ["N3-23", "N3-24", "N4-23", "N5-24", "N5-23"]
     },
     "N5-1": {
       "x": 416,
-      "y": "266",
+      "y": 266,
       "neighbours": ["N4-1", "N4-2", "N5-2", "N6-1", "N6-2"]
     },
     "N5-2": {
       "x": 432,
-      "y": "266",
+      "y": 266,
       "neighbours": [
         "N4-1",
         "N4-2",
@@ -1684,17 +1684,17 @@
     },
     "N5-3": {
       "x": 448,
-      "y": "266",
+      "y": 266,
       "neighbours": ["N4-2", "N4-3", "N5-2", "N6-2", "N6-3"]
     },
     "N5-4": {
       "x": 488,
-      "y": "266",
+      "y": 266,
       "neighbours": ["N4-4", "N4-5", "N5-5", "N6-4", "N6-5"]
     },
     "N5-5": {
       "x": 504,
-      "y": "266",
+      "y": 266,
       "neighbours": [
         "N4-4",
         "N4-5",
@@ -1708,17 +1708,17 @@
     },
     "N5-6": {
       "x": 520,
-      "y": "266",
+      "y": 266,
       "neighbours": ["N4-5", "N4-6", "N5-5", "N6-5", "N6-6"]
     },
     "N5-7": {
       "x": 560,
-      "y": "266",
+      "y": 266,
       "neighbours": ["N4-7", "N4-8", "N5-8", "N6-7", "N6-8"]
     },
     "N5-8": {
       "x": 576,
-      "y": "266",
+      "y": 266,
       "neighbours": [
         "N4-7",
         "N4-8",
@@ -1732,17 +1732,17 @@
     },
     "N5-9": {
       "x": 592,
-      "y": "266",
+      "y": 266,
       "neighbours": ["N4-8", "N4-9", "N5-8", "N6-8", "N6-9"]
     },
     "N5-10": {
       "x": 632,
-      "y": "266",
+      "y": 266,
       "neighbours": ["N4-10", "N4-11", "N5-11", "N6-10", "N6-11"]
     },
     "N5-11": {
       "x": 648,
-      "y": "266",
+      "y": 266,
       "neighbours": [
         "N4-10",
         "N4-11",
@@ -1756,17 +1756,17 @@
     },
     "N5-12": {
       "x": 664,
-      "y": "266",
+      "y": 266,
       "neighbours": ["N4-11", "N4-12", "N5-11", "N6-11", "N6-12"]
     },
     "N5-13": {
       "x": 706,
-      "y": "266",
+      "y": 266,
       "neighbours": ["N4-13", "N4-14", "N5-14", "N6-13", "N6-14"]
     },
     "N5-14": {
       "x": 722,
-      "y": "266",
+      "y": 266,
       "neighbours": [
         "N4-13",
         "N4-14",
@@ -1780,17 +1780,17 @@
     },
     "N5-15": {
       "x": 738,
-      "y": "266",
+      "y": 266,
       "neighbours": ["N4-14", "N4-15", "N5-14", "N6-14", "N6-15"]
     },
     "N5-16": {
       "x": 781,
-      "y": "266",
+      "y": 266,
       "neighbours": ["N4-16", "N4-17", "N5-17", "N6-16", "N6-17"]
     },
     "N5-17": {
       "x": 797,
-      "y": "266",
+      "y": 266,
       "neighbours": [
         "N4-16",
         "N4-17",
@@ -1804,17 +1804,17 @@
     },
     "N5-18": {
       "x": 813,
-      "y": "266",
+      "y": 266,
       "neighbours": ["N4-17", "N4-18", "N5-17", "N6-17", "N6-18"]
     },
     "N5-19": {
       "x": 851,
-      "y": "266",
+      "y": 266,
       "neighbours": ["N4-19", "N4-20", "N5-20", "N6-19", "N6-20"]
     },
     "N5-20": {
       "x": 867,
-      "y": "266",
+      "y": 266,
       "neighbours": [
         "N4-19",
         "N4-20",
@@ -1828,17 +1828,17 @@
     },
     "N5-21": {
       "x": 883,
-      "y": "266",
+      "y": 266,
       "neighbours": ["N4-20", "N4-21", "N5-20", "N6-20", "N6-21"]
     },
     "N5-22": {
       "x": 912,
-      "y": "266",
+      "y": 266,
       "neighbours": ["N4-22", "N4-23", "N5-23", "N6-22", "N6-23"]
     },
     "N5-23": {
       "x": 928,
-      "y": "266",
+      "y": 266,
       "neighbours": [
         "N4-22",
         "N4-23",
@@ -1852,7 +1852,7 @@
     },
     "N5-24": {
       "x": 945,
-      "y": "266",
+      "y": 266,
       "neighbours": ["N4-23", "N4-24", "N5-23", "N6-23", "N6-24"]
     },
     "N6-1": {
@@ -8138,212 +8138,212 @@
     "A1": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [891.5, 220.5],
-      "end_cords": [0, 0]
+      "start_cords": [894, 221],
+      "center_cords": [894, 266],
+      "end_cords": [894, 312]
     },
     "A2": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [891.5, 329.5],
-      "end_cords": [0, 0]
+      "start_cords": [894, 330],
+      "center_cords": [894, 375],
+      "end_cords": [894, 421]
     },
     "A3": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [891.5, 438.5],
-      "end_cords": [0, 0]
+      "start_cords": [894, 440],
+      "center_cords": [894, 484],
+      "end_cords": [894, 530]
     },
     "B1": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [821, 220.5],
-      "end_cords": [0, 0]
+      "start_cords": [824, 221],
+      "center_cords": [824, 266],
+      "end_cords": [824, 312]
     },
     "B2": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [821, 329.5],
-      "end_cords": [0, 0]
+      "start_cords": [824, 330],
+      "center_cords": [824, 375],
+      "end_cords": [824, 421]
     },
     "B3": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [821, 438.5],
-      "end_cords": [0, 0]
+      "start_cords": [824, 440],
+      "center_cords": [824, 484],
+      "end_cords": [824, 530]
     },
     "C1": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [751.5, 220.5],
-      "end_cords": [0, 0]
+      "start_cords": [754, 221],
+      "center_cords": [754, 266],
+      "end_cords": [754, 312]
     },
     "C2": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [751.5, 329.5],
-      "end_cords": [0, 0]
+      "start_cords": [754, 330],
+      "center_cords": [754, 375],
+      "end_cords": [754, 421]
     },
     "C3": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [751.5, 438.5],
-      "end_cords": [0, 0]
+      "start_cords": [754, 440],
+      "center_cords": [754, 484],
+      "end_cords": [754, 530]
     },
     "D1": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [675.5, 220.5],
-      "end_cords": [0, 0]
+      "start_cords": [678, 221],
+      "center_cords": [678, 266],
+      "end_cords": [678, 312]
     },
     "D2": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [675.5, 329.5],
-      "end_cords": [0, 0]
+      "start_cords": [678, 330],
+      "center_cords": [678, 375],
+      "end_cords": [678, 421]
     },
     "D3": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [675.5, 438.5],
-      "end_cords": [0, 0]
+      "start_cords": [678, 440],
+      "center_cords": [678, 484],
+      "end_cords": [678, 530]
     },
     "E1": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [599.5, 220.5],
-      "end_cords": [0, 0]
+      "start_cords": [602, 221],
+      "center_cords": [602, 266],
+      "end_cords": [602, 312]
     },
     "E2": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [529, 330],
-      "end_cords": [0, 0]
+      "start_cords": [602, 330],
+      "center_cords": [602, 375],
+      "end_cords": [602, 421]
     },
     "E3": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [529, 439],
-      "end_cords": [0, 0]
+      "start_cords": [602, 440],
+      "center_cords": [602, 484],
+      "end_cords": [602, 530]
     },
     "F1": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [529, 220.5],
-      "end_cords": [0, 0]
+      "start_cords": [532, 221],
+      "center_cords": [532, 266],
+      "end_cords": [532, 312]
     },
     "F2": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [529, 330],
-      "end_cords": [0, 0]
+      "start_cords": [532, 330],
+      "center_cords": [532, 375],
+      "end_cords": [532, 421]
     },
     "F3": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [529, 439],
-      "end_cords": [0, 0]
+      "start_cords": [532, 440],
+      "center_cords": [532, 484],
+      "end_cords": [532, 530]
     },
     "G1": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [458.5, 220.5],
-      "end_cords": [0, 0]
+      "start_cords": [461, 221],
+      "center_cords": [461, 266],
+      "end_cords": [461, 312]
     },
     "G2": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [458.5, 330],
-      "end_cords": [0, 0]
+      "start_cords": [461, 330],
+      "center_cords": [461, 375],
+      "end_cords": [461, 421]
     },
     "G3": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [458.5, 547],
-      "end_cords": [0, 0]
+      "start_cords": [461, 547],
+      "center_cords": [461, 593],
+      "end_cords": [461, 639]
     },
     "H1": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [894, 651],
-      "end_cords": [0, 0]
-    },
-    "H2": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [891, 591],
-      "end_cords": [0, 0]
+      "start_cords": [897, 651],
+      "center_cords": [897, 697],
+      "end_cords": [897, 742]
     },
     "H3": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [777, 591],
-      "end_cords": [0, 0]
+      "start_cords": [678, 593],
+      "center_cords": [594, 593],
+      "end_cords": [769, 593]
+    },
+    "H2": {
+      "is_frozen": false,
+      "current_capacity": 100,
+      "start_cords": [792, 593],
+      "center_cords": [838, 593],
+      "end_cords": [993, 593]
     },
     "H4": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [662, 651],
-      "end_cords": [0, 0]
-    },
-    "I1": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [955, 809],
-      "end_cords": [0, 0]
-    },
-    "I2": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [841, 809],
-      "end_cords": [0, 0]
-    },
-    "I3": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [727, 809],
-      "end_cords": [0, 0]
-    },
-    "I4": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [613, 809],
-      "end_cords": [0, 0]
+      "start_cords": [665, 651],
+      "center_cords": [665, 697],
+      "end_cords": [665, 742]
     },
     "I5": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [0, 0],
-      "center_cords": [499, 809],
-      "end_cords": [0, 0]
+      "start_cords": [400, 812],
+      "center_cords": [446, 812],
+      "end_cords": [491, 812]
+    },
+    "I4": {
+      "is_frozen": false,
+      "current_capacity": 100,
+      "start_cords": [514, 812],
+      "center_cords": [560, 812],
+      "end_cords": [605, 812]
+    },
+    "I3": {
+      "is_frozen": false,
+      "current_capacity": 100,
+      "start_cords": [628, 812],
+      "center_cords": [674, 812],
+      "end_cords": [719, 812]
+    },
+    "I2": {
+      "is_frozen": false,
+      "current_capacity": 100,
+      "start_cords": [742, 812],
+      "center_cords": [788, 812],
+      "end_cords": [833, 812]
+    },
+    "I1": {
+      "is_frozen": false,
+      "current_capacity": 100,
+      "start_cords": [856, 812],
+      "center_cords": [902, 812],
+      "end_cords": [947, 812]
     },
     "J1": {
       "is_frozen": true,

@@ -1,8 +1,8 @@
 @import 'tailwindcss';
-@import 'tw-animate-css'; 
+@import 'tw-animate-css';
 
 body {
-  background-color: #05060f;
+  background-color: #05060fda;
 }
 * {
   font-family: 'Arsenal SC';

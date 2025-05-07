@@ -4,6 +4,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { useState, useEffect, useMemo } from 'react';
 import { Edit, Trash2 } from 'lucide-react';
 import { Button } from './ui/button';
+import Form from './EditeItem'; // Import your Form component
 
 interface Invoice {
   invoice: string;
@@ -12,7 +13,7 @@ interface Invoice {
   paymentMethod: string;
 }
 
-const invoicesData: Invoice[] = [
+const initialInvoicesData: Invoice[] = [
   {
     invoice: 'INV001',
     paymentStatus: 'Paid',
@@ -84,11 +85,13 @@ export function ManageTable() {
   const [amountFilter, setAmountFilter] = useState<string>('all');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [methodFilter, setMethodFilter] = useState<string>('all');
-  const [filteredInvoices, setFilteredInvoices] =
-    useState<Invoice[]>(invoicesData);
+  const [invoices, setInvoices] = useState<Invoice[]>(initialInvoicesData);
+  const [editingInvoice, setEditingInvoice] = useState<Invoice | null>(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
+  const [filteredInvoices, setFilteredInvoices] = useState<Invoice[]>(invoices);
 
   useEffect(() => {
-    let newFilteredInvoices = invoicesData;
+    let newFilteredInvoices = [...invoices];
 
     // Amount Filter
     if (amountFilter === 'under200') {
@@ -121,7 +124,7 @@ export function ManageTable() {
     }
 
     setFilteredInvoices(newFilteredInvoices);
-  }, [amountFilter, statusFilter, methodFilter]);
+  }, [amountFilter, statusFilter, methodFilter, invoices]);
 
   const toggleInvoice = (invoice: string, checked: boolean) => {
     setSelectedInvoices((prev) =>
@@ -190,19 +193,92 @@ export function ManageTable() {
     setMethodFilter(event.target.value);
   };
 
+  const handleEdit = (invoiceToEdit: Invoice) => {
+    console.log('Edit clicked for:', invoiceToEdit.invoice);
+    setEditingInvoice(invoiceToEdit);
+    setIsEditModalOpen(true); // Open the edit modal
+  };
+
+  const handleSaveEdit = (editedData: Invoice) => {
+    console.log('Saving edited data:', editedData);
+    setInvoices((prevInvoices) =>
+      prevInvoices.map((inv) =>
+        inv.invoice === editedData.invoice ? editedData : inv,
+      ),
+    );
+    setIsEditModalOpen(false);
+    setEditingInvoice(null);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditModalOpen(false);
+    setEditingInvoice(null);
+  };
+
+  const [isDeleteConfirmationVisible, setIsDeleteConfirmationVisible] =
+    useState(false);
+  const [invoiceToDelete, setInvoiceToDelete] = useState<Invoice | null>(null);
+
+  const [notification, setNotification] = useState<{
+    message: string;
+    type: 'success' | 'error' | null;
+  }>({
+    message: '',
+    type: null,
+  });
+  const [isNotificationVisible, setIsNotificationVisible] = useState(false);
+
+  const showNotification = (message: string, type: 'success' | 'error') => {
+    setNotification({ message, type });
+    setIsNotificationVisible(true);
+    // Automatically hide the notification after a few seconds
+    setTimeout(() => {
+      setIsNotificationVisible(false);
+      setNotification({ message: '', type: null });
+    }, 3000); // Adjust the duration as needed
+  };
+
+  const handleDelete = (invoiceToDelete: Invoice) => {
+    console.log('Delete clicked for:', invoiceToDelete.invoice);
+    setInvoiceToDelete(invoiceToDelete);
+    setIsDeleteConfirmationVisible(true);
+  };
+
+  const confirmDelete = () => {
+    if (invoiceToDelete) {
+      setInvoices((prevInvoices) =>
+        prevInvoices.filter((inv) => inv.invoice !== invoiceToDelete.invoice),
+      );
+      setSelectedInvoices((prevSelected) =>
+        prevSelected.filter((inv) => inv !== invoiceToDelete.invoice),
+      );
+      showNotification(
+        `Invoice ${invoiceToDelete.invoice} deleted successfully!`,
+        'success',
+      );
+      setIsDeleteConfirmationVisible(false);
+      setInvoiceToDelete(null);
+    }
+  };
+
+  const cancelDelete = () => {
+    setIsDeleteConfirmationVisible(false);
+    setInvoiceToDelete(null);
+  };
+
   const uniqueStatuses = [
     'all',
-    ...Array.from(new Set(invoicesData.map((inv) => inv.paymentStatus))),
+    ...Array.from(new Set(invoices.map((inv) => inv.paymentStatus))),
   ];
   const uniqueMethods = [
     'all',
-    ...Array.from(new Set(invoicesData.map((inv) => inv.paymentMethod))),
+    ...Array.from(new Set(invoices.map((inv) => inv.paymentMethod))),
   ];
 
   return (
     <div className="rounded-md bg-[#10111D] text-[#BFBFBF] font-bold p-1">
-      <div className="w-full">
-        <div className="grid grid-cols-[0.5fr_1.5fr_1.5fr_1.5fr_1fr_1fr] h-[50px] ">
+      <div className="w-full relative">
+        <div className="grid grid-cols-[0.5fr_1.5fr_1.5fr_1.5fr_1fr_1fr_1fr] h-[50px] ">
           <div className="flex items-center justify-center"></div>
           <div className="flex items-center font-medium justify-start">
             <button
@@ -277,7 +353,7 @@ export function ManageTable() {
           {sortedInvoices.map((invoice) => (
             <div
               key={invoice.invoice}
-              className="grid grid-cols-[0.5fr_1.5fr_1.5fr_1.5fr_1fr_1fr] h-[65px] border-b border-gray-800 "
+              className="grid grid-cols-[0.5fr_1.5fr_1.5fr_1.5fr_1fr_1fr_1fr] h-[65px] border-b border-gray-800 "
             >
               <div className="flex items-center justify-center">
                 <Checkbox
@@ -296,11 +372,19 @@ export function ManageTable() {
               </div>
               <div className="flex items-center justify-center p-4 ">
                 <div className="flex space-x-2">
-                  <Button variant="ghost" size="icon">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => handleEdit(invoice)}
+                  >
                     <Edit className="h-4 w-4" />
                     <span className="sr-only">Edit</span>
                   </Button>
-                  <Button variant="ghost" size="icon">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => handleDelete(invoice)}
+                  >
                     <Trash2 className="h-4 w-4" />
                     <span className="sr-only">Delete</span>
                   </Button>
@@ -309,6 +393,71 @@ export function ManageTable() {
             </div>
           ))}
         </div>
+
+        {/* Edit Modal */}
+        {isEditModalOpen && editingInvoice && (
+          <div className="absolute top-0 left-0 w-full h-full z-50 bg-black/50 flex justify-center items-center">
+            <div className="bg-[#05060fe8] p-6 rounded-md">
+              <h2 className="text-lg font-bold mb-4 text-white">
+                Edit Items :
+              </h2>
+              <Form
+                initialFormData={{
+                  type: '', // You might need to adjust how you map Invoice to Form data
+                  name: editingInvoice.invoice,
+                  quantity: 1, // Add relevant mapping if needed
+                  weight: 1,
+                  expiry: 1,
+                  fragility: 1,
+                  width: 1,
+                  height: 1,
+                }}
+                onSave={handleSaveEdit}
+                onCancel={handleCancelEdit}
+              />
+              <Button onClick={handleCancelEdit} className="mt-4">
+                Cancel
+              </Button>
+            </div>
+          </div>
+        )}
+
+        {/* Notification */}
+        {isNotificationVisible && notification.message && (
+          <div
+            className={`fixed bottom-4 right-4 bg-[#2E7D32] text-white p-4 rounded-md shadow-lg z-50 ${
+              notification.type === 'error' ? 'bg-[#D32F2F]' : ''
+            }`}
+          >
+            {notification.message}
+          </div>
+        )}
+
+        {/* Delete Confirmation Modal */}
+        {isDeleteConfirmationVisible && invoiceToDelete && (
+          <div className="fixed top-0 left-0 w-full h-full bg-black/50 z-20 flex justify-center items-center">
+            <div className="bg-[#1D2330] p-6 rounded-md">
+              <h2 className="text-lg font-bold mb-4 text-white">
+                Confirm Delete
+              </h2>
+              <p className="text-gray-400 mb-4">
+                Are you sure you want to delete invoice{' '}
+                <span className="font-bold text-white">
+                  {invoiceToDelete.invoice}
+                </span>
+                ?
+              </p>
+              <div className="flex justify-end gap-2">
+                <Button onClick={cancelDelete} variant="ghost">
+                  Cancel
+                </Button>
+                <Button onClick={confirmDelete} variant="destructive">
+                  Delete
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

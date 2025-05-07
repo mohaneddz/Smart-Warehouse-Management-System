@@ -5,6 +5,7 @@
 from typing import List, Optional
 from core.node import Node
 from math import inf
+from data.load_nodes_from_json import load_nodes_from_json 
 
 def a_star_algorithm(start: Node, goal: Node) -> Optional[List[Node]]:
     """Wrapper function for the A* search algorithm.
@@ -26,7 +27,7 @@ class AStarSearch:
         self.open_list = []
         self.closed_list = []
         self.came_from = {}
-        self.g_scores = {start: 0}  # Store g-scores separately
+        self.g_scores = {start: float(0)}  # Store g-scores separately
         self.f_scores = {start: self._heuristic(start)}  # Store f-scores separately
 
     def search(self) -> Optional[List[Node]]:
@@ -50,7 +51,7 @@ class AStarSearch:
                     continue
 
                 self.came_from[neighbor] = current_node
-                self.g_scores[neighbor] = int(tentative_g_score)
+                self.g_scores[neighbor] = tentative_g_score
                 self.f_scores[neighbor] = tentative_g_score + self._heuristic(neighbor)
 
         return None  # No path found
@@ -74,3 +75,21 @@ class AStarSearch:
     def get_distance(self, n1: Node, n2: Node) -> float:
         """ Calculate the Euclidean distance between two nodes. """
         return ((n1.x - n2.x) ** 2 + (n1.y - n2.y) ** 2) ** 0.5
+
+
+# Example usage:
+if __name__ == "__main__":
+    # Load nodes from JSON file
+    nodes = load_nodes_from_json("backend/data/facts.json","Euclidean")
+    
+    # Define start and goal nodes (example)
+    start_node = nodes["N3-1"]
+    goal_node = nodes["N3-24"]
+    
+    # Run A* algorithm
+    path = a_star_algorithm(start_node, goal_node)
+    
+    if path:
+        print("Path found:", [str(node) for node in path])
+    else:
+        print("No path found.")

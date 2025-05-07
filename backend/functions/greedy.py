@@ -1,322 +1,147 @@
-import math
+import json
 import heapq
-import random
-import copy
-import time
-import sys # Added for exit
+import math
+import os
 
-# --- Database Library ---
-try:
-    import psycopg2
-except ImportError:
-    print("Error: The 'psycopg2' library is required but not found.")
-    print("Please install it using: pip install psycopg2-binary")
-    sys.exit(1) # Exit if database library is missing
+# --- File Paths ---
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MAP_FILE_PATH = os.path.join(BASE_DIR,"..",  "data", "map.json")
+LOOKUP_TABLE_PATH = os.path.join(BASE_DIR, "..", "data", "lookup_table.json")
 
-
-# --- Database Connection Details ---
-# !! IMPORTANT: Replace 'YOUR_SECRET_PASSWORD' with your actual database password !!
-# !!           Consider using environment variables or a secrets manager for production !!
-DB_CONFIG = {
-    'host': 'db.jdmhigzuckvnpxcqpaho.supabase.co',
-    'port': '5432',
-    'database': 'postgres',
-    'user': 'postgres',
-    'password': 'ensia02'
-}
-
-# --- Assumed Table and Column Names ---
-# !! IMPORTANT: Change these if your table/columns are named differently !!
-RACK_TABLE_NAME = 'racks'
-X_COLUMN_NAME = 'x_coordinate'
-Y_COLUMN_NAME = 'y_coordinate'
-
-
-# --- Constants ---
-FREE_SPACE = 0
-OBSTACLE = 1
-RACK = 2
-AGENT = 3
-TARGET_RACK_MARKER = 4
-
-# --- Warehouse Grid Representation ---
-class WarehouseGrid:
-    def __init__(self, width, height, obstacles, racks):
-        self.width = width
-        self.height = height
-        self.obstacles = set(obstacles) # Use sets for O(1) lookups
-        self.racks = set(racks)         # Use sets for O(1) lookups
-
-    def is_valid(self, pos):
-        x, y = pos
-        return 0 <= x < self.width and 0 <= y < self.height
-
-    def is_obstacle(self, pos):
-        return pos in self.obstacles
-
-    def is_rack(self, pos):
-        return pos in self.racks
-
-    def get_neighbors(self, pos):
-        x, y = pos
-        neighbors = []
-        for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
-            nx, ny = x + dx, y + dy
-            if self.is_valid((nx, ny)):
-                neighbors.append((nx, ny))
-        return neighbors
-
-# --- Database Interaction ---
-def fetch_potential_racks_from_db():
-    """
-    Connects to the PostgreSQL database and fetches rack locations.
-
-    Returns:
-        A list of (x, y) tuples representing rack coordinates,
-        or an empty list if fetching fails.
-    """
-    print(f"Connecting to database '{DB_CONFIG['database']}' on {DB_CONFIG['host']}...")
-    conn = None
-    rack_locations = []
-    sql = f"SELECT {X_COLUMN_NAME}, {Y_COLUMN_NAME} FROM {RACK_TABLE_NAME};"
-
-    if DB_CONFIG['password'] == 'YOUR_SECRET_PASSWORD':
-         print("\n*** WARNING: Database password is not set in the script! ***")
-         print("*** Please replace 'YOUR_SECRET_PASSWORD' with your actual password. ***\n")
-         # Depending on policy, you might want to exit here or continue cautiously
-         # return [] # Optionally stop if password isn't set
-
+# --- Helper Functions ---
+def load_json_file(file_path):
     try:
-        # Establish connection
-        conn = psycopg2.connect(**DB_CONFIG)
-        print("Database connection successful.")
-
-        # Create a cursor
-        cur = conn.cursor()
-
-        # Execute the query
-        print(f"Executing query: {sql}")
-        cur.execute(sql)
-
-        # Fetch all results
-        results = cur.fetchall() # Returns a list of tuples, e.g., [(1, 5), (10, 2)]
-
-        # Process results (assuming columns are returned in the order x, y)
-        for row in results:
-            try:
-                # Ensure coordinates are integers
-                x = int(row[0])
-                y = int(row[1])
-                rack_locations.append((x, y))
-            except (TypeError, ValueError, IndexError) as e:
-                 print(f"Warning: Skipping row {row}. Could not parse coordinates: {e}")
-
-
-        print(f"Fetched {len(rack_locations)} rack locations from the database.")
-
-        # Close the cursor
-        cur.close()
-
-    except psycopg2.OperationalError as e:
-        print(f"\n--- Database Connection Error ---")
-        print(f"Could not connect to the database: {e}")
-        print("Troubleshooting steps:")
-        print(f" 1. Verify the host ('{DB_CONFIG['host']}') and port ('{DB_CONFIG['port']}').")
-        print(f" 2. Ensure the database ('{DB_CONFIG['database']}') exists.")
-        print(f" 3. Check if the user ('{DB_CONFIG['user']}') has connection permissions.")
-        print(f" 4. Double-check the password (is it correct in the script?).")
-        print(f" 5. Make sure the database server is running and accessible from your network.")
-        print(f" 6. Check Supabase project status and networking/firewall rules.")
-        print("-------------------------------\n")
-        return [] # Return empty list on connection failure
-
-    except psycopg2.Error as e:
-        # Handle other potential database errors (like table not found, syntax error)
-        print(f"\n--- Database Query Error ---")
-        print(f"An error occurred while querying the database: {e}")
-        print(f"Query attempted: {sql}")
-        print("Troubleshooting steps:")
-        print(f" 1. Verify the table name ('{RACK_TABLE_NAME}') is correct.")
-        print(f" 2. Verify the column names ('{X_COLUMN_NAME}', '{Y_COLUMN_NAME}') are correct.")
-        print(f" 3. Check if the table '{RACK_TABLE_NAME}' exists in the '{DB_CONFIG['database']}' database.")
-        print(f" 4. Ensure the user '{DB_CONFIG['user']}' has SELECT permissions on the table.")
-        print("----------------------------\n")
-
-        return [] # Return empty list on query failure
-
-    finally:
-        # Ensure the connection is closed even if errors occurred
-        if conn:
-            conn.close()
-            print("Database connection closed.")
-
-    return rack_locations
-
-
-# --- Simulated Annealing (Simplified Example - unchanged) ---
-def simulated_annealing_select_target(agent_start_pos, potential_targets):
-    print(f"Running Simplified Simulated Annealing for agent at {agent_start_pos}...")
-    if not potential_targets:
-        print("SA: No potential targets provided.")
+        with open(file_path, 'r') as f:
+            data = json.load(f)
+        return data
+    except FileNotFoundError:
+        print(f"Error: File not found at {file_path}")
         return None
-    initial_temp = 100.0
-    cooling_rate = 0.95
-    min_temp = 0.1
-    iterations_per_temp = 10
-    def cost(rack_pos):
-        return euclidean_distance(agent_start_pos, rack_pos)
-    current_solution = random.choice(potential_targets)
-    current_cost = cost(current_solution)
-    best_solution = current_solution
-    best_cost = current_cost
-    temp = initial_temp
-    while temp > min_temp:
-        for _ in range(iterations_per_temp):
-             if len(potential_targets) <= 1: break
-             neighbor_solution = random.choice([t for t in potential_targets if t != current_solution])
-             neighbor_cost = cost(neighbor_solution)
-             cost_diff = neighbor_cost - current_cost
-             if cost_diff < 0 or random.uniform(0, 1) < math.exp(-cost_diff / temp):
-                 current_solution = neighbor_solution
-                 current_cost = neighbor_cost
-                 if current_cost < best_cost:
-                     best_solution = current_solution
-                     best_cost = current_cost
-        temp *= cooling_rate
-        if len(potential_targets) <= 1: break
-    print(f"SA Result: Selected target {best_solution} (Cost: {best_cost:.2f})")
-    return best_solution
+    except json.JSONDecodeError:
+        print(f"Error: Could not decode JSON from {file_path}")
+        return None
 
-# --- Heuristic Function (unchanged) ---
-def euclidean_distance(pos1, pos2):
-    x1, y1 = pos1
-    x2, y2 = pos2
-    return math.sqrt((x1 - x2)**2 + (y1 - y2)**2)
+def get_node_coordinates(node_id, graph_nodes):
+    node_data = graph_nodes.get(node_id)
+    if node_data and 'x' in node_data and 'y' in node_data:
+        return node_data['x'], node_data['y']
+    print(f"Warning: Coordinates not found for node_id '{node_id}'.")
+    return None, None
 
-# --- Greedy Best-First Search Implementation (unchanged) ---
-def greedy_best_first_search(warehouse, start, goal, other_agent_positions):
-    print(f"Starting Greedy Search from {start} to {goal}...")
-    if start == goal: return [start]
-    if not warehouse.is_valid(start) or not warehouse.is_valid(goal): return None
-    if warehouse.is_obstacle(start) or warehouse.is_obstacle(goal): return None
+def heuristic_euclidean(node_id_current, node_id_goal, graph_nodes):
+    x_curr, y_curr = get_node_coordinates(node_id_current, graph_nodes)
+    x_goal, y_goal = get_node_coordinates(node_id_goal, graph_nodes)
+    if x_curr is None or y_curr is None or x_goal is None or y_goal is None:
+        return float('inf')
+    return math.sqrt((x_curr - x_goal)**2 + (y_curr - y_goal)**2)
 
-    priority_queue = [(euclidean_distance(start, goal), start)]
-    heapq.heapify(priority_queue)
-    came_from = {start: None}
-    visited = {start}
+def heuristic_manhattan(node_id_current, node_id_goal, graph_nodes):
+    x_curr, y_curr = get_node_coordinates(node_id_current, graph_nodes)
+    x_goal, y_goal = get_node_coordinates(node_id_goal, graph_nodes)
+    if x_curr is None or y_curr is None or x_goal is None or y_goal is None:
+        return float('inf')
+    return abs(x_curr - x_goal) + abs(y_curr - y_goal)
 
-    while priority_queue:
-        current_heuristic, current_pos = heapq.heappop(priority_queue)
-        if current_pos == goal:
-            print("Goal reached!")
-            return reconstruct_path(came_from, goal)
-
-        for neighbor_pos in warehouse.get_neighbors(current_pos):
-            if neighbor_pos not in visited:
-                valid_move = True
-                if warehouse.is_obstacle(neighbor_pos): valid_move = False
-                elif warehouse.is_rack(neighbor_pos) and neighbor_pos != goal: valid_move = False
-                elif neighbor_pos in other_agent_positions:
-                    print(f"  Conflict Warning: Neighbor {neighbor_pos} occupied (basic check). Skipping.")
-                    valid_move = False
-                if valid_move:
-                    visited.add(neighbor_pos)
-                    came_from[neighbor_pos] = current_pos
-                    priority = euclidean_distance(neighbor_pos, goal)
-                    heapq.heappush(priority_queue, (priority, neighbor_pos))
-    print(f"No path found from {start} to {goal}.")
+def get_goal_node_from_lookup(item_or_task_id, lookup_table_content):
+    if not lookup_table_content:
+        print("Warning: Lookup table content is empty or not loaded.")
+        return None
+    item_data = lookup_table_content.get(item_or_task_id)
+    if item_data and "goal_node" in item_data:
+        return item_data["goal_node"]
+    print(f"Warning: Item or task ID '{item_or_task_id}' not found or missing 'goal_node' in lookup table.")
     return None
 
-# --- Path Reconstruction (unchanged) ---
-def reconstruct_path(came_from, goal):
-    path = []
-    current = goal
-    while current is not None:
-        path.append(current)
-        current = came_from.get(current)
-    path.reverse()
-    return path
+def reconstruct_path(came_from, current_node_id):
+    path = [current_node_id]
+    while current_node_id in came_from and came_from[current_node_id] is not None:
+        current_node_id = came_from[current_node_id]
+        path.append(current_node_id)
+    return path[::-1]
 
-# --- Main Simulation (modified slightly to use DB-fetched racks) ---
+def greedy_search(start_node_id, goal_node_id, graph_nodes, heuristic_function):
+    if start_node_id not in graph_nodes:
+        print(f"Error: Start node ID '{start_node_id}' not found in the graph.")
+        return None
+    if goal_node_id not in graph_nodes:
+        print(f"Error: Goal node ID '{goal_node_id}' not found in the graph.")
+        return None
+    if start_node_id == goal_node_id:
+        return [start_node_id]
+
+    open_set_pq = []
+    h_start = heuristic_function(start_node_id, goal_node_id, graph_nodes)
+    heapq.heappush(open_set_pq, (h_start, start_node_id))
+    came_from = {start_node_id: None}
+    explored_nodes = set()
+
+    while open_set_pq:
+        _, current_node_id = heapq.heappop(open_set_pq)
+        if current_node_id in explored_nodes:
+            continue
+        explored_nodes.add(current_node_id)
+        if current_node_id == goal_node_id:
+            return reconstruct_path(came_from, current_node_id)
+
+        current_node_data = graph_nodes.get(current_node_id)
+        if not current_node_data:
+            continue
+
+        for neighbor_id in current_node_data.get("neighbours", []):
+            if neighbor_id not in graph_nodes:
+                continue
+            neighbor_node_data = graph_nodes[neighbor_id]
+            if neighbor_node_data.get("locked", False):
+                continue
+            if neighbor_id in explored_nodes:
+                 continue
+            if neighbor_id not in came_from:
+                came_from[neighbor_id] = current_node_id
+                h_value = heuristic_function(neighbor_id, goal_node_id, graph_nodes)
+                heapq.heappush(open_set_pq, (h_value, neighbor_id))
+    print(f"No path found from '{start_node_id}' to '{goal_node_id}'.")
+    return None
+
+def main():
+    map_data = load_json_file(MAP_FILE_PATH)
+    if not map_data or "nodes" not in map_data:
+        print(f"Critical: Failed to load or parse map data from '{MAP_FILE_PATH}'. Exiting.")
+        return
+    warehouse_nodes = map_data["nodes"]
+
+    lookup_table_content = load_json_file(LOOKUP_TABLE_PATH)
+    if not lookup_table_content:
+        print(f"Critical: Failed to load lookup table from '{LOOKUP_TABLE_PATH}'. Exiting.")
+        return
+
+    agent_start_node = "N2-4"  # Example start node
+    item_ids_in_lookup = list(lookup_table_content.keys())
+    if not item_ids_in_lookup:
+        print("Lookup table is empty. No item to process.")
+        return
+
+    item_id_to_process = item_ids_in_lookup[0]
+    print(f"\n--- Agent Task ---")
+    print(f"Agent current location: {agent_start_node}")
+    print(f"Processing item/task: {item_id_to_process}")
+
+    goal_node_id = get_goal_node_from_lookup(item_id_to_process, lookup_table_content)
+    if not goal_node_id or goal_node_id not in warehouse_nodes:
+        print(f"Error: Invalid or missing goal node '{goal_node_id}' for item '{item_id_to_process}'.")
+        return
+    print(f"Target goal node for '{item_id_to_process}': {goal_node_id}")
+
+    selected_heuristic = heuristic_manhattan  # Choose heuristic (Manhattan or Euclidean)
+    print(f"Using heuristic: {selected_heuristic.__name__}")
+    path_ids = greedy_search(agent_start_node, goal_node_id, warehouse_nodes, selected_heuristic)
+
+    if path_ids:
+        # Format the path as 'N1-2->N1-5->...->Goal'
+        path_str = "->".join(path_ids)
+        print(f"\nPath found from '{agent_start_node}' to '{goal_node_id}':")
+        print(f"Path as node IDs: {path_str}")
+    else:
+        print(f"\nNo path found from '{agent_start_node}' to '{goal_node_id}'.")
+
 if __name__ == "__main__":
-    # --- Fetch Racks First ---
-    # This now connects to your actual database
-    db_rack_locations = fetch_potential_racks_from_db()
-
-    if not db_rack_locations:
-        print("\nFailed to fetch rack locations from the database. Cannot proceed.")
-        print("Please check database connection details, credentials, table/column names, and error messages above.")
-        sys.exit(1)
-
-    # --- Warehouse Setup ---
-    # Dimensions might need adjustment based on your coordinate system
-    # Or calculate dynamically based on max X/Y from db_rack_locations
-    WIDTH = 30 # Adjust if needed
-    HEIGHT = 20 # Adjust if needed
-
-    # Define Obstacles (keep your static obstacles)
-    OBSTACLES = [
-        (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7),
-        (7, 0), (7, 1), (7, 2), (7, 3),
-        (12, 5), (12, 6), (12, 7), (12, 8), (12, 9)
-        # Add any other known static obstacles
-    ]
-
-    # Create Warehouse using fetched rack locations
-    warehouse = WarehouseGrid(WIDTH, HEIGHT, OBSTACLES, db_rack_locations)
-    print(f"\nWarehouse grid initialized with {len(warehouse.racks)} racks from DB and {len(warehouse.obstacles)} static obstacles.")
-
-
-    # --- Agent Setup (same as before) ---
-    agents = {
-        "Agent_1": {"start_pos": (0, 0), "current_pos": (0, 0), "path": None, "target": None},
-        "Agent_2": {"start_pos": (0, 19), "current_pos": (0, 19), "path": None, "target": None}, # Adjusted start pos
-        "Agent_3": {"start_pos": (29, 0), "current_pos": (29, 0), "path": None, "target": None}, # Adjusted start pos
-    }
-
-    # --- Simulation Steps ---
-
-    # 1. Potential targets are now the ones fetched from DB
-    potential_targets = list(warehouse.racks) # Use the validated list from the grid object
-
-    # 2. Assign targets using SA and find paths using Greedy Search for each agent
-    agent_targets = {}
-    agent_paths = {}
-
-    all_current_agent_positions = set(details["current_pos"] for details in agents.values())
-
-    for agent_id, agent_data in agents.items():
-        print(f"\n--- Planning for {agent_id} ---")
-        start_pos = agent_data["current_pos"]
-        available_targets = [t for t in potential_targets if t not in agent_targets.values()]
-
-        if not available_targets:
-            print(f"No available targets left for {agent_id}.")
-            continue # Skip if no targets remain
-
-        target_rack = simulated_annealing_select_target(start_pos, available_targets)
-
-        if target_rack:
-            agent_data["target"] = target_rack
-            agent_targets[agent_id] = target_rack
-            other_agents_pos = all_current_agent_positions - {start_pos}
-            path = greedy_best_first_search(warehouse, start_pos, target_rack, other_agents_pos)
-            agent_data["path"] = path
-
-            if path:
-                print(f"Path found for {agent_id} to {target_rack}: {path}")
-            else:
-                print(f"Could not find a path for {agent_id} to {target_rack}.")
-                agent_targets.pop(agent_id, None)
-                agent_data["target"] = None
-        else:
-            print(f"No suitable target found or assigned for {agent_id}.")
-            agent_data["path"] = None
-            agent_data["target"] = None
-
-    # --- Print Final State ---
-    print("\n--- Simulation Complete ---")
-    for agent_id, agent_data in agents.items():
-        print(f"{agent_id}: Start={agent_data['start_pos']}, Current={agent_data['current_pos']}, Target={agent_data['target']}, Path Found={agent_data['path'] is not None}")
-        if agent_data['path']:
-             print(f"  Path: {agent_data['path'][:10]}..." if len(agent_data['path']) > 10 else f"  Path: {agent_data['path']}")
+    main()

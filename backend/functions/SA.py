@@ -26,8 +26,49 @@ class Problem:
         
         # Warehouse configuration
         self.num_racks = 36
-        self.freezer_racks = {1, 2, 3, 4, 5, 6}
-        self.normal_racks = set(range(7, 37))
+        self.freezer_racks = {'J1L', 'J1R', 'J2L', 'J2R', 'J3L', 'J3R', 'J4L', 'J4R', 'J5L', 'J5R', 'J6L', 'J6R'}
+        self.normal_racks = [  # A Section
+    'A1L', 'A1R',
+    'A2L', 'A2R',
+    'A3L', 'A3R',
+    
+    # B Section
+    'B1L', 'B1R',
+    'B2L', 'B2R',
+    'B3L', 'B3R',
+    
+    # C Section
+    'C1L', 'C1R',
+    'C2L', 'C2R',
+    'C3L', 'C3R',
+    
+    # D Section
+    'D1L', 'D1R',
+    'D2L', 'D2R',
+    'D3L', 'D3R',
+    
+    # E Section
+    'E1L', 'E1R',
+    'E2L', 'E2R',
+    'E3L', 'E3R',
+    
+    # F Section
+    'F1L', 'F1R',
+    'F2L', 'F2R',
+    'F3L', 'F3R',
+    
+    # G Section
+    'G1L', 'G1R',
+    'G2L', 'G2R',
+    'G3L', 'G3R',
+    
+    # H Section
+    'H1L', 'H1R',
+    'H2L', 'H2R',
+    'H3L', 'H3R',
+    'H4L', 'H4R',
+
+     'I1R', 'I2R', 'I3R', 'I4R', 'I5R']
         self.shelf_levels = 3
         self.bins_per_shelf = 5
         self.bin_size = 60

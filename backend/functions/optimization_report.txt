@@ -1,0 +1,46 @@
+================================================================================
+WAREHOUSE OPTIMIZATION REPORT
+================================================================================
+
+Final Statistics:
+- Total Cost: 29073.2677777778
+- Perfect Shelves: 19 (fully packed)
+- Good Shelves: 34 (<60cm unused)
+- Poor Shelves: 0 (>150cm unused)
+- Space Utilization: 52.2%
+
+================================================================================
+SHELF DETAILS (POORLY UTILIZED SHELVES):
+================================================================================
+
+Rack 12 Shelf 2 (Used: 180cm/300cm):
+  - ID 1: Bulk Rice Sack (100kg) (L, 350.0kg, food) in positions 1-3
+
+Rack 11 Shelf 1 (Used: 180cm/300cm):
+  - ID 8: Steel Drum (200L) (L, 320.0kg, chemicals) in positions 2-4
+
+Rack 23 Shelf 2 (Used: 180cm/300cm):
+  - ID 12: Dishwasher (M, 18.8kg, household goods) in positions 4-5
+  - ID 74: Water Bottle (500ml) (S, 14.0kg, beverages) in positions 2
+
+Rack 8 Shelf 1 (Used: 180cm/300cm):
+  - ID 13: Heavy Machinery Part (L, 390.0kg, household goods) in positions 2-4
+
+Rack 10 Shelf 1 (Used: 180cm/300cm):
+  - ID 23: Heavy Machinery Part (L, 390.0kg, household goods) in positions 3-5
+
+Rack 24 Shelf 2 (Used: 180cm/300cm):
+  - ID 27: Blender (M, 12.0kg, household goods) in positions 2-3
+  - ID 44: Water Bottle (500ml) (S, 14.0kg, beverages) in positions 4
+
+Rack 15 Shelf 2 (Used: 180cm/300cm):
+  - ID 30: Bulk Rice Sack (100kg) (L, 350.0kg, food) in positions 1-3
+
+Rack 25 Shelf 2 (Used: 180cm/300cm):
+  - ID 41: Steel Drum (200L) (L, 320.0kg, chemicals) in positions 2-4
+
+Rack 24 Shelf 1 (Used: 180cm/300cm):
+  - ID 47: Bulk Rice Sack (100kg) (L, 350.0kg, food) in positions 2-4
+
+Rack 36 Shelf 2 (Used: 180cm/300cm):
+  - ID 50: Heavy Machinery Part (L, 390.0kg, household goods) in positions 1-3

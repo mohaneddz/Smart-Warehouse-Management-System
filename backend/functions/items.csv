@@ -1,0 +1,134 @@
+item_id,item_name,item_size,category,weight,frequency
+1,Bulk Rice Sack (100kg),L,Food,350.0,0.4
+2,Vacuum Cleaner,M,Household Goods,12.1,0.52
+3,Detergent (10L),M,Chemicals,51.5,0.42
+4,Canned Tuna,M,Food,45.7,0.87
+5,Canned Tuna,M,Food,45.7,0.87
+6,Bleach (5L),M,Chemicals,146.0,0.59
+7,Detergent (10L),M,Chemicals,68.5,0.36
+8,Steel Drum (200L),L,Chemicals,320.0,0.25
+9,Canned Tuna,M,Food,45.7,0.87
+10,Rice Pack,M,Food,54.0,0.7
+11,Vacuum Cleaner,M,Household Goods,12.1,0.52
+12,Dishwasher,M,Household Goods,18.8,0.57
+13,Heavy Machinery Part,L,Household Goods,390.0,0.2
+14,Rice Pack,M,Food,54.0,0.94
+15,Blender,M,Household Goods,12.0,0.7
+16,Bleach (5L),M,Chemicals,146.0,0.59
+17,Vacuum Cleaner,M,Household Goods,12.1,0.52
+18,Frozen Pizza (500g),M,Frozen,55.0,0.49
+19,Rice Pack,M,Food,54.0,0.94
+20,Detergent (10L),M,Chemicals,68.5,0.36
+21,Rice Pack,M,Food,54.0,0.94
+22,Rice Pack,M,Food,54.0,0.94
+23,Heavy Machinery Part,L,Household Goods,390.0,0.2
+24,Dishwasher,M,Household Goods,18.8,0.57
+25,Rice Pack,M,Food,54.0,0.7
+26,Frozen Pizza (500g),M,Frozen,55.0,0.49
+27,Blender,M,Household Goods,12.0,0.7
+28,Bleach (5L),M,Chemicals,146.0,0.59
+29,Rice Pack,M,Food,54.0,0.94
+30,Bulk Rice Sack (100kg),L,Food,350.0,0.4
+31,Frozen Peas (1kg),M,Frozen,48.0,0.59
+32,Detergent (10L),M,Chemicals,51.5,0.42
+33,Vacuum Cleaner,M,Household Goods,12.1,0.52
+34,Frozen Pizza (500g),M,Frozen,55.0,0.49
+35,Frozen Pizza (500g),M,Frozen,55.0,0.49
+36,Water Bottle (500ml),S,Beverages,14.0,0.72
+37,Orange Juice (1L),M,Beverages,87.5,0.78
+38,Bulk Rice Sack (100kg),L,Food,350.0,0.4
+39,Rice Pack,M,Food,54.0,0.94
+40,Frozen Pizza (500g),M,Frozen,55.0,0.49
+41,Steel Drum (200L),L,Chemicals,320.0,0.25
+42,Frozen Chicken Wings (2kg),M,Frozen,44.5,0.7
+43,Orange Juice (1L),M,Beverages,87.5,0.79
+44,Water Bottle (500ml),S,Beverages,14.0,0.72
+45,Vacuum Cleaner,M,Household Goods,12.1,0.52
+46,Blender,M,Household Goods,12.0,0.7
+47,Bulk Rice Sack (100kg),L,Food,350.0,0.4
+48,Orange Juice (1L),M,Beverages,87.5,0.78
+49,Water Bottle (500ml),S,Beverages,14.0,0.72
+50,Heavy Machinery Part,L,Household Goods,390.0,0.2
+51,Heavy Machinery Part,L,Household Goods,390.0,0.2
+52,Milk (1L),M,Beverages,44.5,0.64
+53,Vacuum Cleaner,M,Household Goods,12.1,0.52
+54,Rice Pack,M,Food,54.0,0.7
+55,Vacuum Cleaner,M,Household Goods,12.1,0.52
+56,Detergent (10L),M,Chemicals,68.5,0.36
+57,Rice Pack,M,Food,54.0,0.94
+58,Canned Tuna,M,Food,45.7,0.87
+59,Orange Juice (1L),M,Beverages,87.5,0.79
+60,Steel Drum (200L),L,Chemicals,320.0,0.25
+61,Bleach (5L),M,Chemicals,146.0,0.59
+62,Milk (1L),M,Beverages,44.5,0.64
+63,Bulk Rice Sack (100kg),L,Food,350.0,0.4
+64,Milk (1L),M,Beverages,44.5,0.64
+65,Steel Drum (200L),L,Chemicals,320.0,0.25
+66,Bulk Rice Sack (100kg),L,Food,350.0,0.4
+67,Steel Drum (200L),L,Chemicals,320.0,0.25
+68,Steel Drum (200L),L,Chemicals,320.0,0.25
+69,Dishwasher,M,Household Goods,18.8,0.57
+70,Detergent (10L),M,Chemicals,51.5,0.42
+71,Canned Tuna,M,Food,45.7,0.87
+72,Rice Pack,M,Food,54.0,0.7
+73,Bleach (5L),M,Chemicals,146.0,0.59
+74,Water Bottle (500ml),S,Beverages,14.0,0.72
+75,Steel Drum (200L),L,Chemicals,320.0,0.25
+76,Milk (1L),M,Beverages,44.5,0.64
+77,Milk (1L),M,Beverages,44.5,0.64
+78,Heavy Machinery Part,L,Household Goods,390.0,0.2
+79,Frozen Peas (1kg),M,Frozen,48.0,0.59
+80,Detergent (10L),M,Chemicals,68.5,0.36
+81,Frozen Pizza (500g),M,Frozen,55.0,0.49
+82,Vacuum Cleaner,M,Household Goods,12.1,0.52
+83,Frozen Pizza (500g),M,Frozen,55.0,0.49
+84,Frozen Pizza (500g),M,Frozen,55.0,0.49
+85,Rice Pack,M,Food,54.0,0.94
+86,Steel Drum (200L),L,Chemicals,320.0,0.25
+87,Orange Juice (1L),M,Beverages,87.5,0.79
+88,Vacuum Cleaner,M,Household Goods,12.1,0.52
+89,Orange Juice (1L),M,Beverages,87.5,0.79
+90,Vacuum Cleaner,M,Household Goods,12.1,0.52
+91,Frozen Chicken Wings (2kg),M,Frozen,44.5,0.7
+92,Canned Tuna,M,Food,45.7,0.87
+93,Steel Drum (200L),L,Chemicals,320.0,0.25
+94,Blender,M,Household Goods,12.0,0.7
+95,Frozen Pizza (500g),M,Frozen,55.0,0.49
+96,Steel Drum (200L),L,Chemicals,320.0,0.25
+97,Steel Drum (200L),L,Chemicals,320.0,0.25
+98,Detergent (10L),M,Chemicals,51.5,0.42
+99,Canned Tuna,M,Food,45.7,0.87
+100,Orange Juice (1L),M,Beverages,87.5,0.79
+101,Water Bottle (500ml),S,Beverages,14.0,0.72
+102,Water Bottle (500ml),S,Beverages,14.0,0.72
+103,Frozen Pizza (500g),M,Frozen,55.0,0.49
+104,Frozen Pizza (500g),M,Frozen,55.0,0.49
+105,Dishwasher,M,Household Goods,18.8,0.57
+106,Water Bottle (500ml),S,Beverages,14.0,0.72
+107,Water Bottle (500ml),S,Beverages,14.0,0.72
+108,Water Bottle (500ml),S,Beverages,14.0,0.72
+109,Orange Juice (1L),M,Beverages,87.5,0.78
+110,Bulk Rice Sack (100kg),L,Food,350.0,0.4
+111,Bleach (5L),M,Chemicals,146.0,0.59
+112,Heavy Machinery Part,L,Household Goods,390.0,0.2
+113,Rice Pack,M,Food,54.0,0.7
+114,Rice Pack,M,Food,54.0,0.7
+115,Detergent (10L),M,Chemicals,51.5,0.42
+116,Orange Juice (1L),M,Beverages,87.5,0.78
+117,Vacuum Cleaner,M,Household Goods,12.1,0.52
+118,Heavy Machinery Part,L,Household Goods,390.0,0.2
+119,Orange Juice (1L),M,Beverages,87.5,0.79
+120,Blender,M,Household Goods,12.0,0.7
+121,Milk (1L),M,Beverages,44.5,0.64
+122,Orange Juice (1L),M,Beverages,87.5,0.79
+123,Bulk Rice Sack (100kg),L,Food,350.0,0.4
+124,Detergent (10L),M,Chemicals,68.5,0.36
+125,Vacuum Cleaner,M,Household Goods,12.1,0.52
+126,Detergent (10L),M,Chemicals,51.5,0.42
+127,Milk (1L),M,Beverages,44.5,0.64
+128,Dishwasher,M,Household Goods,18.8,0.57
+129,Frozen Peas (1kg),M,Frozen,48.0,0.59
+130,Detergent (10L),M,Chemicals,51.5,0.42
+131,Blender,M,Household Goods,12.0,0.7
+132,Water Bottle (500ml),S,Beverages,14.0,0.72
+133,Blender,M,Household Goods,12.0,0.7

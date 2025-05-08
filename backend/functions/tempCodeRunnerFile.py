@@ -58,13 +58,13 @@ def greedy_search(start, goal, nodes, heuristic):
 
     return None, explored
 
-def plot_statistics(path_ids, explored, warehouse_nodes, item_id):
+def plot_statistics(path_ids, explored, warehouse_nodes):
     heuristics = [
         heuristic_manhattan(n, path_ids[-1], warehouse_nodes)
         for n in path_ids[:-1]
     ]
     fig, axs = plt.subplots(2, 1, figsize=(10, 6))
-    fig.suptitle(f"Greedy Search Haul Statistics for {item_id}")
+    fig.suptitle("Greedy Search Haul Statistics")
 
     axs[0].bar(["Path Length", "Explored Nodes"], [len(path_ids), len(explored)], color=["blue", "orange"])
     axs[0].set_ylabel("Count")
@@ -87,24 +87,22 @@ def main():
         return
 
     nodes = warehouse_map["nodes"]
-    agent_start_node = "N2-4"  # Start node for the agent, can be modified if needed
+    agent_start_node = "N2-4"
+    item_id = next(iter(lookup_table))
+    goal_node = get_goal_node_from_lookup(item_id, lookup_table)
 
-    # Iterate over all items in the lookup table
-    for item_id, item_data in lookup_table.items():
-        goal_node = get_goal_node_from_lookup(item_id, lookup_table)
+    if not goal_node or goal_node not in nodes:
+        print("Invalid goal node.")
+        return
 
-        if not goal_node or goal_node not in nodes:
-            print(f"Invalid goal node for item {item_id}. Skipping...")
-            continue
+    print(f"Searching from {agent_start_node} to {goal_node} for item {item_id}")
+    path, explored = greedy_search(agent_start_node, goal_node, nodes, heuristic_manhattan)
 
-        print(f"Searching from {agent_start_node} to {goal_node} for item {item_id}")
-        path, explored = greedy_search(agent_start_node, goal_node, nodes, heuristic_manhattan)
-
-        if path:
-            print(f"Path found for {item_id}: {' -> '.join(path)}")
-            plot_statistics(path, explored, nodes, item_id)
-        else:
-            print(f"No path found for {item_id}.")
+    if path:
+        print("Path found:", " -> ".join(path))
+        plot_statistics(path, explored, nodes)
+    else:
+        print("No path found.")
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,7 @@
+item_id,name,category,size,initial_position,new_position
+1,Bulk Rice Sack (100kg),food,L,"(16,3,3-5)","(A1L,1,3-5)"
+2,Vacuum Cleaner,household goods,M,"(20,3,4-5)","(A1R,3,1-2)"
+3,Detergent (10L),chemicals,M,"(20,2,1-2)","(B1L,1,4-5)"
+4,Canned Tuna,food,M,"(29,1,1-2)","(B1R,2,1-2)"
+5,Canned Tuna,food,M,"(14,2,3-4)","(C1L,3,4-5)"
+6,Bleach (5L),chemicals,M,"(21,2,3-4)","(C1R,2,4-5)"

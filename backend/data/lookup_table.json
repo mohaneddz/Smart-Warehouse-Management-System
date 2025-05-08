@@ -1,134 +1,69 @@
-item_id,name,category,size,initial_position,new_position
-1,Bulk Rice Sack (100kg),food,L,"(16,3,3-5)","(15,1,3-5)"
-2,Vacuum Cleaner,household goods,M,"(20,3,4-5)","(36,3,1-2)"
-3,Detergent (10L),chemicals,M,"(20,2,1-2)","(32,1,4-5)"
-4,Canned Tuna,food,M,"(29,1,1-2)","(25,2,1-2)"
-5,Canned Tuna,food,M,"(14,2,3-4)","(7,3,4-5)"
-6,Bleach (5L),chemicals,M,"(21,2,3-4)","(26,2,4-5)"
-7,Detergent (10L),chemicals,M,"(9,1,4-5)","(19,1,3-4)"
-8,Steel Drum (200L),chemicals,L,"(18,2,3-5)","(36,2,2-4)"
-9,Canned Tuna,food,M,"(13,2,3-4)","(33,2,1-2)"
-10,Rice Pack,food,M,"(24,1,1-2)","(34,2,1-2)"
-11,Vacuum Cleaner,household goods,M,"(7,2,1-2)","(8,2,4-5)"
-12,Dishwasher,household goods,M,"(8,3,4-5)","(12,2,4-5)"
-13,Heavy Machinery Part,household goods,L,"(23,3,2-4)","(7,1,1-3)"
-14,Rice Pack,food,M,"(20,1,1-2)","(24,1,2-3)"
-15,Blender,household goods,M,"(29,2,2-3)","(22,2,4-5)"
-16,Bleach (5L),chemicals,M,"(9,1,1-2)","(7,2,1-2)"
-17,Vacuum Cleaner,household goods,M,"(26,3,2-3)","(17,2,4-5)"
-18,Frozen Pizza (500g),frozen,M,"(3,1,1-2)","(4,1,4-5)"
-19,Rice Pack,food,M,"(32,1,2-3)","(12,1,4-5)"
-20,Detergent (10L),chemicals,M,"(27,1,1-2)","(31,1,1-2)"
-21,Rice Pack,food,M,"(12,3,1-2)","(24,1,4-5)"
-22,Rice Pack,food,M,"(16,3,1-2)","(20,2,4-5)"
-23,Heavy Machinery Part,household goods,L,"(12,2,1-3)","(8,1,2-4)"
-24,Dishwasher,household goods,M,"(35,1,4-5)","(20,3,3-4)"
-25,Rice Pack,food,M,"(30,3,4-5)","(36,3,4-5)"
-26,Frozen Pizza (500g),frozen,M,"(1,3,2-3)","(6,3,4-5)"
-27,Blender,household goods,M,"(36,1,1-2)","(9,3,1-2)"
-28,Bleach (5L),chemicals,M,"(33,1,4-5)","(12,2,2-3)"
-29,Rice Pack,food,M,"(32,1,4-5)","(12,1,2-3)"
-30,Bulk Rice Sack (100kg),food,L,"(16,2,1-3)","(28,2,1-3)"
-31,Frozen Peas (1kg),frozen,M,"(2,3,3-4)","(1,2,2-3)"
-32,Detergent (10L),chemicals,M,"(8,3,1-2)","(26,1,1-2)"
-33,Vacuum Cleaner,household goods,M,"(24,3,2-3)","(29,2,1-2)"
-34,Frozen Pizza (500g),frozen,M,"(1,2,3-4)","(6,3,1-2)"
-35,Frozen Pizza (500g),frozen,M,"(2,3,1-2)","(1,1,1-2)"
-36,Water Bottle (500ml),beverages,S,"(24,3,4)","(22,1,5)"
-37,Orange Juice (1L),beverages,M,"(30,1,3-4)","(29,1,1-2)"
-38,Bulk Rice Sack (100kg),food,L,"(7,1,3-5)","(22,2,1-3)"
-39,Rice Pack,food,M,"(25,3,1-2)","(29,2,3-4)"
-40,Frozen Pizza (500g),frozen,M,"(4,2,2-3)","(5,1,1-2)"
-41,Steel Drum (200L),chemicals,L,"(24,1,3-5)","(28,1,3-5)"
-42,Frozen Chicken Wings (2kg),frozen,M,"(3,3,4-5)","(3,1,2-3)"
-43,Orange Juice (1L),beverages,M,"(26,1,2-3)","(21,1,4-5)"
-44,Water Bottle (500ml),beverages,S,"(24,3,1)","(35,1,3)"
-45,Vacuum Cleaner,household goods,M,"(18,3,2-3)","(15,2,2-3)"
-46,Blender,household goods,M,"(20,3,2-3)","(33,1,1-2)"
-47,Bulk Rice Sack (100kg),food,L,"(35,2,1-3)","(9,1,3-5)"
-48,Orange Juice (1L),beverages,M,"(22,1,4-5)","(36,1,1-2)"
-49,Water Bottle (500ml),beverages,S,"(8,1,2)","(20,2,3)"
-50,Heavy Machinery Part,household goods,L,"(34,2,1-3)","(23,2,1-3)"
-51,Heavy Machinery Part,household goods,L,"(31,1,1-3)","(13,1,1-3)"
-52,Milk (1L),beverages,M,"(30,1,1-2)","(27,2,2-3)"
-53,Vacuum Cleaner,household goods,M,"(21,2,1-2)","(26,2,2-3)"
-54,Rice Pack,food,M,"(23,1,2-3)","(25,1,3-4)"
-55,Vacuum Cleaner,household goods,M,"(27,3,2-3)","(30,2,1-2)"
-56,Detergent (10L),chemicals,M,"(29,2,4-5)","(23,1,4-5)"
-57,Rice Pack,food,M,"(31,3,1-2)","(27,1,1-2)"
-58,Canned Tuna,food,M,"(26,2,1-2)","(10,2,1-2)"
-59,Orange Juice (1L),beverages,M,"(25,2,2-3)","(32,2,2-3)"
-60,Steel Drum (200L),chemicals,L,"(27,2,3-5)","(26,1,3-5)"
-61,Bleach (5L),chemicals,M,"(17,1,3-4)","(18,2,4-5)"
-62,Milk (1L),beverages,M,"(19,3,4-5)","(29,3,4-5)"
-63,Bulk Rice Sack (100kg),food,L,"(29,1,3-5)","(9,2,2-4)"
-64,Milk (1L),beverages,M,"(22,2,3-4)","(9,1,1-2)"
-65,Steel Drum (200L),chemicals,L,"(25,3,3-5)","(31,1,3-5)"
-66,Bulk Rice Sack (100kg),food,L,"(28,2,2-4)","(31,2,2-4)"
-67,Steel Drum (200L),chemicals,L,"(19,2,1-3)","(18,2,1-3)"
-68,Steel Drum (200L),chemicals,L,"(35,3,2-4)","(20,1,2-4)"
-69,Dishwasher,household goods,M,"(13,1,2-3)","(22,1,1-2)"
-70,Detergent (10L),chemicals,M,"(34,1,1-2)","(18,1,1-2)"
-71,Canned Tuna,food,M,"(28,3,2-3)","(14,2,4-5)"
-72,Rice Pack,food,M,"(31,1,4-5)","(35,1,4-5)"
-73,Bleach (5L),chemicals,M,"(32,3,3-4)","(21,2,2-3)"
-74,Water Bottle (500ml),beverages,S,"(31,3,4)","(27,2,5)"
-75,Steel Drum (200L),chemicals,L,"(11,1,1-3)","(32,1,1-3)"
-76,Milk (1L),beverages,M,"(15,3,2-3)","(32,2,4-5)"
-77,Milk (1L),beverages,M,"(36,1,4-5)","(19,2,1-2)"
-78,Heavy Machinery Part,household goods,L,"(9,3,1-3)","(14,1,3-5)"
-79,Frozen Peas (1kg),frozen,M,"(1,2,1-2)","(5,1,3-4)"
-80,Detergent (10L),chemicals,M,"(26,2,3-4)","(8,2,2-3)"
-81,Frozen Pizza (500g),frozen,M,"(3,1,3-4)","(1,1,3-4)"
-82,Vacuum Cleaner,household goods,M,"(29,3,3-4)","(10,1,4-5)"
-83,Frozen Pizza (500g),frozen,M,"(3,2,2-3)","(3,1,4-5)"
-84,Frozen Pizza (500g),frozen,M,"(6,2,1-2)","(5,2,1-2)"
-85,Rice Pack,food,M,"(7,2,3-4)","(22,1,3-4)"
-86,Steel Drum (200L),chemicals,L,"(21,1,1-3)","(34,1,3-5)"
-87,Orange Juice (1L),beverages,M,"(22,1,1-2)","(17,2,1-2)"
-88,Vacuum Cleaner,household goods,M,"(27,3,4-5)","(19,1,1-2)"
-89,Orange Juice (1L),beverages,M,"(21,1,4-5)","(36,1,4-5)"
-90,Vacuum Cleaner,household goods,M,"(31,2,4-5)","(25,1,1-2)"
-91,Frozen Chicken Wings (2kg),frozen,M,"(1,1,2-3)","(6,1,4-5)"
-92,Canned Tuna,food,M,"(17,1,1-2)","(27,1,3-4)"
-93,Steel Drum (200L),chemicals,L,"(15,1,2-4)","(17,1,2-4)"
-94,Blender,household goods,M,"(19,2,4-5)","(24,2,3-4)"
-95,Frozen Pizza (500g),frozen,M,"(1,3,4-5)","(5,2,3-4)"
-96,Steel Drum (200L),chemicals,L,"(14,1,2-4)","(18,1,3-5)"
-97,Steel Drum (200L),chemicals,L,"(10,3,1-3)","(7,2,3-5)"
-98,Detergent (10L),chemicals,M,"(7,1,1-2)","(35,2,3-4)"
-99,Canned Tuna,food,M,"(19,3,2-3)","(10,2,3-4)"
-100,Orange Juice (1L),beverages,M,"(12,3,3-4)","(35,1,1-2)"
-101,Water Bottle (500ml),beverages,S,"(15,3,5)","(11,1,4)"
-102,Water Bottle (500ml),beverages,S,"(20,1,3)","(14,2,2)"
-103,Frozen Pizza (500g),frozen,M,"(4,2,4-5)","(4,1,2-3)"
-104,Frozen Pizza (500g),frozen,M,"(3,2,4-5)","(6,1,2-3)"
-105,Dishwasher,household goods,M,"(18,2,1-2)","(20,3,1-2)"
-106,Water Bottle (500ml),beverages,S,"(17,2,5)","(15,2,5)"
-107,Water Bottle (500ml),beverages,S,"(12,2,4)","(24,1,1)"
-108,Water Bottle (500ml),beverages,S,"(13,2,1)","(11,2,1)"
-109,Orange Juice (1L),beverages,M,"(18,1,4-5)","(33,1,3-4)"
-110,Bulk Rice Sack (100kg),food,L,"(16,1,1-3)","(10,1,1-3)"
-111,Bleach (5L),chemicals,M,"(36,3,1-2)","(16,2,4-5)"
-112,Heavy Machinery Part,household goods,L,"(33,3,3-5)","(30,2,3-5)"
-113,Rice Pack,food,M,"(19,1,3-4)","(19,2,3-4)"
-114,Rice Pack,food,M,"(32,2,4-5)","(11,2,4-5)"
-115,Detergent (10L),chemicals,M,"(31,2,2-3)","(21,2,4-5)"
-116,Orange Juice (1L),beverages,M,"(29,3,1-2)","(25,2,3-4)"
-117,Vacuum Cleaner,household goods,M,"(34,3,3-4)","(34,2,4-5)"
-118,Heavy Machinery Part,household goods,L,"(36,3,3-5)","(16,1,2-4)"
-119,Orange Juice (1L),beverages,M,"(33,2,2-3)","(21,1,1-2)"
-120,Blender,household goods,M,"(35,1,2-3)","(16,2,1-2)"
-121,Milk (1L),beverages,M,"(26,3,4-5)","(24,2,1-2)"
-122,Orange Juice (1L),beverages,M,"(27,1,3-4)","(29,1,3-4)"
-123,Bulk Rice Sack (100kg),food,L,"(7,3,2-4)","(30,1,2-4)"
-124,Detergent (10L),chemicals,M,"(17,3,4-5)","(28,1,1-2)"
-125,Vacuum Cleaner,household goods,M,"(9,2,3-4)","(15,1,1-2)"
-126,Detergent (10L),chemicals,M,"(15,2,2-3)","(9,3,3-4)"
-127,Milk (1L),beverages,M,"(14,2,1-2)","(11,1,2-3)"
-128,Dishwasher,household goods,M,"(23,2,2-3)","(35,2,1-2)"
-129,Frozen Peas (1kg),frozen,M,"(1,1,4-5)","(1,2,4-5)"
-130,Detergent (10L),chemicals,M,"(32,2,2-3)","(23,1,1-2)"
-131,Blender,household goods,M,"(28,3,4-5)","(33,2,3-4)"
-132,Water Bottle (500ml),beverages,S,"(27,1,5)","(7,3,3)"
-133,Blender,household goods,M,"(34,1,4-5)","(29,3,1-2)"
+{
+  "A1L": ["N3-21", "N4-21", "N5-21", "N6-21", "N7-21"],
+  "A1R": ["N3-22", "N4-22", "N5-22", "N6-22", "N7-22"],
+  "B1L": ["N3-18", "N4-18", "N5-18", "N6-18", "N7-18"],
+  "B1R": ["N3-19", "N4-19", "N5-19", "N6-19", "N7-19"],
+  "C1L": ["N3-15", "N4-15", "N5-15", "N6-15", "N7-15"],
+  "C1R": ["N3-16", "N4-16", "N5-16", "N6-16", "N7-16"],
+  "D1L": ["N3-12", "N4-12", "N5-12", "N6-12", "N7-12"],
+  "D1R": ["N3-13", "N4-13", "N5-13", "N6-13", "N7-13"],
+  "E1L": ["N3-9", "N4-9", "N5-9", "N6-9", "N7-9"],
+  "E1R": ["N3-10", "N4-10", "N5-10", "N6-10", "N7-10"],
+  "F1L": ["N3-6", "N4-6", "N5-6", "N6-6", "N7-6"],
+  "F1R": ["N3-7", "N4-7", "N5-7", "N6-7", "N7-7"],
+  "G1L": ["N3-3", "N4-3", "N5-3", "N6-3", "N7-3"],
+  "G1R": ["N3-4", "N4-4", "N5-4", "N6-4", "N7-4"],
+  "A2L": ["N8-21", "N9-21", "N10-21", "N11-21", "N12-21"],
+  "A2R": ["N8-22", "N9-22", "N10-22", "N11-22", "N12-22"],
+  "B2L": ["N8-18", "N9-18", "N10-18", "N11-18", "N12-18"],
+  "B2R": ["N8-19", "N9-19", "N10-19", "N11-19", "N12-19"],
+  "C2L": ["N8-15", "N9-15", "N10-15", "N11-15", "N12-15"],
+  "C2R": ["N8-16", "N9-16", "N10-16", "N11-16", "N12-16"],
+  "D2L": ["N8-12", "N9-12", "N10-12", "N11-12", "N12-12"],
+  "D2R": ["N8-13", "N9-13", "N10-13", "N11-13", "N12-13"],
+  "E2L": ["N8-9", "N9-9", "N10-9", "N11-9", "N12-9"],
+  "E2R": ["N8-10", "N9-10", "N10-10", "N11-10", "N12-10"],
+  "F2L": ["N8-6", "N9-6", "N10-6", "N11-6", "N12-6"],
+  "F2R": ["N8-7", "N9-7", "N10-7", "N11-7", "N12-7"],
+  "G2L": ["N8-3", "N9-3", "N10-3", "N11-3", "N12-3"],
+  "G2R": ["N8-4", "N9-4", "N10-4", "N11-4", "N12-4"],
+  "A3L": ["N13-22","N14-20","N15-20","N16-20","N17-22"],
+  "A3R": ["N13-23","N14-21","N15-21","N16-21","N17-23"],
+  "F3L": ["N13-7","N14-4","N15-4","N16-4","N17-7"],
+  "F3R": ["N13-8","N14-5","N15-5","N16-5","N17-8"],
+  "E3L": ["N13-10","N14-7","N15-7","N16-7","N17-10"],
+  "E3R": ["N13-11","N14-8","N15-8","N16-8","N17-11"],
+  "D3L": ["N13-13","N14-10","N15-10","N16-10","N17-13"],
+  "D3R": ["N13-14","N14-11","N15-11","N16-11","N17-14"],
+  "C3L": ["N13-16","N14-12","N15-12","N16-12","N17-16"],
+  "C3R": ["N13-17","N14-13","N15-13","N16-13","N17-17"],
+  "B3L": ["N13-19","N14-14","N15-14","N16-14","N17-19"],
+  "B3R": ["N13-20","N14-15","N15-15","N16-15","N17-20"],
+  "G3L": ["N18-3","N19-3","N20-3","N21-3","N22-3"],
+  "G3R": ["N18-4","N19-4","N20-4","N21-4","N22-4"],
+  "H2R": ["N23-17","N24-17","N25-10","N26-15","N27-15"],
+  "H2L": ["N23-16","N24-16","N25-9","N26-14","N27-14"],
+  "H4L": ["N23-10","N24-10","N25-3","N26-3","N27-3"],
+  "H4R": ["N23-11","N24-11","N25-4","N26-4","N27-4"],
+  "H3R": ["N19-15,N19-16","N19-17","N19-18","N19-19"],
+  "H3L": ["N19-21","N19-22","N19-23","N19-24","N19-25"],
+  "I5R": ["N30-1","N30-2","N30-3","N30-4","N30-5"],
+  "I4R": ["N30-6","N30-7","N30-8","N30-9","N30-10"],
+  "I3R": ["N30-11","N30-12","N30-13","N30-14","N30-15"],
+  "I2R": ["N30-16","N30-17","N30-18","N30-19","N30-20"],
+  "I1R": ["N30-21","N30-22","N30-23","N30-24","N30-25"],
+  "J2R": ["C1-2","C1-3","C1-4","C1-5","C1-6"],
+  "J1R": ["C1-8","C1-9","C1-10","C1-11","C1-12"],
+  "J2L": ["C2-2","C2-3","C2-4","C2-5","C2-6"],
+  "J1L": ["C2-8","C2-9","C2-10","C2-11","C2-12"],
+  "J4R": ["C2-2","C2-3","C2-4","C2-5","C2-6"],
+  "J3R": ["C2-8","C2-9","C2-10","C2-11","C2-12"],
+  "J4L": ["C3-2","C3-3","C3-4","C3-5","C3-6"],
+  "J3L": ["C3-8","C3-9","C3-10","C3-11","C3-12"],
+  "J6R": ["C3-2","C3-3","C3-4","C3-5","C3-6"],
+  "J5R": ["C3-8","C3-9","C3-10","C3-11","C3-12"],
+  "J6L": ["C4-2","C4-3","C4-4","C4-5","C4-6"],
+  "J5L": ["C4-8","C4-9","C4-10","C4-11","C4-12"],
+
+
+}

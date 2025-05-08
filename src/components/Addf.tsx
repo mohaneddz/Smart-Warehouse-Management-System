@@ -1,31 +1,25 @@
 import React, { useState } from 'react';
 import { CarouselDemo as Carousel } from '../components/RoundedCar.tsx';
+import { NumberInput } from '@/components/ui/number-input';
 
 const Form = () => {
   const [selectedImage, setSelectedImage] = useState<string>('');
   const [formData, setFormData] = useState({
     type: '',
     name: '',
-    quantity: 1,
-    weight: 1,
-    expiry: 1,
-    fragility: 1,
-    width: 1,
-    height: 1,
+    quantity: 0,
+    weight: 0,
+    expiry: 0,
+    fragility: 0,
+    width: 0,
+    height: 0,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: name === 'name' ? value : Math.max(1, Number(value) || 1),
-    }));
-  };
-
-  const updateValue = (field: keyof typeof formData, change: number) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: Math.max(1, (prev[field] as number) + change),
+      [name]: value,
     }));
   };
 
@@ -34,68 +28,10 @@ const Form = () => {
     console.log('Form data submitted:', formData);
   };
 
-  const NumberInput = ({
-    label,
-    name,
-  }: {
-    label: string;
-    name: keyof typeof formData;
-  }) => (
-    <div className="relative h-12  w-[50%] sm:w-[80%] rounded-xl border border-gray-700 bg-gradient-to-r from-[#10121E] via-[#7F8387]/50 to-[#10121E]">
-      <div className="flex items-center justify-between bg-[#10121E] opacity-80 rounded-xl w-full h-full px-2">
-        <input
-          id={name}
-          name={name}
-          value={formData[name]}
-          onChange={handleChange}
-          min="1"
-          className="w-full bg-transparent text-center text-gray-400 focus:outline-none px-5 py-3"
-          placeholder={label}
-        />
-        <div className="grid grid-rows-2 gap-1 ">
-          <button
-            type="button"
-            onClick={() => updateValue(name, 1)}
-            className="text-gray-400 transition-colors hover:text-gray-200"
-            aria-label={`Increase ${name}`}
-          >
-            <svg
-              width="16"
-              height="8"
-              viewBox="0 0 16 8"
-              fill="white"
-              xmlns="http://www.w3.org/2000/svg"
-              transform="rotate(-180)"
-            >
-              <path d="M8 8L0.205771 0H15.7942L8 8Z" fill="#8B939B" />
-            </svg>
-          </button>
-          <button
-            type="button"
-            onClick={() => updateValue(name, -1)}
-            className="text-gray-400 transition-colors hover:text-gray-200"
-            aria-label={`Decrease ${name}`}
-          >
-            <svg
-              width="16"
-              height="8"
-              viewBox="0 0 16 8"
-              fill="white"
-              xmlns="http://www.w3.org/2000/svg"
-              transform="rotate(180)"
-            >
-              <path d="M8 0L15.7942 8H0.205771L8 0Z" fill="#8B939B" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid grid-rows-4 justify-items-center place-items-center gap-0"
+      className="flex flex-col justify-items-center place-items-center gap-24 mb-24"
     >
       <div className="flex justify-center items-center translate-x-18 font-[Arsenal]">
         <Carousel setSelectedImage={setSelectedImage} />
@@ -103,10 +39,10 @@ const Form = () => {
       </div>
 
       <div
-        className="relative rounded-xl h-12 w-[50%]  sm:w-[70%] border border-gray-700
+        className="relative rounded-xl h-12 w-[80%] border border-gray-700
          bg-gradient-to-r from-[#10121E] via-[#7F8387]/50 to-[#10121E]"
       >
-        <div className="flex items-center justify-center h-full bg-[#10121E] opacity-80 rounded-xl w-full">
+        <div className="flex items-center justify-center h-full bg-[#10121E] opacity-80 rounded-xl ">
           <input
             type="text"
             id="name"
@@ -120,21 +56,82 @@ const Form = () => {
       </div>
 
       <div
-        className="grid grid-cols-2 gap-2 justify-items-center place-items-center
+        className="w-[80%] grid grid-cols-2 gap-4 justify-items-center place-items-center
          sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2"
       >
-        <NumberInput label="Weight" name="weight" />
-        <NumberInput label="Height" name="height" />
-        <NumberInput label="Width" name="width" />
-        <NumberInput label="Expiry" name="expiry" />
-        <NumberInput label="Fragility" name="fragility" />
+        <div className="flex flex-col gap-2 w-full">
+          <span className="text-gray-400">Weight</span>
+          <NumberInput
+            value={formData.weight}
+            onChange={(value) => setFormData(prev => ({ ...prev, weight: value }))}
+            label="Weight"
+            showLabel={true}
+            className="w-full"
+            integersOnly={false}
+          />
+        </div>
+        <div className="flex flex-col gap-2 w-full">
+          <span className="text-gray-400">Height</span>
+          <NumberInput
+            value={formData.height}
+            onChange={(value) => setFormData(prev => ({ ...prev, height: value }))}
+            label="Height"
+            showLabel={true}
+            className="w-full"
+            integersOnly={false}
+          />
+        </div>
+        <div className="flex flex-col gap-2 w-full">
+          <span className="text-gray-400">Width</span>
+          <NumberInput
+            value={formData.width}
+            onChange={(value) => setFormData(prev => ({ ...prev, width: value }))}
+            label="Width"
+            showLabel={true}
+            className="w-full"
+            integersOnly={true}
+          />
+        </div>
+        <div className="flex flex-col gap-2 w-full">
+          <span className="text-gray-400">Expiry</span>
+          <NumberInput
+            value={formData.expiry}
+            onChange={(value) => setFormData(prev => ({ ...prev, expiry: value }))}
+            label="Expiry"
+            showLabel={true}
+            className="w-full"
+            integersOnly={true}
+          />
+        </div>
+        <div className="flex flex-col gap-2 w-full">
+          <span className="text-gray-400">Fragility</span>
+          <NumberInput
+            value={formData.fragility}
+            onChange={(value) => setFormData(prev => ({ ...prev, fragility: value }))}
+            label="Fragility"
+            showLabel={true}
+            className="w-full"
+            integersOnly={true}
+          />
+        </div>
+        <div className="flex flex-col gap-2 w-full">
+          <span className="text-gray-400">Quantity</span>
+          <NumberInput
+            value={formData.quantity}
+            onChange={(value) => setFormData(prev => ({ ...prev, quantity: value }))}
+            label="Quantity"
+            showLabel={true}
+            className="w-full"
+            integersOnly={true}
+          />
+        </div>
       </div>
 
       <div className="flex justify-center ">
         <button
           type="submit"
-          className="transition-all duration-300 ease-in-out cursor-pointer w-50 h-10 bg-[#2C2F3C] rounded-xl hover:scale-110 hover:shadow-lg hover:bg-[#13101E] 
-          hover:shadow-blue-500/50 hover:border-blue-400 hover:opacity-100 text-center text-gray-400 focus:outline-none px-5 py-3"
+          className="transition-all duration-300 ease-in-out cursor-pointer w-50 h-10 bg-[#2C2F3C] rounded-xl hover:scale-110 hover:shadow-lg hover:bg-[#43386a] 
+          hover:shadow-purplish/50 hover:border-blue-400 hover:opacity-100 text-center text-gray-400 focus:outline-none px-5 py-3 flex justify-center items-center"
         >
           Add
         </button>

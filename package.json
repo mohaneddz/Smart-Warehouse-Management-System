@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --force",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "tauri": "tauri"
@@ -55,6 +55,6 @@
     "tailwindcss": "^4.0.17",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.27.0",
-    "vite": "^6.0.3"
+    "vite": "^5.1.4"
   }
 }

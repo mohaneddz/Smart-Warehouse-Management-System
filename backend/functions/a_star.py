@@ -1,10 +1,18 @@
 import json
 import csv
 import heapq
+import math
 
 # Load warehouse map
-with open("../data/map.json") as f:
-    map_data = json.load(f)
+try:
+    with open("../data/map.json") as f:
+        map_data = json.load(f)
+except FileNotFoundError:
+    print("Error: map.json not found in ../data/ directory.")
+    exit()
+except json.JSONDecodeError:
+    print("Error: Invalid JSON format in map.json.")
+    exit()
 
 nodes = map_data["nodes"]
 
@@ -14,7 +22,7 @@ for node in nodes.values():
     node.setdefault("heuristic", 0)
     node.setdefault("is_goal", False)
 
-# Lookup table
+# Location lookup table
 lookup_table = {
     "A1L": ["N3-21", "N4-21", "N5-21", "N6-21", "N7-21"],
     "A1R": ["N3-20", "N4-20", "N5-20", "N6-20", "N7-20"],
@@ -42,37 +50,45 @@ lookup_table = {
     "D3R": ["C11-9", "C12-9", "C13-9", "C14-9", "C15-9"],
 }
 
-# Heuristic: Euclidean distance
 def heuristic(node_a, node_b):
     if node_a not in nodes or node_b not in nodes:
         return float("inf")
     ax, ay = nodes[node_a]["x"], nodes[node_a]["y"]
     bx, by = nodes[node_b]["x"], nodes[node_b]["y"]
-    return ((ax - bx) ** 2 + (ay - by) ** 2) ** 0.5
-# Cost function for A* search
-def cost(node_a, node_b):
-    if node_a not in nodes or node_b not in nodes:
-        return float("inf")
-    ax, ay = nodes[node_a]["x"], nodes[node_a]["y"]
-    bx, by = nodes[node_b]["x"], nodes[node_b]["y"]
+    # Using Manhattan distance which is generally better for grid-based movement
     return abs(ax - bx) + abs(ay - by)
-# Astar search
-def Astar(start, goal):
+
+def a_star_search(start, goal):
+    if start not in nodes or goal not in nodes:
+        print(f"Error: Start node '{start}' or goal node '{goal}' not found in the map.")
+        return []
+
+    open_set = [(heuristic(start, goal), 0, start, [start])]  # (f_score, g_score, current_node, path)
+    g_costs = {start: 0}
     visited = set()
-    queue = [(heuristic(start, goal) + cost(start,goal), start, [start])]
-    while queue:
-        _, current, path = heapq.heappop(queue)
+
+    while open_set:
+        f, g, current, path = heapq.heappop(open_set)
+
         if current == goal:
             return path
+
         if current in visited:
             continue
         visited.add(current)
-        for neighbor in nodes[current].get("neighbours", []):
-            if neighbor not in visited and not nodes.get(neighbor, {}).get("locked", False):
-                heapq.heappush(queue, (heuristic(neighbor, goal), neighbor, path + [neighbor]))
-    return []
 
-# Convert "3-5" to [3, 4, 5]
+        for neighbor in nodes[current].get("neighbours", []):
+            if neighbor not in nodes or nodes[neighbor].get("locked"):
+                continue
+
+            tentative_g = g + 1  # Assuming uniform cost of 1 for each step
+            if neighbor not in g_costs or tentative_g < g_costs[neighbor]:
+                g_costs[neighbor] = tentative_g
+                f_score = tentative_g + heuristic(neighbor, goal)
+                heapq.heappush(open_set, (f_score, tentative_g, neighbor, path + [neighbor]))
+
+    return []  # Return an empty list if no path is found
+
 def bin_range_to_indices(bin_range):
     try:
         start, end = map(int, bin_range.split("-"))
@@ -80,37 +96,60 @@ def bin_range_to_indices(bin_range):
     except ValueError:
         return []
 
-# Get goal node from lookup_table using bin index
-def get_goal_node(new_position):
+def get_goal_node(position_string):
     try:
-        cleaned = new_position.strip("() ").replace("\"", "")
-        rack, shelf_str, bin_range = [part.strip() for part in cleaned.split(",")]
-        shelf = int(shelf_str)
+        cleaned = position_string.strip("() ").replace("\"", "")
+        rack, shelf_str, bin_range = map(str.strip, cleaned.split(","))
+        try:
+            shelf = int(shelf_str)
+        except ValueError:
+            print(f"❌ Invalid shelf level format: {shelf_str}")
+            return None
         bin_indices = bin_range_to_indices(bin_range)
-
         if rack not in lookup_table:
             print(f"❌ Invalid rack: {rack}")
             return None
         if not (1 <= shelf <= 3):
             print(f"❌ Invalid shelf level: {shelf}")
             return None
-
-        # Use middle bin index (average) to decide which node represents that bin
         if not bin_indices:
+            print(f"❌ Invalid bin range: {bin_range}")
             return None
-        avg_bin_index = sum(bin_indices) // len(bin_indices)
 
-        # Determine which of the 5 nodes maps to this bin (assumes ~5 bins per node)
         node_list = lookup_table[rack]
-        index = min(avg_bin_index // 2, len(node_list) - 1)  # bin 0–1 = node 0, 2–3 = node 1, ...
+        # Calculate the target index in the node list based on the shelf and average bin index
+        # Assuming the nodes in lookup_table are ordered corresponding to the bins
+        num_bins_per_shelf = 5  # Based on the lookup table structure
+        shelf_offset = (shelf - 1) * num_bins_per_shelf
+        avg_bin_index_relative = sum(bin_indices) / len(bin_indices) - 1 # 0-based index
+        index = min(int(round(avg_bin_index_relative)), len(node_list) - 1)
         return node_list[index]
     except Exception as e:
-        print(f"⚠️ Failed to parse {new_position}: {e}")
+        print(f"⚠️ Failed to parse {position_string}: {e}")
         return None
 
-# Main
-start_node = "E1-2"
-with open("./item_movements.csv", "r") as f:
-    reader = csv.DictReader(f)
-    for row in reader:
-        item_id = row["item_id"]
+# Run A* for each item movement
+try:
+    with open("./item_movements.csv", "r") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            item_id = row["item_id"]
+            new_position = row["new_position"]
+            category = row.get("category", "").strip().lower()
+
+            start_node = "E1-1" if category == "frozen" else "E1-2"
+            goal_node = get_goal_node(new_position)
+
+            if goal_node:
+                print(f"\n🚚 Moving item {item_id} to {new_position} → goal node: {goal_node}")
+                path = a_star_search(start_node, goal_node)
+                if path:
+                    print(f"✅ A* Path: {' → '.join(path)}")
+                else:
+                    print(f"❌ No path found from {start_node} to {goal_node}")
+            else:
+                print(f"⚠️ Skipped item {item_id} due to invalid position: {new_position}")
+except FileNotFoundError:
+    print("Error: item_movements.csv not found in the current directory.")
+except Exception as e:
+    print(f"An error occurred while processing item movements: {e}")

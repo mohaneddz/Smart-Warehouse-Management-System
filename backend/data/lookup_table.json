@@ -1,9 +1,23 @@
 {
-    "item1": {
-      "goal_node": "N2-5"
-    },
-    "item2": {
-      "goal_node": "N2-7"
-    }
+    "item_001": {"goal_node": "N1-2", "rack": "Rack-1", "shelf": "Shelf-1", "bin_range": "B1-10"},
+    "item_002": {"goal_node": "N1-4", "rack": "Rack-2", "shelf": "Shelf-3", "bin_range": "B2-8"},
+    "item_003": {"goal_node": "N1-6", "rack": "Rack-3", "shelf": "Shelf-2", "bin_range": "B5-9"},
+    "item_004": {"goal_node": "N2-3", "rack": "Rack-1", "shelf": "Shelf-4", "bin_range": "B3-7"},
+    "item_005": {"goal_node": "N2-5", "rack": "Rack-4", "shelf": "Shelf-1", "bin_range": "B6-11"},
+    "item_006": {"goal_node": "N2-7", "rack": "Rack-2", "shelf": "Shelf-2", "bin_range": "B4-10"},
+    "item_007": {"goal_node": "N3-1", "rack": "Rack-5", "shelf": "Shelf-3", "bin_range": "B1-6"},
+    "item_008": {"goal_node": "N3-3", "rack": "Rack-3", "shelf": "Shelf-1", "bin_range": "B7-14"},
+    "item_009": {"goal_node": "N3-5", "rack": "Rack-2", "shelf": "Shelf-4", "bin_range": "B9-15"},
+    "item_010": {"goal_node": "N3-7", "rack": "Rack-4", "shelf": "Shelf-2", "bin_range": "B2-5"},
+    "item_011": {"goal_node": "N1-3", "rack": "Rack-5", "shelf": "Shelf-1", "bin_range": "B10-20"},
+    "item_012": {"goal_node": "N1-7", "rack": "Rack-3", "shelf": "Shelf-3", "bin_range": "B8-13"},
+    "item_013": {"goal_node": "N2-1", "rack": "Rack-1", "shelf": "Shelf-2", "bin_range": "B4-9"},
+    "item_014": {"goal_node": "N2-6", "rack": "Rack-2", "shelf": "Shelf-3", "bin_range": "B3-6"},
+    "item_015": {"goal_node": "N3-2", "rack": "Rack-4", "shelf": "Shelf-4", "bin_range": "B5-10"},
+    "item_016": {"goal_node": "N3-4", "rack": "Rack-5", "shelf": "Shelf-1", "bin_range": "B2-8"},
+    "item_017": {"goal_node": "N1-8", "rack": "Rack-1", "shelf": "Shelf-2", "bin_range": "B7-12"},
+    "item_018": {"goal_node": "N2-2", "rack": "Rack-2", "shelf": "Shelf-4", "bin_range": "B3-9"},
+    "item_019": {"goal_node": "N3-6", "rack": "Rack-3", "shelf": "Shelf-3", "bin_range": "B6-11"},
+    "item_020": {"goal_node": "N3-8", "rack": "Rack-5", "shelf": "Shelf-2", "bin_range": "B1-7"}
   }
   

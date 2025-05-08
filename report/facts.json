@@ -1,0 +1,20 @@
+{
+  "entrance_coords": [100, 50],
+  "frozen_entrance_coords": [5, 5],
+  "max_weight_per_level": [250, 180, 120],
+  "shelfs_max_height": [60, 60, 1200],
+  "racks_info": {
+      "R01": {"center_coords": [20, 20], "is_frozen": false},
+      "R02": {"center_coords": [20, 40], "is_frozen": false},
+      "R03": {"center_coords": [20, 60], "is_frozen": true},
+      "R04": {"center_coords": [40, 20], "is_frozen": false},
+      "R05": {"center_coords": [40, 40], "is_frozen": false},
+      "R06": {"center_coords": [40, 60], "is_frozen": false},
+      "R07": {"center_coords": [60, 20], "is_frozen": true},
+      "R08": {"center_coords": [60, 40], "is_frozen": false},
+      "R09": {"center_coords": [60, 60], "is_frozen": false},
+      "R10": {"center_coords": [80, 20], "is_frozen": false},
+      "R11": {"center_coords": [80, 40], "is_frozen": true},
+      "R12": {"center_coords": [80, 60], "is_frozen": false}
+  }
+}

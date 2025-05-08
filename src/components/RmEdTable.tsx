@@ -1,17 +1,10 @@
 'use client';
 
-import { Input } from '@/components/ui/input';
-import { Search } from 'lucide-react';
-import { useState, useEffect, useMemo } from 'react';
+import { Checkbox } from '@/components/ui/checkbox';
+import React from 'react';
+import { useState, useEffect } from 'react';
 
-interface Invoice {
-  invoice: string;
-  paymentStatus: string;
-  totalAmount: string;
-  paymentMethod: string;
-}
-
-const invoicesData: Invoice[] = [
+const invoicesData = [
   {
     invoice: 'INV001',
     paymentStatus: 'Paid',
@@ -74,27 +67,18 @@ const invoicesData: Invoice[] = [
   },
 ];
 
-interface SearchBarProps {
-  onSearch: (searchTerm: string) => void;
+interface Invoice {
+  invoice: string;
+  paymentStatus: string;
+  totalAmount: string;
+  paymentMethod: string;
 }
 
-function SearchBar({ onSearch }: SearchBarProps) {
-  return (
-    <div className="relative p-2 w-[90%] md:w-[70%] lg:w-[50%]">
-      <div className="absolute right-3 top-3 p-1">
-        <Search color="#ffffff" size={20} />
-      </div>
-      <Input
-        type="search"
-        placeholder="Search invoices..."
-        className="pl-3 pr-8 bg-[#1D2330] border border-[#303846] rounded-md text-white focus:outline-none focus:border-[#505866]"
-        onChange={(e) => onSearch(e.target.value)}
-      />
-    </div>
+export function RmEdTable() {
+  const [selectedInvoices, setSelectedInvoices] = useState<string[]>([]);
+  const [quantities, setQuantities] = useState<Record<string, number>>(
+    Object.fromEntries(invoicesData.map((inv) => [inv.invoice, 0])),
   );
-}
-
-export function LogsTable() {
   const [sortConfig, setSortConfig] = useState<{
     key: keyof Invoice | null;
     direction: 'ascending' | 'descending' | null;
@@ -102,16 +86,11 @@ export function LogsTable() {
   const [amountFilter, setAmountFilter] = useState<string>('all');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [methodFilter, setMethodFilter] = useState<string>('all');
-  const [searchTerm, setSearchTerm] = useState<string>('');
   const [filteredInvoices, setFilteredInvoices] =
     useState<Invoice[]>(invoicesData);
 
   useEffect(() => {
-    let newFilteredInvoices = invoicesData.filter((invoice) =>
-      Object.values(invoice).some((value) =>
-        value.toLowerCase().includes(searchTerm.toLowerCase()),
-      ),
-    );
+    let newFilteredInvoices = invoicesData;
 
     // Amount Filter
     if (amountFilter === 'under200') {
@@ -144,7 +123,31 @@ export function LogsTable() {
     }
 
     setFilteredInvoices(newFilteredInvoices);
-  }, [amountFilter, statusFilter, methodFilter, searchTerm]);
+  }, [amountFilter, statusFilter, methodFilter]);
+
+  const toggleInvoice = (invoice: string, checked: boolean) => {
+    setSelectedInvoices((prev) =>
+      checked ? [...prev, invoice] : prev.filter((i) => i !== invoice),
+    );
+  };
+
+  const handleCheckboxChange = (
+    invoice: string,
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    toggleInvoice(invoice, event.target.checked);
+  };
+
+  const incrementQuantity = (invoice: string) => {
+    setQuantities((prev) => ({ ...prev, [invoice]: prev[invoice] + 1 }));
+  };
+
+  const decrementQuantity = (invoice: string) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [invoice]: Math.max(0, prev[invoice] - 1),
+    }));
+  };
 
   const requestSort = (key: keyof Invoice) => {
     let direction: 'ascending' | 'descending' = 'ascending';
@@ -154,7 +157,7 @@ export function LogsTable() {
     setSortConfig({ key, direction });
   };
 
-  const sortedInvoices = useMemo(() => {
+  const sortedInvoices = React.useMemo(() => {
     if (!sortConfig.key) {
       return filteredInvoices;
     }
@@ -200,10 +203,6 @@ export function LogsTable() {
     setMethodFilter(event.target.value);
   };
 
-  const handleSearch = (term: string) => {
-    setSearchTerm(term);
-  };
-
   const uniqueStatuses = [
     'all',
     ...Array.from(new Set(invoicesData.map((inv) => inv.paymentStatus))),
@@ -214,106 +213,164 @@ export function LogsTable() {
   ];
 
   return (
-    <div className="flex flex-col items-center">
-      <SearchBar onSearch={handleSearch} />
-      <div className="rounded-md bg-[#10111D] text-[#BFBFBF] font-bold p-1 w-[90%] md:w-[70%] lg:w-[50%]">
-        <div className="w-full">
-          <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr] h-[50px]">
-            <div className="flex items-center justify-center">Items</div>
-            <div className="flex items-center font-medium justify-start">
-              <button
-                type="button"
-                onClick={() => requestSort('invoice')}
-                className="text-gray-400 hover:text-gray-200 flex items-center"
+    <div className="rounded-md bg-[#10111D] text-[#BFBFBF] font-bold p-1">
+      <div className="w-full">
+        <div className="grid grid-cols-[0.5fr_1.5fr_1.5fr_1.5fr_1fr_1fr] h-[50px] ">
+          <div className="flex items-center justify-center"></div>
+          <div className="flex items-center font-medium justify-start">
+            {' '}
+            {/* Align left */}
+            <button
+              type="button"
+              onClick={() => requestSort('invoice')}
+              className="text-gray-400 hover:text-gray-200 flex items-center"
+            >
+              <span>Invoice</span>
+            </button>
+          </div>
+          <div className="flex items-center font-medium justify-start">
+            {' '}
+            {/* Align left */}
+            <div className="flex items-center gap-2">
+              <span>Status</span>
+              <select
+                value={statusFilter}
+                onChange={handleStatusFilterChange}
+                className="bg-[#10111D] text-gray-400 border border-gray-700 rounded-md text-sm focus:outline-none"
               >
-                <span>Invoice</span>
-              </button>
-            </div>
-            <div className="flex items-center font-medium justify-start">
-              <div className="flex items-center gap-2">
-                <span>Status</span>
-                <select
-                  value={statusFilter}
-                  onChange={handleStatusFilterChange}
-                  className="bg-[#10111D] text-gray-400 border border-gray-700 rounded-md text-sm focus:outline-none"
-                >
-                  {uniqueStatuses.map((status) => (
-                    <option key={status} value={status}>
-                      {status.charAt(0).toUpperCase() + status.slice(1)}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="flex items-center font-medium justify-start">
-              <div className="flex items-center gap-2">
-                <span>Method</span>
-                <select
-                  value={methodFilter}
-                  onChange={handleMethodFilterChange}
-                  className="bg-[#10111D] text-gray-400 border w-[55%] border-gray-700 rounded-md text-sm focus:outline-none"
-                >
-                  {uniqueMethods.map((method) => (
-                    <option key={method} value={method}>
-                      {method}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div className="flex items-center justify-center font-medium">
-              <div className="flex items-center gap-2">
-                <span>Amount</span>
-                <select
-                  value={amountFilter}
-                  onChange={handleAmountFilterChange}
-                  className="bg-[#10111D] text-gray-400 border border-gray-700 rounded-md text-sm focus:outline-none"
-                >
-                  <option value="all">All</option>
-                  <option value="under200">Under $200</option>
-                  <option value="200to500">$200 - $500</option>
-                  <option value="over500">Over $500</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-center font-medium">
-              Amount
+                {uniqueStatuses.map((status) => (
+                  <option key={status} value={status}>
+                    {status.charAt(0).toUpperCase() + status.slice(1)}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 
-          {/* Table Content */}
-          <img
-            src="/assets/svgs/SeparatorTable.svg"
-            alt="Chart"
-            className="w-full h-10"
-          />
-          <div className="overflow-y-auto h-[390px] [&::-webkit-scrollbar]:w-2 dark:[&::-webkit-scrollbar-track]:bg-[#10121E] dark:[&::-webkit-scrollbar-thumb]:bg-[#303137] overflow-x-hidden">
-            {sortedInvoices.map((invoice) => (
-              <div
-                key={invoice.invoice}
-                className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr] h-[65px] border-b border-gray-800 "
+          <div className="flex items-center font-medium justify-start">
+            {' '}
+            {/* Align left */}
+            <div className="flex items-center gap-2">
+              <span>Method</span>
+              <select
+                value={methodFilter}
+                onChange={handleMethodFilterChange}
+                className="bg-[#10111D] text-gray-400 border border-gray-700 rounded-md text-sm focus:outline-none"
               >
-                <div className="flex items-center justify-center">
-                  {invoice.paymentMethod}
-                </div>
-                <div className="flex items-center">{invoice.invoice}</div>
-                <div className="flex items-center">{invoice.paymentStatus}</div>
-                <div className="flex items-center">{invoice.paymentMethod}</div>
-                <div className="flex items-center justify-center w-30 m-4">
-                  {invoice.totalAmount}
-                </div>
-                <div className="flex items-center justify-center p-4 ">
-                  {invoice.totalAmount}
+                {uniqueMethods.map((method) => (
+                  <option key={method} value={method}>
+                    {method}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="flex items-center justify-center font-medium">
+            {' '}
+            {/* Keep centered */}
+            <div className="flex items-center gap-2">
+              <span>Amount</span>
+              <select
+                value={amountFilter}
+                onChange={handleAmountFilterChange}
+                className="bg-[#10111D] text-gray-400 border border-gray-700 rounded-md text-sm focus:outline-none"
+              >
+                <option value="all">All</option>
+                <option value="under200">Under $200</option>
+                <option value="200to500">$200 - $500</option>
+                <option value="over500">Over $500</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-center font-medium  -translate-x-3">
+            {' '}
+            {/* Keep centered */}
+            Quantity
+          </div>
+        </div>
+
+        {/* Table Content */}
+        <img
+          src="/assets/svgs/SeparatorTable.svg"
+          alt="Chart"
+          className="w-full h-10"
+        />
+        <div className="overflow-y-auto h-[390px] [&::-webkit-scrollbar]:w-2 dark:[&::-webkit-scrollbar-track]:bg-[#10121E] dark:[&::-webkit-scrollbar-thumb]:bg-[#303137] overflow-x-hidden">
+          {sortedInvoices.map((invoice) => (
+            <div
+              key={invoice.invoice}
+              className="grid grid-cols-[0.5fr_1.5fr_1.5fr_1.5fr_1fr_1fr] h-[65px] border-b border-gray-800"
+            >
+              <div className="flex items-center justify-center">
+                <Checkbox
+                  checked={selectedInvoices.includes(invoice.invoice)}
+                  onCheckedChange={(checked) =>
+                    handleCheckboxChange(invoice.invoice, {
+                      target: { checked },
+                    } as React.ChangeEvent<HTMLInputElement>)
+                  }
+                  id={`invoice-${invoice.invoice}`}
+                />
+              </div>
+              <div className="flex items-center">{invoice.invoice}</div>
+              <div className="flex items-center">{invoice.paymentStatus}</div>
+              <div className="flex items-center">{invoice.paymentMethod}</div>
+              <div className="flex items-center justify-center">
+                {invoice.totalAmount}
+              </div>
+
+              <div className="m-4 flex items-center -translate-x-3 justify-between h-8 w-[75%] rounded-[10px] border border-gray-700 bg-gradient-to-r from-[#10121E] via-[#7F8387]/50 to-[#10121E] ">
+                <div className="flex items-center justify-between bg-[#10121E] opacity-80 rounded-xl w-full h-full ">
+                  <input
+                    value={quantities[invoice.invoice]}
+                    className="w-full bg-transparent text-center text-gray-400 focus:outline-none "
+                    min="0"
+                    readOnly
+                  />
+                  <div className="grid grid-rows-2 gap-1 ">
+                    <button
+                      type="button"
+                      onClick={() => decrementQuantity(invoice.invoice)}
+                      className="text-gray-400 hover:text-gray-200"
+                    >
+                      <svg
+                        width="16"
+                        height="8"
+                        viewBox="0 0 16 8"
+                        fill="white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        transform="rotate(180)"
+                      >
+                        <path d="M8 8L0.205771 0H15.7942L8 8Z" fill="#8B939B" />
+                      </svg>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => incrementQuantity(invoice.invoice)}
+                      className="text-gray-400 hover:text-gray-200"
+                    >
+                      <svg
+                        width="16"
+                        height="8"
+                        viewBox="0 0 16 8"
+                        fill="white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        transform="rotate(180)"
+                      >
+                        <path d="M8 0L15.7942 8H0.205771L8 0Z" fill="#8B939B" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-export default LogsTable;
+export default RmEdTable;

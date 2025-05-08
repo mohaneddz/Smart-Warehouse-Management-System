@@ -5,8 +5,9 @@ import os
 
 # --- File Paths ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MAP_FILE_PATH = os.path.join(BASE_DIR,"..",  "data", "map.json")
-LOOKUP_TABLE_PATH = os.path.join(BASE_DIR, "..", "data", "lookup_table.json")
+MAP_FILE_PATH = os.path.join(BASE_DIR, ":.", "data", "map.json")
+
+LOOKUP_TABLE_PATH = os.path.join(BASE_DIR,"..", "data", "lookup_table.json")
 
 # --- Helper Functions ---
 def load_json_file(file_path):
@@ -102,7 +103,7 @@ def greedy_search(start_node_id, goal_node_id, graph_nodes, heuristic_function):
     print(f"No path found from '{start_node_id}' to '{goal_node_id}'.")
     return None
 
-def main():
+def main()
     map_data = load_json_file(MAP_FILE_PATH)
     if not map_data or "nodes" not in map_data:
         print(f"Critical: Failed to load or parse map data from '{MAP_FILE_PATH}'. Exiting.")
@@ -136,10 +137,14 @@ def main():
     path_ids = greedy_search(agent_start_node, goal_node_id, warehouse_nodes, selected_heuristic)
 
     if path_ids:
-        # Format the path as 'N1-2->N1-5->...->Goal'
-        path_str = "->".join(path_ids)
         print(f"\nPath found from '{agent_start_node}' to '{goal_node_id}':")
-        print(f"Path as node IDs: {path_str}")
+        print(f"Path as node IDs: {' -> '.join(path_ids)}")
+        print("\nFull node data for the path:")
+        for node_id in path_ids:
+            if node_id in warehouse_nodes:
+                print(json.dumps(warehouse_nodes[node_id], indent=2))
+            else:
+                print(f"Error: Node ID '{node_id}' from path not found in warehouse_nodes.")
     else:
         print(f"\nNo path found from '{agent_start_node}' to '{goal_node_id}'.")
 

@@ -3,6 +3,7 @@
 import { Checkbox } from '@/components/ui/checkbox';
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { NumberInput } from '@/components/ui/number-input';
 
 const invoicesData = [
   {
@@ -322,47 +323,17 @@ export function RmEdTable() {
 
               <div className="m-4 flex items-center -translate-x-3 justify-between h-8 w-[75%] rounded-[10px] border border-gray-700 bg-gradient-to-r from-[#10121E] via-[#7F8387]/50 to-[#10121E] ">
                 <div className="flex items-center justify-between bg-[#10121E] opacity-80 rounded-xl w-full h-full ">
-                  <input
+                  <NumberInput
                     value={quantities[invoice.invoice]}
+                    onChange={(value) => {
+                      const newQuantities = { ...quantities };
+                      newQuantities[invoice.invoice] = value;
+                      setQuantities(newQuantities);
+                    }}
                     className="w-full bg-transparent text-center text-gray-400 focus:outline-none "
                     min="0"
                     readOnly
                   />
-                  <div className="grid grid-rows-2 gap-1 ">
-                    <button
-                      type="button"
-                      onClick={() => decrementQuantity(invoice.invoice)}
-                      className="text-gray-400 hover:text-gray-200"
-                    >
-                      <svg
-                        width="16"
-                        height="8"
-                        viewBox="0 0 16 8"
-                        fill="white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        transform="rotate(180)"
-                      >
-                        <path d="M8 8L0.205771 0H15.7942L8 8Z" fill="#8B939B" />
-                      </svg>
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => incrementQuantity(invoice.invoice)}
-                      className="text-gray-400 hover:text-gray-200"
-                    >
-                      <svg
-                        width="16"
-                        height="8"
-                        viewBox="0 0 16 8"
-                        fill="white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        transform="rotate(180)"
-                      >
-                        <path d="M8 0L15.7942 8H0.205771L8 0Z" fill="#8B939B" />
-                      </svg>
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>

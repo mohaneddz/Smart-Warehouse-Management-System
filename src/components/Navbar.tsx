@@ -1,5 +1,4 @@
 'use client';
-import { div } from 'motion/react-client';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,12 +8,13 @@ function Navbar() {
 
   return (
     <div>
-      <div className=" w-[100%] ">
-        <img src="/assets/picture/Headerimg.png" alt="" className="w-[100%]" />
+      <div className="w-full">
+        <img src="/assets/picture/Headerimg.png" alt="" className="w-full" />
       </div>
       <div
-        className="relative grid grid-cols-5 z-50 sm:[grid-template-columns:1fr_1fr_1.6fr_1fr_1fr] lg:grid-cols-5 md:grid-cols-5
-       left-1/2 -translate-x-1/2 rounded-2xl bg-[#0A0B14] w-[40%] h-max border border-[#30383E] -translate-y-1/2  "
+      // set cols : 20% 30% 30% 20% 
+        className="relative grid grid-cols-[20%_30%_0%_30%_20%] z-50 left-1/2 -translate-x-1/2 rounded-2xl 
+        bg-[#0A0B14] w-[90%] max-w-[800px] h-min border border-[#30383E] -translate-y-1/2"
       >
         {/* 3D Layout */}
         <div
@@ -22,10 +22,10 @@ function Navbar() {
             navigate('/warehouse-layout');
             setActive('layout');
           }}
-          className={`flex justify-center items-center h-full rounded-l-2xl border-r border-[#30383E] hover:bg-[#13141F] cursor-pointer p-2 sm:p-3`}
+          className={`flex justify-center items-center h-full rounded-l-2xl border-r border-[#30383E] hover:bg-[#13141F] cursor-pointer`}
         >
           <img
-            className={`w-[60%] h-[60%] sm:w-[70%] sm:h-[70%] ${active === 'layout' ? 'opacity-100' : 'opacity-20'}`}
+            className={`w-min h-min ${active === 'layout' ? 'opacity-100' : 'opacity-20'}`}
             src="/assets/svgs/World.svg"
             alt="Layout"
           />
@@ -37,34 +37,18 @@ function Navbar() {
             navigate('/stock-manager');
             setActive('manager');
           }}
-          className="flex justify-center  overflow-x-hidden items-center h-full w-full  hover:bg-[#13141F] cursor-pointer "
+          className="flex justify-start pl-16 items-center h-full w-full border-r border-[#30383E] hover:bg-[#13141F] cursor-pointer "
         >
           <img
-            className={`w-[70%] h-[70%] ${active === 'manager' ? 'opacity-100' : 'opacity-20'}`}
+            className={`w-max h-min ${active === 'manager' ? 'opacity-100' : 'opacity-20'}`}
             src="/assets/svgs/Manage.svg"
             alt="Stock Manager"
           />
         </div>
 
-        <div
-          className={`${active === 'home' ? 'opacity-100' : 'opacity-20'}`}
-        ></div>
-
-        {/* Home */}
-        <div
-          onClick={() => {
-            navigate('/');
-            setActive('home');
-          }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 flex justify-center items-center rounded-full border border-[#30383E]
-          min-w-16 min-h-16 w-[8vw] h-[8vw] sm:w-[6rem] sm:h-[6rem] md:w-16 md:h-16 lg:w-[8rem] lg:h-[8rem]
-           bg-[#0A0B14] hover:bg-[#13141F] cursor-pointer"
-        >
-          <img
-            src="/assets/svgs/Home.svg"
-            alt="Home"
-            className={`${active === 'home' ? 'opacity-100' : 'opacity-20'} w-[70%] h-[70%]`}
-          />
+        {/* Center Spacer */}
+        <div className="flex justify-center items-center h-full">
+          {/* This is just a spacer for the home button */}
         </div>
 
         {/* Logs */}
@@ -73,10 +57,10 @@ function Navbar() {
             navigate('/logs');
             setActive('logs');
           }}
-          className="flex justify-center items-center h-full border-r border-[#30383E] hover:bg-[#13141F] cursor-pointer"
+          className="flex justify-end pr-16 items-center h-full border-l border-[#30383E] hover:bg-[#13141F] cursor-pointer "
         >
           <img
-            className={`w-[50%] h-[80%] ${active === 'logs' ? 'opacity-100' : 'opacity-20'}`}
+            className={`w-max h-min ${active === 'logs' ? 'opacity-100' : 'opacity-20'}`}
             src="/assets/svgs/Logs.svg"
             alt="Logs"
           />
@@ -88,12 +72,29 @@ function Navbar() {
             navigate('/settings');
             setActive('settings');
           }}
-          className="flex justify-center items-center h-full rounded-r-2xl hover:bg-[#13141F] cursor-pointer"
+          className="flex justify-center items-center h-full border-l border-[#30383E] rounded-r-2xl hover:bg-[#13141F] cursor-pointer"
         >
           <img
-            className={`w-[50%] h-[50%] ${active === 'settings' ? 'opacity-100' : 'opacity-20'}`}
+            className={`w-min h-min ${active === 'settings' ? 'opacity-100' : 'opacity-20'}`}
             src="/assets/svgs/Settings.svg"
             alt="Settings"
+          />
+        </div>
+
+        {/* Home - Positioned absolutely in the center */}
+        <div
+          onClick={() => {
+            navigate('/');
+            setActive('home');
+          }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 
+          flex justify-center items-center rounded-full border border-[#30383E]
+          w-24 h-24 max-w-24 max-h-24 bg-[#0A0B14] hover:bg-[#13141F] cursor-pointer"
+        >
+          <img
+            src="/assets/svgs/Home.svg"
+            alt="Home"
+            className={`w-12 h-12 ${active === 'home' ? 'opacity-100' : 'opacity-20'}`}
           />
         </div>
       </div>

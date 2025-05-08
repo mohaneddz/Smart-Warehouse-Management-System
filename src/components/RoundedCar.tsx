@@ -18,12 +18,15 @@ export function CarouselDemo({ setSelectedImage }: CarouselDemoProps) {
   const [api, setApi] = React.useState<CarouselApi | null>(null);
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
+  const [isAnimating, setIsAnimating] = React.useState(false);
 
   const images = [
-    '/assets/picture/axe.png',
-    '/assets/picture/box.png',
-    '/assets/picture/cable.png',
-    '/assets/picture/shirt.png',
+    '/assets/picture/chemical.svg',
+    '/assets/picture/electronic.svg',
+    '/assets/picture/food.svg',
+    '/assets/picture/material.svg',
+    '/assets/picture/medicine.svg',
+    '/assets/picture/household.svg',
   ];
 
   React.useEffect(() => {
@@ -38,21 +41,64 @@ export function CarouselDemo({ setSelectedImage }: CarouselDemoProps) {
       setCurrent(index);
       setSelectedImage(images[index]);
     });
-  }, [api, setSelectedImage]);
+  }, [api, setSelectedImage, images]);
+
+  const handlePrevious = React.useCallback(() => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    
+    if (current === 0) {
+      // If at the first item, loop to the last item with animation
+      api?.scrollTo(count - 1);
+    } else {
+      api?.scrollPrev();
+    }
+    
+    setTimeout(() => setIsAnimating(false), 500); // Match with transition duration
+  }, [api, current, count, isAnimating]);
+
+  const handleNext = React.useCallback(() => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    
+    if (current === count - 1) {
+      // If at the last item, loop to the first item with animation
+      api?.scrollTo(0);
+    } else {
+      api?.scrollNext();
+    }
+    
+    setTimeout(() => setIsAnimating(false), 500); // Match with transition duration
+  }, [api, current, count, isAnimating]);
 
   return (
     <div className="relative">
-      <Carousel setApi={setApi} className="w-[55%] max-w-xs">
-        <CarouselContent>
+      <Carousel 
+        setApi={setApi} 
+        className="w-[55%] max-w-xs"
+        opts={{
+          loop: true,
+          align: "center",
+        }}
+      >
+        <CarouselContent className="transition-all duration-300 ease-in-out">
           {images.map((imgSrc, index) => (
-            <CarouselItem key={index}>
+            <CarouselItem key={index} className="transition-all duration-300 ease-in-out">
               <div className="p-1">
-                <Card className="rounded-full bg-[#10121E] border-[#30383E] aspect-square overflow-hidden flex items-center justify-center">
-                  <CardContent className="flex items-center justify-center p-6">
+                <Card 
+                  className={`rounded-full bg-[#10121E] border-[#30383E] aspect-square overflow-hidden flex items-center justify-center transition-all duration-300 ease-in-out ${
+                    current === index 
+                      ? "scale-100 opacity-100 transform-gpu" 
+                      : "scale-95 opacity-0 transform-gpu"
+                  }`}
+                >
+                  <CardContent className="flex items-center justify-center">
                     <img
                       src={imgSrc}
                       alt={`Image ${index + 1}`}
-                      className="w-full h-full object-cover rounded-full cursor-pointer"
+                      className={`w-max h-max object-cover rounded-full cursor-pointer transition-all duration-300 ease-in-out transform-gpu ${
+                        current === index ? "opacity-100 scale-100" : "opacity-0 scale-95"
+                      }`}
                     />
                   </CardContent>
                 </Card>
@@ -64,9 +110,8 @@ export function CarouselDemo({ setSelectedImage }: CarouselDemoProps) {
           <Button
             variant="outline"
             size="icon"
-            onClick={() => api?.scrollPrev()}
-            className="h-8 w-8 rounded-full bg-transparent border-none"
-            disabled={!api?.canScrollPrev()}
+            onClick={handlePrevious}
+            className="h-8 w-8 rounded-full bg-transparent border-none transition-opacity duration-300 hover:opacity-80"
           >
             <svg
               width="16"
@@ -84,9 +129,8 @@ export function CarouselDemo({ setSelectedImage }: CarouselDemoProps) {
           <Button
             variant="outline"
             size="icon"
-            onClick={() => api?.scrollNext()}
-            className="h-8 w-8 rounded-full bg-transparent border-none"
-            disabled={!api?.canScrollNext()}
+            onClick={handleNext}
+            className="h-8 w-8 rounded-full bg-transparent border-none transition-opacity duration-300 hover:opacity-80"
           >
             <svg
               width="16"

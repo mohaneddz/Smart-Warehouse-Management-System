@@ -1,5 +1,5 @@
 {
-  "entrance_coords": [100, 50],
+  "entrance_coords": [50, 30],
   "frozen_entrance_coords": [5, 5],
   "max_weight_per_level": [250, 180, 120],
   "shelfs_max_height": [60, 60, 1200],

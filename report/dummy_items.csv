@@ -1,51 +1,51 @@
 id,name,weight,category,slots_required,retrieval_counter,insertion_counter
-item001,Eco Beverages Unit,49.5,beverages,2,3,5
-item002,Value Food Pack,8.3,food,1,82,13
-item003,Eco Household goods Pack,13.3,household goods,2,30,18
-item004,Value Beverages Box,28.4,beverages,2,66,4
-item005,Eco Chemicals Box,34.2,chemicals,2,95,15
-item006,Premium Frozen Box,5.8,frozen,1,23,20
-item007,Eco Frozen Unit,26.4,frozen,2,91,2
-item008,Premium Beverages Pack,1.7,beverages,2,62,5
-item009,Value Food Box,47.1,food,3,74,16
-item010,Value Food Unit,54.2,food,2,10,13
-item011,Premium Beverages Box,21.5,beverages,2,24,7
-item012,Premium Chemicals Unit,65.2,chemicals,1,16,13
-item013,Value Frozen Unit,11.3,frozen,2,85,7
-item014,Premium Beverages Unit,52.3,beverages,2,89,16
-item015,Eco Beverages Pack,19.6,beverages,2,9,17
-item016,Eco Household goods Pack,48.9,household goods,3,81,9
-item017,Value Frozen Box,13.5,frozen,1,10,15
-item018,Premium Beverages Pack,72.1,beverages,3,77,19
-item019,Eco Food Unit,67.8,food,1,20,2
-item020,Value Beverages Box,70.5,beverages,1,40,18
-item021,Value Beverages Pack,74.5,beverages,3,45,15
-item022,Eco Frozen Unit,15.7,frozen,2,68,19
-item023,Value Chemicals Pack,24.1,chemicals,2,30,14
-item024,Eco Food Box,59.3,food,3,85,20
-item025,Eco Food Box,55.9,food,3,63,6
-item026,Eco Chemicals Pack,11.4,chemicals,1,90,9
-item027,Eco Beverages Box,17.6,beverages,2,62,7
-item028,Value Food Unit,74.0,food,3,46,16
-item029,Premium Household goods Box,8.6,household goods,3,79,3
-item030,Value Food Pack,4.2,food,3,83,7
-item031,Value Beverages Box,72.8,beverages,3,29,17
-item032,Premium Frozen Box,37.9,frozen,1,30,18
-item033,Premium Food Pack,59.3,food,1,44,7
-item034,Value Chemicals Pack,67.9,chemicals,2,39,8
-item035,Eco Food Pack,17.4,food,1,61,18
-item036,Eco Frozen Pack,44.7,frozen,1,50,10
-item037,Value Food Unit,73.0,food,1,53,15
-item038,Eco Household goods Pack,45.3,household goods,1,90,7
-item039,Value Beverages Pack,54.9,beverages,2,24,16
-item040,Value Household goods Pack,27.7,household goods,1,68,2
-item041,Eco Food Box,24.1,food,1,97,13
-item042,Premium Household goods Box,72.2,household goods,3,25,9
-item043,Premium Household goods Unit,61.1,household goods,2,69,17
-item044,Eco Beverages Pack,28.7,beverages,2,25,11
-item045,Value Food Box,33.1,food,3,64,15
-item046,Eco Food Unit,53.0,food,2,35,15
-item047,Premium Frozen Pack,68.5,frozen,1,78,13
-item048,Premium Frozen Pack,69.1,frozen,3,83,11
-item049,Premium Chemicals Unit,54.7,chemicals,3,60,15
-item050,Value Frozen Pack,72.4,frozen,3,60,6
+item001,Value Food Box,62.6,food,2,41,3
+item002,Eco Chemicals Box,62.2,chemicals,2,96,13
+item003,Eco Household goods Pack,11.9,household goods,3,90,9
+item004,Value Beverages Box,51.1,beverages,3,38,15
+item005,Value Frozen Unit,30.0,frozen,1,4,7
+item006,Value Chemicals Box,11.3,chemicals,2,99,11
+item007,Eco Food Pack,56.6,food,3,77,20
+item008,Value Household goods Box,47.6,household goods,3,56,12
+item009,Premium Beverages Box,39.9,beverages,1,22,10
+item010,Value Frozen Unit,54.8,frozen,3,4,5
+item011,Eco Beverages Pack,7.9,beverages,1,36,13
+item012,Value Beverages Pack,56.8,beverages,2,39,11
+item013,Eco Food Unit,16.4,food,2,6,9
+item014,Premium Household goods Unit,21.8,household goods,2,85,9
+item015,Value Food Box,58.8,food,1,92,8
+item016,Premium Beverages Pack,34.4,beverages,2,16,14
+item017,Value Food Unit,29.6,food,1,72,5
+item018,Eco Household goods Unit,56.9,household goods,1,42,2
+item019,Premium Food Unit,49.5,food,3,56,6
+item020,Eco Chemicals Unit,28.8,chemicals,3,67,18
+item021,Value Household goods Unit,55.2,household goods,1,47,4
+item022,Value Chemicals Pack,40.1,chemicals,3,82,17
+item023,Premium Chemicals Box,49.4,chemicals,2,3,14
+item024,Value Household goods Unit,43.0,household goods,3,70,20
+item025,Value Household goods Unit,57.3,household goods,2,52,9
+item026,Premium Household goods Box,22.2,household goods,1,73,15
+item027,Eco Food Pack,20.5,food,2,74,20
+item028,Value Beverages Pack,24.3,beverages,1,94,14
+item029,Eco Food Box,2.3,food,1,12,15
+item030,Value Food Unit,61.5,food,2,28,3
+item031,Value Food Unit,56.9,food,3,53,12
+item032,Eco Food Box,28.6,food,1,26,4
+item033,Premium Chemicals Unit,73.8,chemicals,2,49,16
+item034,Value Chemicals Pack,34.2,chemicals,1,55,16
+item035,Eco Beverages Pack,58.3,beverages,3,72,8
+item036,Eco Beverages Unit,1.9,beverages,1,55,8
+item037,Premium Chemicals Pack,53.9,chemicals,1,18,8
+item038,Premium Chemicals Box,51.8,chemicals,2,53,16
+item039,Eco Frozen Unit,42.2,frozen,3,70,17
+item040,Value Household goods Unit,50.4,household goods,2,85,19
+item041,Premium Frozen Box,74.6,frozen,3,47,12
+item042,Value Household goods Unit,19.8,household goods,2,53,14
+item043,Value Beverages Unit,28.9,beverages,3,5,7
+item044,Premium Household goods Box,54.5,household goods,2,50,3
+item045,Premium Chemicals Unit,63.2,chemicals,3,62,7
+item046,Value Food Pack,31.1,food,1,52,13
+item047,Value Chemicals Pack,13.4,chemicals,2,51,20
+item048,Premium Beverages Pack,21.4,beverages,3,51,19
+item049,Value Chemicals Unit,22.0,chemicals,3,40,16
+item050,Eco Beverages Unit,18.0,beverages,2,7,1

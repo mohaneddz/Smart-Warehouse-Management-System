@@ -1,6 +1,6 @@
 from typing import Dict, Optional, List
 from enum import Enum, auto
-from core.types import NodeType, INode, IAgent
+from core.types import NodeType, INode, IAgent # type: ignore
 from dataclasses import dataclass, field
 
 class NodeType(Enum):

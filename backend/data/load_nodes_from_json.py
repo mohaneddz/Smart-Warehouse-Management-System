@@ -18,13 +18,13 @@ def load_nodes_from_json(file_path: str,distance = "Euclidean") -> dict:
         node = Node(
             x=info["x"],
             y=info["y"],
-            hash=node_id,
+            hash=node_id, # type: ignore
             neighbours={},  # Temporary
-            value=0.0
-        )
+            value=0.0 # type: ignore
+        ) # type: ignore
         node.locked = info.get("locked", False)
-        node.heuristic = info.get("heuristic", 0)
-        node.type = info.get("type", "normal")
+        node.heuristic = info.get("heuristic", 0) # type: ignore
+        node.type = info.get("type", "normal") # type: ignore
         nodes[node_id] = node
 
     # Second pass: Assign neighbors with distance

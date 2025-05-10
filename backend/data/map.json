@@ -2357,7 +2357,7 @@
     "N8-15": {
       "x": 738,
       "y": 335,
-      "neighbours": ["N7-14", "N7-15", "N8-14", "N9-14", "N9-15"]
+      "neighbours": ["N7-14", "N8-14", "N9-14", "N9-15"]
     },
     "N8-16": {
       "x": 781,
@@ -2525,7 +2525,7 @@
     "N9-12": {
       "x": 664,
       "y": 355,
-      "neighbours": ["N8-11", "N8-12", "N9-11", "N10-11", "N10-12"]
+      "neighbours": ["N8-11", "N8-12", "N9-11", "N10-11"]
     },
     "N9-13": {
       "x": 706,
@@ -3281,7 +3281,7 @@
     "N13-8": {
       "x": 560,
       "y": 444,
-      "neighbours": ["N12-7", "N12-8", "N13-9", "N14-8", "N14-9"],
+      "neighbours": ["N12-7", "N12-8", "N13-9"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -3296,8 +3296,8 @@
         "N12-7",
         "N13-8",
         "N13-10",
-        "N14-8",
-        "N14-9",
+        
+  
         "N14-10"
       ],
       "locked": false,
@@ -3308,7 +3308,7 @@
     "N13-10": {
       "x": 592,
       "y": 444,
-      "neighbours": ["N12-9", "N12-8", "N13-9", "N14-9", "N14-10"],
+      "neighbours": ["N12-9", "N12-8", "N13-9"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -3329,12 +3329,12 @@
       "neighbours": [
         "N12-11",
         "N12-12",
-        "N12-13",
+        
         "N13-11",
         "N13-13",
         "N14-11",
-        "N14-12",
-        "N14-13"
+        "N14-12"
+       
       ],
       "locked": false,
       "is_goal": false,
@@ -3452,7 +3452,7 @@
     "N13-22": {
       "x": 883,
       "y": 444,
-      "neighbours": ["N12-21", "N12-22", "N13-21", "N14-21", "N14-22"],
+      "neighbours": ["N12-21", "N13-21", "N14-21", "N14-22"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -3561,7 +3561,7 @@
     "N14-8": {
       "x": 632,
       "y": 464,
-      "neighbours": ["N13-8", "N13-9", "N14-9", "N15-8", "N15-9"],
+      "neighbours": ["N13-8", "N13-9", "N14-9",  "N15-9"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -3633,7 +3633,7 @@
     "N14-14": {
       "x": 781,
       "y": 464,
-      "neighbours": ["N13-14", "N13-15", "N14-15", "N15-14", "N15-15"],
+      "neighbours": ["N13-14", "N14-15", "N15-14", "N15-15"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -3790,9 +3790,7 @@
       "neighbours": [
         "N14-3",
         "N14-4",
-        "N14-5",
         "N15-3",
-        "N15-5",
         "N16-3",
         "N16-4"
       
@@ -4048,7 +4046,7 @@
     "N16-4": {
       "x": 520,
       "y": 504,
-      "neighbours": ["N15-3", "N15-4", "N15-5", "N16-3"],
+      "neighbours": ["N15-3", "N15-4",  "N16-3"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -4057,7 +4055,7 @@
     "N16-5": {
       "x": 560,
       "y": 504,
-      "neighbours": ["N15-5", "N15-6", "N16-6", "N17-5", "N17-6"],
+      "neighbours": ["N15-5", "N15-6", "N16-6",  "N17-6"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -4093,7 +4091,7 @@
     "N16-8": {
       "x": 632,
       "y": 504,
-      "neighbours": ["N15-8", "N15-9", "N16-9", "N17-8", "N17-9"],
+      "neighbours": ["N15-8", "N15-9", "N16-9"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -4108,9 +4106,10 @@
         "N15-10",
         "N16-8",
         "N16-10",
-        "N17-8",
-        "N17-9",
-        "N17-10"
+        "N17-12",
+        "N17-13",
+        "N17-11"
+
       ],
       "locked": false,
       "is_goal": false,
@@ -4155,7 +4154,7 @@
     "N16-13": {
       "x": 738,
       "y": 504,
-      "neighbours": ["N15-12", "N15-13", "N16-12", "N17-12"],
+      "neighbours": ["N15-12", "N15-13", "N16-12"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -4398,7 +4397,7 @@
     "N17-13": {
       "x": 664,
       "y": 524,
-      "neighbours": ["N16-12", "N16-13", "N17-12", "N18-14", "N18-13"],
+      "neighbours": [ "N17-12", "N18-14", "N18-13"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -4419,7 +4418,7 @@
       "neighbours": [
         "N16-14",
         "N16-15",
-        "N16-16",
+        
         "N17-14",
         "N17-16",
         "N18-16",
@@ -4453,9 +4452,9 @@
       "x": 797,
       "y": 524,
       "neighbours": [
-        "N16-17",
-        "N16-18",
-        "N16-19",
+        "N16-14",
+        "N16-15",
+        "N16-16",
         "N17-17",
         "N17-19",
         "N18-20",
@@ -4506,7 +4505,7 @@
     "N17-22": {
       "x": 883,
       "y": 524,
-      "neighbours": ["N16-21", "N16-22", "N17-21", "N18-25", "N18-26"],
+      "neighbours": [ "N16-22", "N17-21", "N18-25", "N18-26"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -5858,7 +5857,7 @@
     "N22-6": {
       "x": 520,
       "y": 633,
-      "neighbours": ["N21-5", "N21-6", "N21-7", "N22-5", "N23-6", "N23-7"],
+      "neighbours": ["N21-5", "N21-6",  "N22-5", "N23-6", "N23-7"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -6723,8 +6722,8 @@
         "N26-1",
         "N26-3",
         "N27-1",
-        "N27-2",
-        "N27-3"
+        "N27-2"
+        
       ],
       "locked": false,
       "is_goal": false,
@@ -6759,8 +6758,7 @@
         "N26-4",
         "N26-6",
         "N27-4",
-        "N27-5",
-        "N27-6"
+        "N27-5"
       ],
       "locked": false,
       "is_goal": false,
@@ -6776,8 +6774,8 @@
         "N26-5",
         "N26-7",
         "N27-5",
-        "N27-6",
-        "N27-7"
+        "N27-6"
+        
       ],
       "locked": false,
       "is_goal": false,
@@ -6787,7 +6785,7 @@
     "N26-7": {
       "x": 752,
       "y": 714,
-      "neighbours": ["N26-6", "N26-8", "N27-6", "N27-7", "N27-8"],
+      "neighbours": ["N26-6", "N26-8", "N27-6", "N27-7"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -6796,7 +6794,7 @@
     "N26-8": {
       "x": 770,
       "y": 714,
-      "neighbours": ["N26-7", "N26-9", "N27-7", "N27-8", "N27-9"],
+      "neighbours": ["N26-7", "N26-9", "N27-7", "N27-8"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -6823,7 +6821,7 @@
     "N26-11": {
       "x": 824,
       "y": 714,
-      "neighbours": ["N26-10", "N26-12", "N27-10", "N27-11", "N27-12"],
+      "neighbours": ["N26-10", "N26-12", "N27-10", "N27-11"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -6856,8 +6854,8 @@
         "N26-12",
         "N26-14",
         "N27-12",
-        "N27-13",
-        "N27-14"
+        "N27-13"
+       
       ],
       "locked": false,
       "is_goal": false,
@@ -6910,6 +6908,281 @@
       "type": "center"
     },
 
+<<<<<<< HEAD
+=======
+    "N27-1": {
+      "x": 403,
+      "y": 734,
+      "neighbours": ["N26-1", "N26-2", "N27-2", "N28-2", "N28-1"],
+      "locked": false,
+      "is_goal": false,
+      "heuristic": 0,
+      "type": "center"
+    },
+    "N27-2": {
+      "x": 423,
+      "y": 734,
+      "neighbours": [
+        "N26-1",
+        "N26-2",
+        "N26-3",
+        "N27-1",
+        "N27-3",
+        "N28-1",
+        "N28-2",
+        "N28-3"
+      ],
+      "locked": false,
+      "is_goal": false,
+      "heuristic": 0,
+      "type": "center"
+    },
+    "N27-3": {
+      "x": 443,
+      "y": 734,
+      "neighbours": [
+        "N26-2",
+        "N26-3",
+        "N26-4",
+        "N27-2",
+        "N27-4",
+        "N28-2",
+        "N28-3",
+        "N28-4"
+      ],
+      "locked": false,
+      "is_goal": false,
+      "heuristic": 0,
+      "type": "center"
+    },
+    "N27-4": {
+      "x": 463,
+      "y": 734,
+      "neighbours": [
+        "N26-3",
+        "N26-4",
+        "N26-5",
+        "N27-3",
+        "N27-5",
+        "N28-3",
+        "N28-4",
+        "N28-5"
+      ],
+      "locked": false,
+      "is_goal": false,
+      "heuristic": 0,
+      "type": "center"
+    },
+    "N27-5": {
+      "x": 483,
+      "y": 734,
+      "neighbours": [
+        "N26-4",
+        "N26-5",
+        "N26-6",
+        "N27-4",
+        "N27-6",
+        "N28-4",
+        "N28-5",
+        "N28-6"
+      ],
+      "locked": false,
+      "is_goal": false,
+      "heuristic": 0,
+      "type": "center"
+    },
+    "N27-6": {
+      "x": 521,
+      "y": 734,
+      "neighbours": [
+        "N26-5",
+        "N26-6",
+        "N26-7",
+        "N27-5",
+        "N27-7",
+        "N28-5",
+        "N28-6",
+        "N28-7"
+      ],
+      "locked": false,
+      "is_goal": false,
+      "heuristic": 0,
+      "type": "center"
+    },
+    "N27-7": {
+      "x": 541,
+      "y": 734,
+      "neighbours": [
+        "N26-6",
+        "N26-7",
+        "N26-8",
+        "N27-6",
+        "N27-8",
+        "N28-6",
+        "N28-7",
+        "N28-8"
+      ],
+      "locked": false,
+      "is_goal": false,
+      "heuristic": 0,
+      "type": "center"
+    },
+    "N27-8": {
+      "x": 561,
+      "y": 734,
+      "neighbours": [
+        "N26-7",
+        "N26-8",
+        "N26-9",
+        "N27-7",
+        "N27-9",
+        "N28-7",
+        "N28-8",
+        "N28-9"
+      ],
+      "locked": false,
+      "is_goal": false,
+      "heuristic": 0,
+      "type": "center"
+    },
+    "N27-9": {
+      "x": 581,
+      "y": 734,
+      "neighbours": [
+        "N26-8",
+        "N26-9",
+        "N26-10",
+        "N27-8",
+        "N27-10",
+        "N28-8",
+        "N28-9",
+        "N28-10"
+      ],
+      "locked": false,
+      "is_goal": false,
+      "heuristic": 0,
+      "type": "center"
+    },
+    "N27-10": {
+      "x": 601,
+      "y": 734,
+      "neighbours": [
+        "N26-9",
+        "N26-10",
+        "N26-11",
+        "N27-9",
+        "N27-11",
+        "N28-9",
+        "N28-10",
+        "N28-11"
+      ],
+      "locked": false,
+      "is_goal": false,
+      "heuristic": 0,
+      "type": "center"
+    },
+    "N27-11": {
+      "x": 634,
+      "y": 734,
+      "neighbours": [
+        "N26-10",
+        "N26-11",
+        "N26-12",
+        "N27-10",
+        "N27-12",
+        "N28-10",
+        "N28-11",
+        "N28-12"
+      ],
+      "locked": false,
+      "is_goal": false,
+      "heuristic": 0,
+      "type": "center"
+    },
+    "N27-12": {
+      "x": 654,
+      "y": 734,
+      "neighbours": [
+        "N26-11",
+        "N26-12",
+        "N26-13",
+        "N27-11",
+        "N27-13",
+        "N28-11",
+        "N28-12",
+        "N28-13"
+      ],
+      "locked": false,
+      "is_goal": false,
+      "heuristic": 0,
+      "type": "center"
+    },
+    
+    "N27-14": {
+      "x": 694,
+      "y": 734,
+      "neighbours": [
+        "N26-13",
+        "N26-14",
+        "N26-15",
+        "N27-13",
+        "N27-15",
+        "N28-13",
+        "N28-14",
+        "N28-15"
+      ],
+      "locked": false,
+      "is_goal": false,
+      "heuristic": 0,
+      "type": "center"
+    },
+    "N27-15": {
+      "x": 714,
+      "y": 734,
+      "neighbours": [
+        "N26-14",
+        "N26-15",
+        "N26-16",
+        "N27-14",
+        "N27-16",
+        "N28-14",
+        "N28-15",
+        "N28-16"
+      ],
+      "locked": false,
+      "is_goal": false,
+      "heuristic": 0,
+      "type": "center"
+    },
+    "N27-16": {
+      "x": 747,
+      "y": 734,
+      "neighbours": [
+        "N26-15",
+        "N26-16",
+        "N26-17",
+        "N27-15",
+        "N27-17",
+        "N28-15",
+        "N28-16",
+        "N28-17"
+      ],
+      "locked": false,
+      "is_goal": false,
+      "heuristic": 0,
+      "type": "center"
+    },
+    "N27-17": {
+      "x": 767,
+      "y": 734,
+      "neighbours": ["N26-16", "N26-17", "N27-16", "N28-17", "N28-16"],
+      "locked": false,
+      "is_goal": false,
+      "heuristic": 0,
+      "type": "center"
+    },
+
+>>>>>>> fb20acd5ce5975055539fd4f9b9f999aae10d700
     "N28-1": {
       "x": 403,
       "y": 768,

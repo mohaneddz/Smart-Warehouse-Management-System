@@ -1325,7 +1325,7 @@
     "N3-6": {
       "x": 520,
       "y": 226,
-      "neighbours": ["N2-6", "N2-7", "N4-7", "N4-6", "N3-5"]
+      "neighbours": ["N2-6", "N2-7", "N4-6","N3-6", "N3-5"]
     },
     "N3-7": {
       "x": 560,
@@ -1373,7 +1373,7 @@
     "N3-12": {
       "x": 664,
       "y": 226,
-      "neighbours": ["N2-14", "N2-15", "N3-13", "N4-12", "N4-11"]
+      "neighbours": ["N2-14", "N2-15", "N3-11", "N4-12", "N4-11"]
     },
     "N3-13": {
       "x": 706,
@@ -2890,7 +2890,7 @@
     "N11-10": {
       "x": 632,
       "y": 395,
-      "neighbours": ["N10-10", "N10-11", "N11-11", "N12-10", "N12-11"]
+      "neighbours": [ "N10-11", "N11-11", "N12-10", "N12-11"]
     },
     "N11-11": {
       "x": 648,
@@ -3344,7 +3344,7 @@
     "N13-13": {
       "x": 664,
       "y": 444,
-      "neighbours": ["N12-12", "N12-13", "N13-12", "N14-12", "N14-13"],
+      "neighbours": ["N12-12", "N12-11", "N13-12", "N14-9", "N14-10"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -3461,7 +3461,7 @@
     "N13-23": {
       "x": 920,
       "y": 444,
-      "neighbours": ["N12-23", "N12-24", "N13-24", "N14-23", "N14-24"],
+      "neighbours": ["N12-23", "N12-24", "N13-24"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -3473,12 +3473,9 @@
       "neighbours": [
         "N12-23",
         "N12-24",
-        "N12-25",
         "N13-23",
-        "N13-25",
-        "N14-23",
-        "N14-24",
-        "N14-25"
+        "N13-25"
+        
       ],
       "locked": false,
       "is_goal": false,
@@ -3488,15 +3485,16 @@
     "N13-25": {
       "x": 952,
       "y": 444,
-      "neighbours": ["N12-24", "N12-25", "N13-24", "N14-24", "N14-25"],
+      "neighbours": ["N12-24", "N13-24"],
       "locked": false,
       "is_goal": false,
+    
       "heuristic": 0,
       "type": "center"
     },
     "N14-1": {
       "x": 416,
-      "y": 646,
+      "y": 464,
       "neighbours": ["N14-2", "N15-1", "N15-2"],
       "locked": false,
       "is_goal": false,
@@ -3505,7 +3503,7 @@
     },
     "N14-2": {
       "x": 432,
-      "y": 646,
+      "y": 464,
       "neighbours": ["N14-1", "N14-3", "N15-1", "N15-2", "N15-3"],
       "locked": false,
       "is_goal": false,
@@ -3514,7 +3512,7 @@
     },
     "N14-3": {
       "x": 504,
-      "y": 646,
+      "y":464,
       "neighbours": ["N14-1", "N14-3", "N15-1", "N15-2", "N15-3"],
       "locked": false,
       "is_goal": false,
@@ -3523,7 +3521,7 @@
     },
     "N14-4": {
       "x": 520,
-      "y": 646,
+      "y": 464,
       "neighbours": ["N14-2", "N14-4", "N15-2", "N15-3", "N15-4"],
       "locked": false,
       "is_goal": false,
@@ -3532,7 +3530,7 @@
     },
     "N14-5": {
       "x": 560,
-      "y": 646,
+      "y": 464,
       "neighbours": ["N13-5", "N13-6", "N14-6", "N15-5", "N15-6"],
       "locked": false,
       "is_goal": false,
@@ -3541,7 +3539,7 @@
     },
     "N14-6": {
       "x": 576,
-      "y": 646,
+      "y": 464,
       "neighbours": [
         "N13-5",
         "N13-6",
@@ -3559,7 +3557,7 @@
     },
     "N14-7": {
       "x": 592,
-      "y": 646,
+      "y": 464,
       "neighbours": ["N13-6", "N13-7", "N14-6", "N15-6", "N15-7"],
       "locked": false,
       "is_goal": false,
@@ -3568,7 +3566,7 @@
     },
     "N14-8": {
       "x": 632,
-      "y": 646,
+      "y": 464,
       "neighbours": ["N13-8", "N13-9", "N14-9", "N15-8", "N15-9"],
       "locked": false,
       "is_goal": false,
@@ -3577,11 +3575,11 @@
     },
     "N14-9": {
       "x": 648,
-      "y": 646,
+      "y": 464,
       "neighbours": [
         "N13-8",
         "N13-9",
-        "N13-10",
+      
         "N14-8",
         "N14-10",
         "N15-8",
@@ -3595,7 +3593,7 @@
     },
     "N14-10": {
       "x": 664,
-      "y": 646,
+      "y": 464,
       "neighbours": ["N13-9", "N13-10", "N14-9", "N15-9", "N15-10"],
       "locked": false,
       "is_goal": false,
@@ -3604,7 +3602,7 @@
     },
     "N14-11": {
       "x": 706,
-      "y": 646,
+      "y": 464,
       "neighbours": ["N13-11", "N13-12", "N14-12", "N15-11", "N15-12"],
       "locked": false,
       "is_goal": false,
@@ -3613,16 +3611,16 @@
     },
     "N14-12": {
       "x": 722,
-      "y": 646,
+      "y": 464,
       "neighbours": [
         "N13-11",
         "N13-12",
         "N13-13",
         "N14-11",
         "N14-13",
-        "N15-11",
-        "N15-12",
-        "N15-13"
+       
+        "N15-8",
+        "N15-9"
       ],
       "locked": false,
       "is_goal": false,
@@ -3631,7 +3629,7 @@
     },
     "N14-13": {
       "x": 738,
-      "y": 646,
+      "y": 464,
       "neighbours": ["N13-12", "N13-13", "N14-12", "N15-12", "N15-13"],
       "locked": false,
       "is_goal": false,
@@ -3640,7 +3638,7 @@
     },
     "N14-14": {
       "x": 781,
-      "y": 646,
+      "y": 464,
       "neighbours": ["N13-14", "N13-15", "N14-15", "N15-14", "N15-15"],
       "locked": false,
       "is_goal": false,
@@ -3649,16 +3647,16 @@
     },
     "N14-15": {
       "x": 797,
-      "y": 646,
+      "y": 464,
       "neighbours": [
         "N13-14",
         "N13-15",
         "N13-16",
         "N14-14",
         "N14-16",
-        "N15-14",
-        "N15-15",
-        "N15-16"
+        "N15-9",
+        "N15-8",
+        "N15-10"
       ],
       "locked": false,
       "is_goal": false,
@@ -3667,7 +3665,7 @@
     },
     "N14-16": {
       "x": 813,
-      "y": 646,
+      "y": 464,
       "neighbours": ["N13-15", "N13-16", "N14-15", "N15-15", "N15-16"],
       "locked": false,
       "is_goal": false,
@@ -3676,7 +3674,7 @@
     },
     "N14-17": {
       "x": 851,
-      "y": 646,
+      "y": 464,
       "neighbours": ["N13-17", "N13-18", "N14-18", "N15-17", "N15-18"],
       "locked": false,
       "is_goal": false,
@@ -3685,7 +3683,7 @@
     },
     "N14-18": {
       "x": 867,
-      "y": 646,
+      "y": 464,
       "neighbours": [
         "N13-17",
         "N13-18",
@@ -3703,7 +3701,7 @@
     },
     "N14-19": {
       "x": 883,
-      "y": 646,
+      "y": 464,
       "neighbours": ["N13-18", "N13-19", "N14-18", "N15-18", "N15-19"],
       "locked": false,
       "is_goal": false,
@@ -3712,7 +3710,7 @@
     },
     "N14-20": {
       "x": 920,
-      "y": 646,
+      "y": 464,
       "neighbours": ["N13-20", "N13-21", "N14-21", "N15-20", "N15-21"],
       "locked": false,
       "is_goal": false,
@@ -3721,7 +3719,7 @@
     },
     "N14-21": {
       "x": 936,
-      "y": 646,
+      "y": 464,
       "neighbours": [
         "N13-20",
         "N13-21",
@@ -3739,7 +3737,7 @@
     },
     "N14-22": {
       "x": 952,
-      "y": 646,
+      "y": 464,
       "neighbours": ["N13-21", "N13-22", "N14-21", "N15-21", "N15-22"],
       "locked": false,
       "is_goal": false,
@@ -3748,7 +3746,7 @@
     },
 
     "N15-1": {
-      "x": 738,
+      "x": 416,
       "y": 484,
       "neighbours": ["N14-1", "N14-2", "N15-2", "N16-1", "N16-2"],
       "locked": false,
@@ -3757,7 +3755,7 @@
       "type": "center"
     },
     "N15-2": {
-      "x": 781,
+      "x": 432,
       "y": 484,
       "neighbours": [
         "N14-1",
@@ -3775,7 +3773,7 @@
       "type": "center"
     },
     "N15-3": {
-      "x": 797,
+      "x": 504,
       "y": 484,
       "neighbours": [
         "N14-2",
@@ -3793,7 +3791,7 @@
       "type": "center"
     },
     "N15-4": {
-      "x": 813,
+      "x": 520,
       "y": 484,
       "neighbours": [
         "N14-3",
@@ -4153,8 +4151,7 @@
         "N16-11",
         "N16-13",
         "N17-11",
-        "N17-12",
-        "N17-13"
+        "N17-12"
       ],
       "locked": false,
       "is_goal": false,
@@ -4164,7 +4161,7 @@
     "N16-13": {
       "x": 738,
       "y": 504,
-      "neighbours": ["N15-12", "N15-13", "N16-12", "N17-12", "N17-13"],
+      "neighbours": ["N15-12", "N15-13", "N16-12", "N17-12"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -4524,7 +4521,7 @@
     "N17-23": {
       "x": 912,
       "y": 524,
-      "neighbours": ["N16-23", "N16-24", "N17-24", "N18-28", "N18-29"],
+      "neighbours": [  "N17-24", "N18-28", "N18-29"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -4534,9 +4531,9 @@
       "x": 928,
       "y": 524,
       "neighbours": [
-        "N16-23",
-        "N16-24",
-        "N16-25",
+      
+        
+        
         "N17-23",
         "N17-25",
         "N18-28",
@@ -4551,7 +4548,7 @@
     "N17-25": {
       "x": 945,
       "y": 524,
-      "neighbours": ["N16-24", "N16-25", "N17-24", "N18-29", "N18-30"],
+      "neighbours": [  "N17-24", "N18-29", "N18-30"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -4967,9 +4964,9 @@
         "N17-23",
         "N17-24",
         "N18-29",
-        "N18-31",
+        
         "N19-30",
-        "N19-31",
+       
         "N19-29"
       ],
       "locked": false,
@@ -4985,10 +4982,10 @@
         "N17-24",
         "N17-25",
         "N18-30",
-        "N18-32",
-        "N19-30",
-        "N19-31",
-        "N19-32"
+        
+        "N19-30"
+        
+      
       ],
       "locked": false,
       "is_goal": false,
@@ -4998,7 +4995,7 @@
     "N18-30": {
       "x": 945,
       "y": 553,
-      "neighbours": ["N17-25", "N17-24", "N18-31", "N19-31", "N19-32"],
+      "neighbours": ["N17-25", "N17-24"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -5313,10 +5310,11 @@
       "y": 573,
       "neighbours": [
         "N18-28",
+        "N19-26",
         "N18-29",
         "N18-30",
         "N19-28",
-        "N19-30",
+        
         "N20-11",
         "N20-12"
       ],
@@ -5331,9 +5329,9 @@
       "neighbours": [
         "N18-29",
         "N18-30",
-        "N18-31",
+       
         "N19-29",
-        "N19-31",
+    
         "N20-11",
         "N20-12",
         "N20-13"
@@ -5348,10 +5346,10 @@
       "y": 573,
       "neighbours": [
         "N18-30",
-        "N18-31",
-        "N18-32",
+       
+     
         "N19-30",
-        "N19-32",
+        
         "N20-12",
         "N20-13",
         "N20-14"
@@ -5364,7 +5362,7 @@
     "N19-30": {
       "x": 945,
       "y": 573,
-      "neighbours": ["N18-31", "N18-32", "N19-31", "N20-14", "N20-13"],
+      "neighbours": [  "N20-14", "N20-13"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -5519,7 +5517,7 @@
       "neighbours": [
         "N19-29",
         "N19-30",
-        "N19-31",
+        
         "N20-11",
         "N20-13",
         "N21-21",
@@ -5535,8 +5533,8 @@
       "x": 930,
       "y": 593,
       "neighbours": [
-        "N19-32",
-        "N19-31",
+        
+        
         "N19-30",
         "N20-12",
         "N20-14",
@@ -5552,7 +5550,7 @@
     "N20-14": {
       "x": 945,
       "y": 593,
-      "neighbours": ["N19-31", "N19-32", "N20-13", "N21-23", "N21-24"],
+      "neighbours": [ "N20-13", "N21-23", "N21-24"],
       "locked": false,
       "is_goal": false,
       "heuristic": 0,
@@ -5908,7 +5906,7 @@
         "N21-6",
         "N21-7",
         "N22-5",
-        "N22-7",
+      
         "N23-6",
         "N23-7"
       ],
@@ -6583,7 +6581,7 @@
         "N23-17",
         "N23-18",
         "N24-18",
-        "N25-16",
+        
         "N25-10",
         "N25-11"
       ],
@@ -8134,160 +8132,163 @@
       "type": "center"
     }
   },
-  "racks": {
-    "A1": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [894, 221],
-      "center_cords": [894, 266],
-      "end_cords": [894, 312]
-    },
-    "A2": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [894, 330],
-      "center_cords": [894, 375],
-      "end_cords": [894, 421]
-    },
-    "A3": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [894, 440],
-      "center_cords": [894, 484],
-      "end_cords": [894, 530]
-    },
-    "B1": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [824, 221],
-      "center_cords": [824, 266],
-      "end_cords": [824, 312]
-    },
-    "B2": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [824, 330],
-      "center_cords": [824, 375],
-      "end_cords": [824, 421]
-    },
-    "B3": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [824, 440],
-      "center_cords": [824, 484],
-      "end_cords": [824, 530]
-    },
-    "C1": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [754, 221],
-      "center_cords": [754, 266],
-      "end_cords": [754, 312]
-    },
-    "C2": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [754, 330],
-      "center_cords": [754, 375],
-      "end_cords": [754, 421]
-    },
-    "C3": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [754, 440],
-      "center_cords": [754, 484],
-      "end_cords": [754, 530]
-    },
-    "D1": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [678, 221],
-      "center_cords": [678, 266],
-      "end_cords": [678, 312]
-    },
-    "D2": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [678, 330],
-      "center_cords": [678, 375],
-      "end_cords": [678, 421]
-    },
-    "D3": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [678, 440],
-      "center_cords": [678, 484],
-      "end_cords": [678, 530]
-    },
-    "E1": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [602, 221],
-      "center_cords": [602, 266],
-      "end_cords": [602, 312]
-    },
-    "E2": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [602, 330],
-      "center_cords": [602, 375],
-      "end_cords": [602, 421]
-    },
-    "E3": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [602, 440],
-      "center_cords": [602, 484],
-      "end_cords": [602, 530]
-    },
-    "F1": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [532, 221],
-      "center_cords": [532, 266],
-      "end_cords": [532, 312]
-    },
-    "F2": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [532, 330],
-      "center_cords": [532, 375],
-      "end_cords": [532, 421]
-    },
-    "F3": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [532, 440],
-      "center_cords": [532, 484],
-      "end_cords": [532, 530]
-    },
-    "G1": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [461, 221],
-      "center_cords": [461, 266],
-      "end_cords": [461, 312]
-    },
-    "G2": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [461, 330],
-      "center_cords": [461, 375],
-      "end_cords": [461, 421]
-    },
-    "G3": {
-      "is_frozen": false,
-      "current_capacity": 100,
-      "start_cords": [461, 547],
-      "center_cords": [461, 593],
-      "end_cords": [461, 639]
-    },
+  
+
+    "racks": {
+      "A1": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [902, 221],
+        "center_cords": [902, 266],
+        "end_cords": [902, 312]
+      },
+      "A2": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [902, 330],
+        "center_cords": [902, 375],
+        "end_cords": [902, 421]
+      },
+      "A3": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [902, 440],
+        "center_cords": [902, 484],
+        "end_cords": [902, 530]
+      },
+      "B1": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [832, 221],
+        "center_cords": [832, 266],
+        "end_cords": [832, 312]
+      },
+      "B2": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [832, 330],
+        "center_cords": [832, 375],
+        "end_cords": [832, 421]
+      },
+      "B3": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [832, 440],
+        "center_cords": [832, 484],
+        "end_cords": [832, 530]
+      },
+      "C1": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [762, 221],
+        "center_cords": [762, 266],
+        "end_cords": [762, 312]
+      },
+      "C2": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [762, 330],
+        "center_cords": [762, 375],
+        "end_cords": [762, 421]
+      },
+      "C3": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [762, 440],
+        "center_cords": [762, 484],
+        "end_cords": [762, 530]
+      },
+      "D1": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [686, 221],
+        "center_cords": [686, 266],
+        "end_cords": [686, 312]
+      },
+      "D2": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [686, 330],
+        "center_cords": [686, 375],
+        "end_cords": [686, 421]
+      },
+      "D3": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [686, 440],
+        "center_cords": [686, 484],
+        "end_cords": [686, 530]
+      },
+      "E1": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [610, 221],
+        "center_cords": [610, 266],
+        "end_cords": [610, 312]
+      },
+      "E2": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [610, 330],
+        "center_cords": [610, 375],
+        "end_cords": [610, 421]
+      },
+      "E3": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [610, 440],
+        "center_cords": [610, 484],
+        "end_cords": [610, 530]
+      },
+      "F1": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [540, 221],
+        "center_cords": [540, 266],
+        "end_cords": [540, 312]
+      },
+      "F2": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [540, 330],
+        "center_cords": [540, 375],
+        "end_cords": [540, 421]
+      },
+      "F3": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [540, 440],
+        "center_cords": [540, 484],
+        "end_cords": [540, 530]
+      },
+      "G1": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [469, 221],
+        "center_cords": [469, 266],
+        "end_cords": [469, 312]
+      },
+      "G2": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [469, 330],
+        "center_cords": [469, 375],
+        "end_cords": [469, 421]
+      },
+      "G3": {
+        "is_frozen": false,
+        "current_capacity": 100,
+        "start_cords": [469, 547],
+        "center_cords": [469, 593],
+        "end_cords": [469, 639]
+      },
+  
     "H1": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [897, 651],
-      "center_cords": [897, 697],
-      "end_cords": [897, 742]
+      "start_cords": [900, 651],
+      "center_cords": [900, 697],
+      "end_cords": [900, 742]
     },
     "H3": {
       "is_frozen": false,
@@ -8299,51 +8300,51 @@
     "H2": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [792, 593],
-      "center_cords": [838, 593],
-      "end_cords": [993, 593]
+      "start_cords": [792, 594],
+      "center_cords": [837, 594],
+      "end_cords": [883, 594]
     },
     "H4": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [665, 651],
-      "center_cords": [665, 697],
-      "end_cords": [665, 742]
+      "start_cords": [675, 651],
+      "center_cords": [675, 697],
+      "end_cords": [675, 742]
     },
     "I5": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [400, 812],
-      "center_cords": [446, 812],
-      "end_cords": [491, 812]
+      "start_cords": [400, 815],
+      "center_cords": [446, 815],
+      "end_cords": [491, 815]
     },
     "I4": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [514, 812],
-      "center_cords": [560, 812],
-      "end_cords": [605, 812]
+      "start_cords": [514, 815],
+      "center_cords": [560, 815],
+      "end_cords": [605, 815]
     },
     "I3": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [628, 812],
-      "center_cords": [674, 812],
-      "end_cords": [719, 812]
+      "start_cords": [628, 815],
+      "center_cords": [674, 815],
+      "end_cords": [719, 815]
     },
     "I2": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [742, 812],
-      "center_cords": [788, 812],
-      "end_cords": [833, 812]
+      "start_cords": [742, 815],
+      "center_cords": [788, 815],
+      "end_cords": [833, 815]
     },
     "I1": {
       "is_frozen": false,
       "current_capacity": 100,
-      "start_cords": [856, 812],
-      "center_cords": [902, 812],
-      "end_cords": [947, 812]
+      "start_cords": [856, 815],
+      "center_cords": [902, 815],
+      "end_cords": [947, 815]
     },
     "J1": {
       "is_frozen": true,
@@ -8355,9 +8356,9 @@
     "J2": {
       "is_frozen": true,
       "current_capacity": 100,
-      "start_cords": [276, 276],
-      "center_cords": [34, 276],
-      "end_cords": [146, 276]
+      "start_cords": [34, 276],
+      "center_cords": [88, 276],
+      "end_cords": [144, 276]
     },
     "J3": {
       "is_frozen": true,
@@ -8387,5 +8388,5 @@
       "center_cords": [88, 411],
       "end_cords": [144, 411]
     }
-  }
-}
+  }}
+

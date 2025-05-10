@@ -1,3 +1,4 @@
+
 import json
 import csv
 import heapq
@@ -5,7 +6,7 @@ import math
 
 # Load warehouse map
 try:
-    with open("../data/map.json") as f:
+    with open("./backend/data/map.json") as f:
         map_data = json.load(f)
 except FileNotFoundError:
     print("Error: map.json not found in ../data/ directory.")
@@ -50,44 +51,66 @@ lookup_table = {
     "D3R": ["C11-9", "C12-9", "C13-9", "C14-9", "C15-9"],
 }
 
+import heapq
+
 def heuristic(node_a, node_b):
+    """Calculate Manhattan distance heuristic (admissible for 4-directional grid movement)"""
     if node_a not in nodes or node_b not in nodes:
         return float("inf")
     ax, ay = nodes[node_a]["x"], nodes[node_a]["y"]
     bx, by = nodes[node_b]["x"], nodes[node_b]["y"]
-    # Using Manhattan distance which is generally better for grid-based movement
-    return abs(ax - bx) + abs(ay - by)
+    return abs(ax - bx) + abs(ay - by)  # Manhattan distance for grid movement
 
 def a_star_search(start, goal):
+    """Optimal pathfinding using corrected A* algorithm"""
+    # Validate input nodes
     if start not in nodes or goal not in nodes:
-        print(f"Error: Start node '{start}' or goal node '{goal}' not found in the map.")
+        print(f"Error: Invalid start/goal nodes ({start} → {goal})")
         return []
 
-    open_set = [(heuristic(start, goal), 0, start, [start])]  # (f_score, g_score, current_node, path)
+    # Initialize priority queue with start node
+    open_set = []
+    g_cost = 0  # Initial cost to reach the start node is 0
+    heapq.heappush(open_set, (heuristic(start, goal) + g_cost, g_cost, start, [start])) 
+    # Track lowest known costs to reach each node
     g_costs = {start: 0}
-    visited = set()
 
     while open_set:
-        f, g, current, path = heapq.heappop(open_set)
+        # Get node with lowest f-score (priority = f = g + h)
+        current_f, current_g, current_node, current_path = heapq.heappop(open_set)
 
-        if current == goal:
-            return path
+        # Early exit if we reach the goal
+        if current_node == goal:
+            return current_path
 
-        if current in visited:
+        # Skip if we've found a better path since this node was queued
+        if current_g > g_costs.get(current_node, float('inf')):
             continue
-        visited.add(current)
 
-        for neighbor in nodes[current].get("neighbours", []):
+        # Explore all valid neighbors
+        for neighbor in nodes[current_node].get("neighbours", []):
+            # Validate neighbor existence and accessibility
             if neighbor not in nodes or nodes[neighbor].get("locked"):
                 continue
 
-            tentative_g = g + 1  # Assuming uniform cost of 1 for each step
-            if neighbor not in g_costs or tentative_g < g_costs[neighbor]:
-                g_costs[neighbor] = tentative_g
-                f_score = tentative_g + heuristic(neighbor, goal)
-                heapq.heappush(open_set, (f_score, tentative_g, neighbor, path + [neighbor]))
+            # Calculate new path cost (uniform 1 step cost)
+            new_g = current_g + 1
 
-    return []  # Return an empty list if no path is found
+            # Only proceed if this path is better than previous attempts
+            if new_g < g_costs.get(neighbor, float('inf')):
+                # Update cost tracking
+                g_costs[neighbor] = new_g
+                
+                # Calculate priority score (f = g + h)
+                new_f = new_g + heuristic(neighbor, goal)
+                
+                # Create new path record
+                new_path = current_path + [neighbor]
+                
+                # Add to priority queue
+                heapq.heappush(open_set, (new_f, new_g, neighbor, new_path))
+
+    return []  # No path exists
 
 def bin_range_to_indices(bin_range):
     try:

@@ -4,7 +4,7 @@ import csv
 import heapq
 import math
 
-# Load warehouse map
+#loading warehouse map
 try:
     with open("./backend/data/map.json") as f:
         map_data = json.load(f)
@@ -59,7 +59,7 @@ def heuristic(node_a, node_b):
         return float("inf")
     ax, ay = nodes[node_a]["x"], nodes[node_a]["y"]
     bx, by = nodes[node_b]["x"], nodes[node_b]["y"]
-    return abs(ax - bx) + abs(ay - by)  # Manhattan distance for grid movement
+    return abs(ax - bx) + abs(ay - by)  
 
 def a_star_search(start, goal):
     """Optimal pathfinding using corrected A* algorithm"""

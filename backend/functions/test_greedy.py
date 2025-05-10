@@ -234,7 +234,7 @@ def plot_bar_charts_with_errors(overall_stats, algorithms_list):
         plot_idx += 1
     
     for i in range(plot_idx, len(axes)): fig.delaxes(axes[i])
-    fig.suptitle("Algorithm Performance Comparison between A* and Greedy search", fontsize=16, fontweight='bold', color=TEXT_COLOR_DARK)
+    fig.suptitle("Algorithm Performance Comparison between A* and Greedy", fontsize=16, fontweight='bold', color=TEXT_COLOR_DARK)
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
     plt.show()
 
@@ -559,88 +559,4 @@ if __name__ == "__main__":
     # ---------------------------------------------------------------------------
     print("\n\n" + "="*70)
     print("GUIDE TO ANALYSIS, INTERPRETATION, AND CONCLUSIONS")
-    print("="*70)
-    print("""
-This guide helps interpret outputs from pathfinding experiments comparing Greedy BFS and A* Search.
-
-**1. Interpreting Visual Output:**
-
-   **a. Individual Map Plots (per algorithm, per pair):**
-      - Path Taken:
-         - GBFS: Look for 'rushing' paths, potentially longer or less direct. Does it get stuck?
-         - A*: Path should appear more 'sensible' and direct, aiming for optimality.
-      - Explored Nodes (non-path colored nodes):
-         - GBFS: Narrow band if heuristic is good; large, inefficient area if misguided.
-         - A*: More systematic expansion, balancing cost-so-far and heuristic.
-         - Compare size/shape of explored regions for both on the same pair.
-
-   **b. Comparative Bar Charts between A* and Greedy search performance **
-      - Mean Comparison: Directly compare bar heights (e.g., A* shorter for Path Distance).
-      - Variability : Shorter error bars = more consistent performance.
-      - Overlap: Non-overlapping error bars suggest a more meaningful difference in means.
-      - Example: "A* had lower avg path distance (X ±Y) vs GBFS (Z ±W), with non-overlapping error bars (Fig N)."
-
-   **c. Box Plots (Metric Distributions):**
-      - Median Comparison: Compare medians (lines in boxes), less affected by outliers.
-      - Spread (IQR): Shorter box = more consistent middle 50% of data.
-      - Skewness & Outliers: Note if median isn't centered or if there are extreme points.
-      - Example: "Box plot for runtime (Fig M) shows GBFS has a lower median but A* has a tighter IQR, indicating more predictable runtimes for most cases. GBFS exhibited several high runtime outliers."
-
-   **d. Scatter Plots (Metric Correlations):**
-      - Correlation:
-         - Positive: Both metrics increase together (e.g., Nodes Explored vs. Runtime).
-         - Negative: One increases, other decreases.
-         - None: Points are random.
-      - Clustering: Do GBFS and A* points form distinct groups?
-      - Example: "Scatter plot of Nodes Explored vs. Path Length (Fig P) indicated that while both showed increased exploration for longer paths, A* points clustered towards shorter path lengths for any given level of exploration compared to GBFS."
-
-**2. Analyzing Statistical Output (Text):**
-
-   **a. Aggregate Statistics (Console Output):**
-      - Success Rate: Percentage of successful pathfinds. High is good.
-      - Averages (Avg Runtime, etc.): Match bar chart values.
-      - Standard Deviation (StdDev):
-         - Low StdDev: Consistent performance.
-         - High StdDev: Variable performance. Crucial for reliability assessment.
-
-   **b. Detailed Per-Pair Comparison (Console Table):**
-      - Identify Trends: Are there types of pairs where one algo consistently wins?
-      - Outliers: Note pairs with results far from the average.
-      - Correlate with Map Plots: Understand *why* a specific pair gave unusual results by looking at its map plot.
-
-**3. Drawing Conclusions:**
-
-   **a. Overall Performance Summary:**
-      - Which was faster? Found shorter paths? Explored fewer nodes? More reliable?
-
-   **b. Optimality vs. Speed Trade-off:**
-      - Illustrate with your data: "A* found paths X% shorter, but GBFS was Y% faster."
-
-   **c. Impact of Heuristic and Map Complexity:**
-      - How did your map structure affect each algorithm?
-
-   **d. Consistency and Reliability (Use StdDev & IQR):**
-      - Which algorithm was more predictable for path quality? For speed?
-
-   **e. Suitability for the Warehouse Scenario:**
-      - Which is better for a real robot? Optimality (A*) vs. computation speed (GBFS). Usually, robot travel time >> computation time, favoring A*.
-
-   **f. Limitations of Your Study:**
-      - Number/representativeness of test pairs. Static map. Heuristic choice.
-
-   **g. Potential Future Work (Optional):**
-      - Different heuristics, edge weights, dynamic obstacles, other algorithms.
-
-**4. Recommendations for Report Structure:**
-
-   1. Introduction (Purpose, algorithms, metrics)
-   2. Methodology (Algorithm descriptions, map data, experimental setup)
-   3. Results (Aggregate visuals & stats, selected per-pair examples & map plots)
-   4. Analysis and Discussion (Interpret each metric, discuss trade-offs, specific cases)
-   5. Conclusions (Summarize findings, recommend best algo for context, limitations)
-   6. Appendix (Optional: Full tables, more plots, code snippets)
-
-Remember to replace generic statements with specific observations from YOUR data!
-""" + "="*70)
-    print("END OF GUIDE")
     print("="*70)

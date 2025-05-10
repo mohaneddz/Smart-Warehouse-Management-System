@@ -2,56 +2,76 @@
 
 import { Card } from '@/components/ui/card';
 import { useState } from 'react';
+
 type CarouselSpacingProps = {
   onCardClick: (add: boolean, remove: boolean, manage: boolean) => void;
 };
 
 function CarouselSpacing({ onCardClick }: CarouselSpacingProps) {
   const [cards, setCards] = useState([
-    'Take from Inventory',
-    'Add to Inventory',
-    'Manage Inventory',
+    { id: 1, label: 'Take from Inventory', position: 'left' },
+    { id: 2, label: 'Add to Inventory', position: 'center' },
+    { id: 3, label: 'Manage Inventory', position: 'right' },
   ]);
 
-  const handleCardClick = (index: number) => {
+  const handleCardClick = (clickedCard: typeof cards[0]) => {
+    if (clickedCard.position === 'center') return; // Already centered
+
     let Add = false;
     let Remove = false;
     let Manage = false;
 
-    if (cards[index] === 'Add to Inventory') {
+    if (clickedCard.label === 'Add to Inventory') {
       Add = true;
-    } else if (cards[index] === 'Take from Inventory') {
+    } else if (clickedCard.label === 'Take from Inventory') {
       Remove = true;
     } else {
       Manage = true;
     }
+
     onCardClick(Add, Remove, Manage);
-    if (index !== 1) {
-      const newCards = [...cards];
-      [newCards[1], newCards[index]] = [newCards[index], newCards[1]];
-      setCards(newCards);
+
+    // Update positions
+    setCards(cards.map(card => {
+      if (card.id === clickedCard.id) {
+        return { ...card, position: 'center' };
+      } else if (card.position === 'center') {
+        // Move currently centered card to where the clicked card was
+        return { ...card, position: clickedCard.position };
+      }
+      return card;
+    }));
+  };
+
+  const getCardStyles = (position: string) => {
+    switch (position) {
+      case 'left':
+        return 'left-[15%] -translate-x-1/2 scale-90 opacity-70 hover:opacity-90';
+      case 'center':
+        return 'left-1/2 -translate-x-1/2 z-40 scale-110 bg-[#13101E] shadow-[0_0_20px_#6B86DE3B] opacity-100';
+      case 'right':
+        return 'left-[85%] -translate-x-1/2 scale-90 opacity-70 hover:opacity-90';
+      default:
+        return '';
     }
   };
 
   return (
-    <div className="w-full max-w-md mx-auto dark text-xl sm:text-[12px] md:text-xs lg:text-xl">
-      <div className="relative grid grid-cols-3 place-items-center gap-8 justify-items-center py-8">
-        {cards.map((cardLabel, index) => (
-          <Card
-            key={cardLabel}
-            onClick={() => handleCardClick(index)}
-            className={`flex justify-center items-center border-[#8B939B]
-              absolute transition-all duration-500 ease-in-out cursor-pointer w-[45%] h-10 bg-[#2C2F3C] 
-              transform
-              ${index === 0 ? 'left-0 -translate-x-1/2' : ''}
-              ${index === 1 ? 'z-40 scale-120 bg-[#13101E] shadow-[0_0_20px_#6B86DE3B] border-[#8B939B] opacity-100' : 'z-10 scale-90 opacity-70 hover:opacity-90'}
-              ${index === 2 ? 'right-0 translate-x-1/2' : ''}
+    <div className="w-full md:w-[90%] lg:w-[70%] dark text-xl sm:text-[12px] md:text-xs lg:text-xl relative h-16 flex justify-center w-full mx-auto">
+      {cards.map((card) => (
+        <Card
+          key={card.id}
+          onClick={() => handleCardClick(card)}
+          className={`
+              absolute transition-all duration-500 ease-in-out cursor-pointer 
+              w-max h-10 px-16 bg-[#2C2F3C] border-[#8B939B]
+              flex justify-center items-center
+              ${getCardStyles(card.position)}
             `}
-          >
-            {cardLabel}
-          </Card>
-        ))}
-      </div>
+        >
+          {card.label}
+        </Card>
+      ))}
     </div>
   );
 }

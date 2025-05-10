@@ -3,11 +3,6 @@ from enum import Enum, auto
 from core.types import NodeType, INode, IAgent # type: ignore
 from dataclasses import dataclass, field
 
-class NodeType(Enum):
-    """Enumeration of possible node types."""
-    NORMAL = auto()
-    CENTER = auto()
-
 @dataclass
 class Node:
     """Represents a node in the warehouse grid.

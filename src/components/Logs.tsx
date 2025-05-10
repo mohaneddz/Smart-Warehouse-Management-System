@@ -1,134 +1,171 @@
-// logs/index.tsx (LogsTable component - assuming this is where your LogsTable code is)
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
 
-interface Invoice {
-  invoice: string;
-  paymentStatus: string;
-  totalAmount: string;
-  paymentMethod: string;
+// Define the specific types for category and operation
+type Category = 'Materials' | 'Food' | 'Chemicals' | 'Electronics' | 'Medicine' | 'Household';
+type Operation = 'Insertion' | 'Retrieval';
+
+interface LogEntry {
+  item: string;
+  category: Category; // Use the defined Category type
+  operation: Operation; // Use the defined Operation type
+  quantity: number; // Max: 20, Min: 1
+  started: string; // Format: YYYY-MM-DD HH:MM:SS
+  ended: string;   // Format: YYYY-MM-DD HH:MM:SS
 }
 
 interface LogsTableProps {
   searchTerm: string;
 }
 
-const invoicesData: Invoice[] = [
+// Updated logsData array with new categories, operations, and quantities (1-20)
+const logsData: LogEntry[] = [
   {
-    invoice: 'INV001',
-    paymentStatus: 'Paid',
-    totalAmount: '$250.00',
-    paymentMethod: 'Credit Card',
+    item: 'Screw Set',
+    category: 'Materials',
+    operation: 'Insertion',
+    quantity: 15,
+    started: '2025-04-01 08:30:00',
+    ended: '2025-04-01 10:45:00',
   },
   {
-    invoice: 'INV002',
-    paymentStatus: 'Pending',
-    totalAmount: '$150.00',
-    paymentMethod: 'PayPal',
+    item: 'Canned Beans',
+    category: 'Food',
+    operation: 'Retrieval',
+    quantity: 5,
+    started: '2025-04-02 22:00:00',
+    ended: '2025-04-03 01:15:00',
   },
   {
-    invoice: 'INV003',
-    paymentStatus: 'Unpaid',
-    totalAmount: '$350.00',
-    paymentMethod: 'Bank Transfer',
+    item: 'Cleaning Solution',
+    category: 'Chemicals',
+    operation: 'Insertion',
+    quantity: 10,
+    started: '2025-04-03 09:00:00',
+    ended: '2025-04-03 12:30:00',
   },
   {
-    invoice: 'INV004',
-    paymentStatus: 'Paid',
-    totalAmount: '$450.00',
-    paymentMethod: 'Credit Card',
+    item: 'USB Cable',
+    category: 'Electronics',
+    operation: 'Retrieval',
+    quantity: 8,
+    started: '2025-04-04 14:00:00',
+    ended: '2025-04-04 15:45:00',
   },
   {
-    invoice: 'INV005',
-    paymentStatus: 'Paid',
-    totalAmount: '$550.00',
-    paymentMethod: 'PayPal',
+    item: 'Pain Killers',
+    category: 'Medicine',
+    operation: 'Insertion',
+    quantity: 20,
+    started: '2025-04-05 10:00:00',
+    ended: '2025-04-05 16:30:00',
   },
   {
-    invoice: 'INV006',
-    paymentStatus: 'Pending',
-    totalAmount: '$200.00',
-    paymentMethod: 'Bank Transfer',
+    item: 'Paper Towels',
+    category: 'Household',
+    operation: 'Retrieval',
+    quantity: 18,
+    started: '2025-04-06 08:00:00',
+    ended: '2025-04-06 17:00:00',
   },
   {
-    invoice: 'INV007',
-    paymentStatus: 'Unpaid',
-    totalAmount: '$300.00',
-    paymentMethod: 'Credit Card',
+    item: 'Wire Spool',
+    category: 'Materials',
+    operation: 'Retrieval',
+    quantity: 3,
+    started: '2025-04-07 13:00:00',
+    ended: '2025-04-07 14:30:00',
   },
   {
-    invoice: 'INV008',
-    paymentStatus: 'Paid',
-    totalAmount: '$650.00',
-    paymentMethod: 'Credit Card',
+    item: 'Bottled Water',
+    category: 'Food',
+    operation: 'Insertion',
+    quantity: 12,
+    started: '2025-04-08 05:00:00',
+    ended: '2025-04-08 05:30:00',
   },
   {
-    invoice: 'INV009',
-    paymentStatus: 'Pending',
-    totalAmount: '$750.00',
-    paymentMethod: 'PayPal',
+    item: 'Bleach',
+    category: 'Chemicals',
+    operation: 'Retrieval',
+    quantity: 1,
+    started: '2025-04-09 20:00:00',
+    ended: '2025-04-10 04:00:00',
   },
   {
-    invoice: 'INV010',
-    paymentStatus: 'Unpaid',
-    totalAmount: '$850.00',
-    paymentMethod: 'Bank Transfer',
+    item: 'Keyboard',
+    category: 'Electronics',
+    operation: 'Insertion',
+    quantity: 6,
+    started: '2025-04-10 09:00:00',
+    ended: '2025-04-10 17:00:00',
+  },
+  {
+    item: 'Bandages',
+    category: 'Medicine',
+    operation: 'Retrieval',
+    quantity: 9,
+    started: '2025-04-11 11:00:00',
+    ended: '2025-04-11 12:00:00',
+  },
+  {
+    item: 'Trash Bags',
+    category: 'Household',
+    operation: 'Insertion',
+    quantity: 14,
+    started: '2025-04-12 09:30:00',
+    ended: '2025-04-12 10:15:00',
   },
 ];
 
 function LogsTable({ searchTerm }: LogsTableProps) {
   const [sortConfig, setSortConfig] = useState<{
-    key: keyof Invoice | null;
+    key: keyof LogEntry | null;
     direction: 'ascending' | 'descending' | null;
   }>({ key: null, direction: null });
-  const [amountFilter, setAmountFilter] = useState<string>('all');
-  const [statusFilter, setStatusFilter] = useState<string>('all');
-  const [methodFilter, setMethodFilter] = useState<string>('all');
-  const [filteredInvoices, setFilteredInvoices] =
-    useState<Invoice[]>(invoicesData);
+  const [categoryFilter, setCategoryFilter] = useState<string>('all');
+  const [operationFilter, setOperationFilter] = useState<string>('all');
+  const [quantityFilter, setQuantityFilter] = useState<string>('all');
+  const [filteredLogs, setFilteredLogs] = useState<LogEntry[]>(logsData);
 
   useEffect(() => {
-    let newFilteredInvoices = invoicesData.filter((invoice) =>
-      Object.values(invoice).some((value) =>
-        value.toLowerCase().includes(searchTerm.toLowerCase()),
+    let newFilteredLogs = logsData.filter((log) =>
+      Object.values(log).some((value) =>
+        String(value).toLowerCase().includes(searchTerm.toLowerCase()),
       ),
     );
 
-    // Amount Filter
-    if (amountFilter === 'under200') {
-      newFilteredInvoices = newFilteredInvoices.filter(
-        (invoice) => parseFloat(invoice.totalAmount.replace('$', '')) < 200,
-      );
-    } else if (amountFilter === '200to500') {
-      newFilteredInvoices = newFilteredInvoices.filter((invoice) => {
-        const amount = parseFloat(invoice.totalAmount.replace('$', ''));
-        return amount >= 200 && amount <= 500;
-      });
-    } else if (amountFilter === 'over500') {
-      newFilteredInvoices = newFilteredInvoices.filter(
-        (invoice) => parseFloat(invoice.totalAmount.replace('$', '')) > 500,
+    // Category Filter
+    if (categoryFilter !== 'all') {
+      newFilteredLogs = newFilteredLogs.filter(
+        (log) => log.category === categoryFilter,
       );
     }
 
-    // Status Filter
-    if (statusFilter !== 'all') {
-      newFilteredInvoices = newFilteredInvoices.filter(
-        (invoice) => invoice.paymentStatus === statusFilter,
+    // Operation Filter
+    if (operationFilter !== 'all') {
+      newFilteredLogs = newFilteredLogs.filter(
+        (log) => log.operation === operationFilter,
       );
     }
 
-    // Method Filter
-    if (methodFilter !== 'all') {
-      newFilteredInvoices = newFilteredInvoices.filter(
-        (invoice) => invoice.paymentMethod === methodFilter,
+    // Quantity Filter - Updated to reflect 1-20 range
+    if (quantityFilter === '1-5') {
+      newFilteredLogs = newFilteredLogs.filter((log) => log.quantity >= 1 && log.quantity <= 5);
+    } else if (quantityFilter === '6-10') {
+      newFilteredLogs = newFilteredLogs.filter(
+        (log) => log.quantity >= 6 && log.quantity <= 10,
       );
+    } else if (quantityFilter === '11-20') {
+      newFilteredLogs = newFilteredLogs.filter((log) => log.quantity >= 11 && log.quantity <= 20);
     }
 
-    setFilteredInvoices(newFilteredInvoices);
-  }, [amountFilter, statusFilter, methodFilter, searchTerm]);
 
-  const requestSort = (key: keyof Invoice) => {
+    setFilteredLogs(newFilteredLogs);
+  }, [categoryFilter, operationFilter, quantityFilter, searchTerm]);
+
+  const requestSort = (key: keyof LogEntry) => {
     let direction: 'ascending' | 'descending' = 'ascending';
     if (sortConfig.key === key && sortConfig.direction === 'ascending') {
       direction = 'descending';
@@ -136,103 +173,117 @@ function LogsTable({ searchTerm }: LogsTableProps) {
     setSortConfig({ key, direction });
   };
 
-  const sortedInvoices = useMemo(() => {
+  const sortedLogs = useMemo(() => {
     if (!sortConfig.key) {
-      return filteredInvoices;
+      return filteredLogs;
     }
 
-    return [...filteredInvoices].sort((a, b) => {
+    return [...filteredLogs].sort((a, b) => {
       const key = sortConfig.key;
       if (key) {
-        if (key === 'totalAmount') {
-          const amountA = parseFloat(a[key].replace('$', ''));
-          const amountB = parseFloat(b[key].replace('$', ''));
-          if (amountA < amountB)
+        if (key === 'quantity') {
+          const valueA = a[key];
+          const valueB = b[key];
+          if (valueA < valueB)
             return sortConfig.direction === 'ascending' ? -1 : 1;
-          if (amountA > amountB)
+          if (valueA > valueB)
+            return sortConfig.direction === 'ascending' ? 1 : -1;
+          return 0;
+        } else if (key === 'started' || key === 'ended') {
+          const dateA = new Date(a[key]).getTime();
+          const dateB = new Date(b[key]).getTime();
+          if (dateA < dateB)
+            return sortConfig.direction === 'ascending' ? -1 : 1;
+          if (dateA > dateB)
             return sortConfig.direction === 'ascending' ? 1 : -1;
           return 0;
         } else {
-          if (a[key] < b[key])
+          const valueA = String(a[key]);
+          const valueB = String(b[key]);
+          if (valueA < valueB)
             return sortConfig.direction === 'ascending' ? -1 : 1;
-          if (a[key] > b[key])
+          if (valueA > valueB)
             return sortConfig.direction === 'ascending' ? 1 : -1;
           return 0;
         }
       }
       return 0;
     });
-  }, [filteredInvoices, sortConfig]);
+  }, [filteredLogs, sortConfig]);
 
-  const handleAmountFilterChange = (
+  const handleCategoryFilterChange = (
     event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
-    setAmountFilter(event.target.value);
+    setCategoryFilter(event.target.value);
   };
 
-  const handleStatusFilterChange = (
+  const handleOperationFilterChange = (
     event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
-    setStatusFilter(event.target.value);
+    setOperationFilter(event.target.value);
   };
 
-  const handleMethodFilterChange = (
+  const handleQuantityFilterChange = (
     event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
-    setMethodFilter(event.target.value);
+    setQuantityFilter(event.target.value);
   };
 
-  const uniqueStatuses = [
+  // Dynamically generate unique categories and operations from the updated data
+  const uniqueCategories = [
     'all',
-    ...Array.from(new Set(invoicesData.map((inv) => inv.paymentStatus))),
+    ...(Array.from(new Set(logsData.map((log) => log.category))) as string[]), // Cast to string[] for mapping
   ];
-  const uniqueMethods = [
+  const uniqueOperations = [
     'all',
-    ...Array.from(new Set(invoicesData.map((inv) => inv.paymentMethod))),
+    ...(Array.from(new Set(logsData.map((log) => log.operation))) as string[]), // Cast to string[] for mapping
   ];
+
+  // Function to format dates for display (YYYY-MM-DD)
+  const formatDate = (dateString: string) => {
+    return dateString.split(' ')[0];
+  };
 
   return (
-    <div className="rounded-md bg-[#10111D] text-[#BFBFBF] font-bold p-1 w-[90%] md:w-[70%] lg:w-[50%]">
+    <div className="rounded-md bg-[#10111D] text-[#BFBFBF] font-bold p-1 mt-8 w-[90%]">
       <div className="w-full">
-        <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr] h-[50px]">
-          <div className="flex items-center justify-center">Items</div>
-          <div className="flex items-center font-medium justify-start">
+        <div className="grid grid-cols-6 h-[50px]">
+          <div className="flex items-center justify-center">
             <button
               type="button"
-              onClick={() => requestSort('invoice')}
+              onClick={() => requestSort('item')}
               className="text-gray-400 hover:text-gray-200 flex items-center"
             >
-              <span>Invoice</span>
+              <span>Item</span>
             </button>
           </div>
           <div className="flex items-center font-medium justify-start">
             <div className="flex items-center gap-2">
-              <span>Status</span>
+              <span className="hidden xl:inline">Category</span>
               <select
-                value={statusFilter}
-                onChange={handleStatusFilterChange}
+                value={categoryFilter}
+                onChange={handleCategoryFilterChange}
                 className="bg-[#10111D] text-gray-400 border border-gray-700 rounded-md text-sm focus:outline-none"
               >
-                {uniqueStatuses.map((status) => (
-                  <option key={status} value={status}>
-                    {status.charAt(0).toUpperCase() + status.slice(1)}
+                {uniqueCategories.map((category) => (
+                  <option key={category} value={category}>
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
                   </option>
                 ))}
               </select>
             </div>
           </div>
-
           <div className="flex items-center font-medium justify-start">
             <div className="flex items-center gap-2">
-              <span>Method</span>
+              <span className="hidden xl:inline">Operation</span>
               <select
-                value={methodFilter}
-                onChange={handleMethodFilterChange}
-                className="bg-[#10111D] text-gray-400 border w-[55%] border-gray-700 rounded-md text-sm focus:outline-none"
+                value={operationFilter}
+                onChange={handleOperationFilterChange}
+                className="bg-[#10111D] text-gray-400 border border-gray-700 rounded-md text-sm focus:outline-none"
               >
-                {uniqueMethods.map((method) => (
-                  <option key={method} value={method}>
-                    {method}
+                {uniqueOperations.map((operation) => (
+                  <option key={operation} value={operation}>
+                    {operation}
                   </option>
                 ))}
               </select>
@@ -240,22 +291,36 @@ function LogsTable({ searchTerm }: LogsTableProps) {
           </div>
           <div className="flex items-center justify-center font-medium">
             <div className="flex items-center gap-2">
-              <span>Amount</span>
+              <span className="hidden xl:inline">Quantity</span>
               <select
-                value={amountFilter}
-                onChange={handleAmountFilterChange}
+                value={quantityFilter}
+                onChange={handleQuantityFilterChange}
                 className="bg-[#10111D] text-gray-400 border border-gray-700 rounded-md text-sm focus:outline-none"
               >
                 <option value="all">All</option>
-                <option value="under200">Under $200</option>
-                <option value="200to500">$200 - $500</option>
-                <option value="over500">Over $500</option>
+                <option value="1-5">1 - 5</option>
+                <option value="6-10">6 - 10</option>
+                <option value="11-20">11 - 20</option>
               </select>
             </div>
           </div>
-
           <div className="flex items-center justify-center font-medium">
-            Amount
+            <button
+              type="button"
+              onClick={() => requestSort('started')}
+              className="text-gray-400 hover:text-gray-200 flex items-center"
+            >
+              <span>Started</span>
+            </button>
+          </div>
+          <div className="flex items-center justify-center font-medium">
+            <button
+              type="button"
+              onClick={() => requestSort('ended')}
+              className="text-gray-400 hover:text-gray-200 flex items-center"
+            >
+              <span>Ended</span>
+            </button>
           </div>
         </div>
 
@@ -266,22 +331,31 @@ function LogsTable({ searchTerm }: LogsTableProps) {
           className="w-full h-10"
         />
         <div className="overflow-y-auto h-[390px] [&::-webkit-scrollbar]:w-2 dark:[&::-webkit-scrollbar-track]:bg-[#10121E] dark:[&::-webkit-scrollbar-thumb]:bg-[#303137] overflow-x-hidden">
-          {sortedInvoices.map((invoice) => (
+          {sortedLogs.map((log) => (
             <div
-              key={invoice.invoice}
-              className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr] h-[65px] border-b border-gray-800 "
+              key={`${log.item}-${log.started}`}
+              className="grid grid-cols-6 h-[65px] border-b border-gray-800"
             >
+              <div className="flex items-center justify-start pl-3">
+                {log.item}
+              </div>
+              <div className="flex items-center">
+                {log.category}
+              </div>
+              <div className="flex items-center">
+                {log.operation}
+              </div>
               <div className="flex items-center justify-center">
-                {invoice.paymentMethod}
+                {log.quantity}
               </div>
-              <div className="flex items-center">{invoice.invoice}</div>
-              <div className="flex items-center">{invoice.paymentStatus}</div>
-              <div className="flex items-center">{invoice.paymentMethod}</div>
-              <div className="flex items-center justify-center w-30 m-4">
-                {invoice.totalAmount}
+              <div
+                className="flex items-center justify-center"
+                title={log.started}
+              >
+                {formatDate(log.started)}
               </div>
-              <div className="flex items-center justify-center p-4 ">
-                {invoice.totalAmount}
+              <div className="flex items-center justify-center">
+                {formatDate(log.ended)}
               </div>
             </div>
           ))}

@@ -17,12 +17,8 @@ function StockManager() {
     setCardAction({ Add, Remove, Manage });
   };
   return (
-    <div className="flex flex-col items-center justify-start min-h-screen pt-20">
-      {' '}
-      {/* Changed justify-center to justify-start and added pt-20 */}
-      <div className="w-[90%] md:w-[70%] lg:w-[50%] flex flex-col items-center justify-start">
-        {' '}
-        {/* Adjusted width and justify-start */}
+    <div className="flex flex-col items-center justify-start">
+      <div className="min-w-min w-[90%]">
         <div
           className={`w-full mt-0 ${cardAction.Add ? 'mt-0' : ''} mb-5 flex justify-center`}
         >

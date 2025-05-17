@@ -1,0 +1,51 @@
+id,name,weight,category,slots_required,retrieval_counter,insertion_counter
+item001,Premium Chemicals Box,21.8,chemicals,1,86,20
+item002,Value Chemicals Unit,69.1,chemicals,3,13,1
+item003,Premium Chemicals Box,65.5,chemicals,1,88,6
+item004,Premium Food Unit,46.1,food,3,86,5
+item005,Eco Beverages Unit,65.9,beverages,3,70,8
+item006,Value Food Box,25.7,food,2,75,4
+item007,Eco Food Box,66.3,food,3,40,11
+item008,Value Food Pack,50.4,food,1,56,7
+item009,Premium Beverages Pack,62.9,beverages,2,61,9
+item010,Eco Chemicals Unit,29.2,chemicals,1,56,17
+item011,Value Frozen Box,15.3,frozen,2,63,20
+item012,Eco Frozen Pack,70.9,frozen,1,93,13
+item013,Value Chemicals Pack,35.9,chemicals,2,91,9
+item014,Eco Household goods Unit,47.6,household goods,1,40,8
+item015,Eco Beverages Unit,12.3,beverages,1,93,1
+item016,Premium Beverages Box,50.2,beverages,2,99,2
+item017,Value Food Box,70.8,food,1,28,2
+item018,Eco Frozen Box,67.2,frozen,1,76,1
+item019,Eco Frozen Unit,74.6,frozen,3,0,19
+item020,Value Chemicals Box,47.9,chemicals,3,83,4
+item021,Eco Frozen Pack,37.1,frozen,1,65,9
+item022,Value Beverages Unit,56.8,beverages,2,45,6
+item023,Value Beverages Box,39.7,beverages,2,95,11
+item024,Eco Food Unit,41.3,food,2,69,20
+item025,Premium Beverages Unit,3.7,beverages,3,7,12
+item026,Premium Frozen Box,65.2,frozen,3,11,11
+item027,Value Beverages Unit,53.7,beverages,3,23,4
+item028,Eco Chemicals Unit,12.2,chemicals,3,60,8
+item029,Eco Frozen Box,3.3,frozen,3,39,16
+item030,Eco Chemicals Box,3.6,chemicals,3,70,9
+item031,Eco Food Pack,17.6,food,2,22,14
+item032,Eco Chemicals Pack,64.9,chemicals,1,75,18
+item033,Premium Chemicals Box,61.7,chemicals,2,5,10
+item034,Eco Chemicals Box,4.8,chemicals,2,15,6
+item035,Value Chemicals Unit,37.6,chemicals,2,61,18
+item036,Premium Chemicals Pack,37.1,chemicals,2,67,8
+item037,Value Household goods Unit,47.7,household goods,2,83,18
+item038,Eco Household goods Box,7.4,household goods,3,48,5
+item039,Eco Food Pack,45.6,food,2,86,13
+item040,Value Chemicals Unit,45.1,chemicals,3,53,16
+item041,Value Beverages Pack,19.2,beverages,2,74,12
+item042,Value Household goods Unit,17.7,household goods,3,80,10
+item043,Value Chemicals Pack,65.3,chemicals,3,89,9
+item044,Eco Chemicals Unit,38.2,chemicals,2,25,8
+item045,Eco Food Pack,19.2,food,3,20,10
+item046,Value Food Pack,29.7,food,1,64,14
+item047,Premium Frozen Unit,38.0,frozen,1,22,4
+item048,Premium Frozen Unit,2.5,frozen,2,48,20
+item049,Premium Food Unit,28.1,food,1,47,17
+item050,Premium Chemicals Unit,23.7,chemicals,2,80,5

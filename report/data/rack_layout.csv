@@ -1,0 +1,17 @@
+rack_id,shelf_level,item_id
+R02,0,item008
+R02,1,item009
+R02,2,item012
+R03,0,item001
+R03,1,item009
+R04,1,item002
+R05,2,item002
+R06,1,item005
+R07,0,item011
+R07,2,item008
+R08,0,item001
+R08,2,item005
+R09,0,item005
+R11,0,item012
+R11,1,item007
+R11,2,item012

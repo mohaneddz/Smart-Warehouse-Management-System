@@ -1,14 +1,22 @@
-# ⚙️ InventoryFlow — Intelligent Inventory Simulation System
+# ⚙️ ATLAS — Smart Warehouse Management System
 
-## 🎥 Video Documentation  
+## 🎥 Video Documentation
 <div align="center">
-  <iframe src="https://drive.google.com/file/d/1AziU_eTjwFnQaXtP8V2ilecWmuWdLeLl/preview" width="100%" height="480" allow="autoplay"></iframe>
+  <!-- Click the image to open the Drive preview. 
+       Ensure screenshots/video.avif (or video.avif) exists in the repo; adjust path if needed. -->
+  <a href="https://drive.google.com/file/d/1AziU_eTjwFnQaXtP8V2ilecWmuWdLeLl/preview">
+    <img src="screenshots/video.avif" alt="ATLAS video preview — click to open" style="max-width:100%;height:auto;" />
+  </a>
+
+  <p>
+    <a href="https://drive.google.com/file/d/1AziU_eTjwFnQaXtP8V2ilecWmuWdLeLl/preview">Open video in Google Drive (new tab)</a>
+  </p>
 </div>
 
 ---
 
 ## 📌 Overview
-InventoryFlow is a **Next.js-based intelligent inventory management system** designed to help teams track items, manage stock, analyze historical changes, and run advanced simulations to optimize inventory strategies.
+ATLAS is a **Next.js-based intelligent inventory management system** designed to help teams track items, manage stock, analyze historical changes, and run advanced simulations to optimize inventory strategies.
 
 The entire project is built with a **scalable architecture**, optimized for **SEO**, and uses **AVIF** images for maximum performance.
 
@@ -35,6 +43,20 @@ The entire project is built with a **scalable architecture**, optimized for **SE
 | **Simulation Engine** | Strategy testing | Runs multiple simulated cycles with various parameters to compare outcomes. |
 | **History Diff Engine** | Change tracking | Generates field-level diffs between old and new item states. |
 | **Low-Stock Alerts** | Warning system | Triggers notifications when thresholds are crossed. |
+
+---
+
+## 🛠️ Tech Stack
+
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs)  
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)  
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript)  
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss)  
+![Tauri](https://img.shields.io/badge/Tauri-000000?style=for-the-badge&logo=tauri)  
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python)  
+![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask)  
+![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=three.js&logoColor=white)  
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql)  
 
 ---
 
@@ -76,23 +98,6 @@ take/
 | -------------------------------- |
 | ![](screenshots/simulation.avif) |
 
----
-
-## 🛠️ Tech Stack
-
-<div align="center">
-
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs)  
-![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)  
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript)  
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss)  
-![Tauri](https://img.shields.io/badge/Tauri-000000?style=for-the-badge&logo=tauri)  
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python)  
-![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask)  
-![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=three.js&logoColor=white)  
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql)  
-
-</div>
 
 ---
 
@@ -101,7 +106,7 @@ take/
 ```
 git clone https://github.com/mohaneddz/Smart-Warehouse-Management-System
 
-cd inventoryflow
+cd ATLAS
 
 pnpm install
 

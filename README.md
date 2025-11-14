@@ -1,113 +1,132 @@
-# Warehouse Management AI App
+# ⚙️ InventoryFlow — Intelligent Inventory Simulation System
 
-## 📌 Project Overview
-This project is a **Warehouse Management Application** that utilizes **AI-powered pathfinding** and **optimal storage positioning** to streamline warehouse operations. The app features **3D warehouse visualization, statistical analysis, and real-time optimization**. Built with **Tauri, React, TypeScript, Tailwind CSS, and Three.js**, and backed by **PostgreSQL** for data storage.
+## 🎥 Video Documentation  
+<div align="center">
+  <iframe src="https://drive.google.com/file/d/1AziU_eTjwFnQaXtP8V2ilecWmuWdLeLl/preview" width="100%" height="480" allow="autoplay"></iframe>
+</div>
+
+---
+
+## 📌 Overview
+InventoryFlow is a **Next.js-based intelligent inventory management system** designed to help teams track items, manage stock, analyze historical changes, and run advanced simulations to optimize inventory strategies.
+
+The entire project is built with a **scalable architecture**, optimized for **SEO**, and uses **AVIF** images for maximum performance.
+
+---
 
 ## 🚀 Features
-- **AI-powered shortest pathfinding** for efficient navigation
-- **Optimized storage allocation** for better inventory management
-- **3D warehouse visualization** using Three.js
-- **Advanced statistical analysis** with dynamic charts
-- **PostgreSQL database** for structured, scalable data storage
-- **Tauri integration** for cross-platform desktop application support
-- **Flask API** for backend interactions
-- **Responsive UI** with Tailwind CSS
+- Smart **inventory intake, updates, and consumption**
+- **Simulation engine** to test stock strategies
+- **Full item history timeline**
+- **Inventory diff engine** for displaying changes
+- **User settings & preferences**
+- **Responsive, fast, and SEO-ready**
+- Built on **Next.js App Router + Server Actions**
 
-## 🏗 Tech Stack
-- **Frontend:** React, TypeScript, Tailwind CSS
-- **Backend:** Tauri (Rust), Flask (Python), PostgreSQL
-- **3D Visualization:** Three.js
-- **AI Algorithms:** Custom pathfinding and storage optimization logic
+---
 
-## 📂 Project Structure
+## 🧠 Core Algorithms
+
+| Algorithm | Purpose | Description |
+|----------|----------|-------------|
+| **Stock Level Tracking** | Real-time stock state | Tracks additions/removals using incremental counters. |
+| **Demand Forecasting (EMA)** | Predict future consumption | Uses Exponential Moving Average to estimate future depletion rates. |
+| **Restock Suggestion Logic** | Automated advice | Suggests reorder quantities by combining safety stock + predicted demand. |
+| **Simulation Engine** | Strategy testing | Runs multiple simulated cycles with various parameters to compare outcomes. |
+| **History Diff Engine** | Change tracking | Generates field-level diffs between old and new item states. |
+| **Low-Stock Alerts** | Warning system | Triggers notifications when thresholds are crossed. |
+
+---
+
+## 🗂️ Project Structure
+
 ```
-warehouse/
-├── src/
-│   ├── components/       # Reusable UI components (buttons, cards, modals, etc.)
-│   ├── pages/            # Main application pages (Dashboard, Storage, Analytics, etc.)
-│   ├── assets/           # Static files (icons, images, etc.)
-│   ├── utils/            # Helper functions and utilities
-│   ├── lib/              # API calls and database interactions
-│   ├── main.tsx          # App entry point
-│   └── App.tsx           # Main application component
-│
-├── src-tauri/
-│   ├── db/               # Database interactions (PostgreSQL)
-│   │   ├── schema.sql    # Database schema definitions
-│   │   ├── queries.rs    # SQL queries and models
-│   │   └── config.rs     # Database connection settings
-│   ├── src/
-│   │   ├── main.rs       # Tauri backend entry point (Rust)
-│   │   └── config.rs     # Environment and config settings
-│   └── Cargo.toml        # Rust dependencies
-│
-├── flask-api/
-│   ├── app/
-│   │   ├── routes/       # Flask API endpoints
-│   │   ├── services/     # Business logic for AI & optimization
-│   │   └── __init__.py   # Flask app initialization
-│   ├── run.py            # Main entry point for Flask server
-│   └── requirements.txt  # Python dependencies
-│
-├── public/               # Static public files
-├── tauri.conf.json       # Tauri configuration file
-├── package.json          # Node.js dependencies
-├── tsconfig.json         # TypeScript configuration
-├── .env                  # Environment variables
-├── README.md             # Project documentation (this file!)
-├── .gitignore            # Git ignored files
-└── pyproject.toml        # Python project configuration
+/app
+/home
+/inventory
+add/
+manage/
+take/
+/simulation
+/history
+/settings
+/components
+/lib
+/public/screenshots
+
 ```
 
-## ⚡ Installation & Setup
-### Prerequisites
-- **Node.js** (Latest LTS)
-- **Rust & Cargo** (for Tauri backend)
-- **PostgreSQL** (Database)
-- **Python 3 & pip** (for Flask API)
+---
 
-### 1️⃣ Clone the Repository
-```sh
-git clone https://github.com/your-repo/warehouse-management-ai.git
-cd warehouse-management-ai
+## 📸 Screenshots
+
+| Home                       | History                       |
+| -------------------------- | ----------------------------- |
+| ![](screenshots/home.avif) | ![](screenshots/history.avif) |
+
+| Add Inventory                       | Manage Inventory                       |
+| ----------------------------------- | -------------------------------------- |
+| ![](screenshots/inventory-add.avif) | ![](screenshots/inventory-manage.avif) |
+
+| Take Inventory                       | Settings                       |
+| ------------------------------------ | ------------------------------ |
+| ![](screenshots/inventory-take.avif) | ![](screenshots/settings.avif) |
+
+| 3D Simulation                    |
+| -------------------------------- |
+| ![](screenshots/simulation.avif) |
+
+---
+
+## 🛠️ Tech Stack
+
+<div align="center">
+
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs)  
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)  
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript)  
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss)  
+![Tauri](https://img.shields.io/badge/Tauri-000000?style=for-the-badge&logo=tauri)  
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python)  
+![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask)  
+![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=three.js&logoColor=white)  
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql)  
+
+</div>
+
+---
+
+## 🔧 Installation
+
+```
+git clone https://github.com/mohaneddz/Smart-Warehouse-Management-System
+
+cd inventoryflow
+
+pnpm install
+
+pnpm run dev
 ```
 
-### 2️⃣ Install Dependencies
-```sh
-npm install  # Install frontend dependencies
-cargo build  # Compile Tauri backend
-pip install -r flask-api/requirements.txt  # Install Flask dependencies
-```
+---
 
-### 3️⃣ Set Up Database
-1. Start PostgreSQL and create a database:
-```sql
-CREATE DATABASE warehouse_db;
-```
-2. Configure the `.env` file:
-```
-DATABASE_URL=postgresql://user:password@localhost:5432/warehouse_db
-```
-3. Run database migrations:
-```sh
-cargo run --bin migrate
-```
+## 🧪 Simulation Engine — How It Works
 
-### 4️⃣ Start the App
-```sh
-npm run dev  # Start frontend
-cargo tauri dev  # Start Tauri backend
-python flask-api/run.py  # Start Flask API
-```
+The simulation module allows users to test restock strategies by generating multiple virtual cycles.
 
-## 📊 Future Enhancements
-- 🔄 **Real-time warehouse tracking** with AI-powered predictions
-- 📡 **Cloud-based synchronization** for multi-device access
-- 🔥 **Machine learning optimization** for demand forecasting
+Each cycle evaluates:
 
-## 🤝 Contributing
-Contributions are welcome! Feel free to fork the repo and submit pull requests. 🚀
+* Starting stock
+* Daily usage pattern
+* Forecasted usage (EMA)
+* Safety stock
+* Restock quantity
+* Total duration until stockout
 
-## 📜 License
-This project is licensed under the **GNU General Public License v3.0 (GPL-3.0)**.
+The system compares scenarios and highlights the most optimal strategy.
 
+---
+
+## 📄 License
+
+This project is released under the **MIT License**.
